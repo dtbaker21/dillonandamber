@@ -386,6 +386,24 @@ footer .wrap{border-color:#2f4537}
 .pin.sel i{transform:scale(1.12)}
 .pin.sel span{background:#24382c;color:#fbf8f3}
 .mcard .via{font-size:14px;color:#5f5347;margin-top:6px}
+
+/* Modern pins (override) */
+.pin{display:block;gap:0;transform:translate(-50%,-50%)}
+.pin.venue{transform:translate(-50%,-50%)}
+.pin i{width:32px;height:32px;margin:0;border:2px solid #fff;box-shadow:0 1px 2px rgba(30,20,10,.18),0 6px 14px -4px rgba(30,20,10,.35)}
+.pin i svg{width:16px;height:16px;stroke:#fff;stroke-width:1.9}
+.pin.air i{background:#35566a}
+.pin.stay i{background:#8a6334}
+.pin.explore i{background:#6b5d4e}
+.pin.venue i{width:44px;height:44px;background:#24382c;border-width:2.5px}
+.pin.venue i svg{width:22px;height:22px;stroke:#f1d29c;stroke-width:1.7}
+.pin.venue i::after{inset:-7px;border:1.5px solid rgba(36,56,44,.35);animation-duration:3.2s}
+.pin span{position:absolute;left:calc(100% + 8px);top:50%;transform:translate(-4px,-50%);white-space:nowrap}
+.pin:hover span,.pin:focus-visible span,.pin.sel span,.pin.venue span{transform:translate(0,-50%)}
+.pin.sel i{transform:scale(1.1)}
+.mcanvas .pin i svg{position:static;inset:auto;display:block;flex:none}
+.mcanvas .pin i:not(.x) svg{width:16px;height:16px}
+.mcanvas .pin.venue i svg{width:22px;height:22px}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -712,13 +730,13 @@ footer .wrap{border-color:#2f4537}
   let layer=LAYERS[0],selected='lodge',R=null;
   const showCard=id=>{const p=P[id];selected=id;card.innerHTML=`<div class="in">${p.img?`<img src="img/${p.img}.jpg" alt="">`:''}<div class="tx"><h3>${p.name}</h3><p class="meta">${p.meta}</p><p>${p.desc}</p>${p.via?`<p class="via">${p.via}</p>`:''}<a class="link" href="${p.kind==='air'?fromUrl(p):dirUrl(p)}">${p.kind==='air'?`Directions from ${p.name}`:'Directions'}</a></div></div>`;document.querySelectorAll('.pin').forEach(el=>el.classList.toggle('sel',el.dataset.id===id))};
   const ICON={
-    lodge:'<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/>',
-    hotel:'<path d="M3 18.5v-8"/><path d="M3 14.5h18v4"/><path d="M21 14.5v-2.5a3 3 0 0 0-3-3h-7v5.5"/><circle cx="7" cy="11.5" r="1.8"/>',
-    pae:'<path d="M2.5 13.5 21 7l-5.5 13-3.2-5.4z"/><path d="m12.3 14.6 3.2-3.1"/>',
-    sea:'<path d="M2.5 13.5 21 7l-5.5 13-3.2-5.4z"/><path d="m12.3 14.6 3.2-3.1"/>',
-    town:'<path d="M4 9.5h16l-1.3-4.5H5.3z"/><path d="M5 9.5v10h14v-10"/><path d="M10 19.5v-5h4v5"/>',
-    trail:'<circle cx="6" cy="16" r="3.5"/><circle cx="18" cy="16" r="3.5"/><path d="M6 16l4-7h5l3 7M10 9l3 7"/>',
-    falls:'<path d="M3 19.5 9 8l3.5 6 2.2-3.5 6.3 9z"/><path d="m7.6 10.8 1.4 1.5 1.3-1.5"/>'
+    lodge:'<circle cx="8.6" cy="13.4" r="5.1"/><circle cx="15.4" cy="13.4" r="5.1"/><path d="M14 5.6 15.4 3.8l1.4 1.8-1.4 1.6z"/>',
+    hotel:'<path d="M2.5 19.5v-7.5a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v7.5"/><path d="M4.5 10V6.5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2V10"/><path d="M12 4.5V10"/><path d="M2.5 16.5h19"/>',
+    pae:'<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+    sea:'<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+    town:'<path d="M3.5 9 5 4h14l1.5 5"/><path d="M3.5 9a2.8 2.8 0 0 0 5.6 0 2.8 2.8 0 0 0 5.8 0 2.8 2.8 0 0 0 5.6 0"/><path d="M5 11.5V20h14v-8.5"/><path d="M10 20v-4.5h4V20"/>',
+    trail:'<circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5 9 9.5h6l3.5 7"/><path d="M9 9.5 12 16.5h-1"/><path d="M13.5 6.5H16l-1 3"/>',
+    falls:'<path d="m8 4.5 4 7.5 3-3.5 6.5 11H2.5z"/>'
   };
   const pinEl=id=>{const b=document.createElement('button');b.type='button';b.className='pin '+P[id].kind;b.dataset.id=id;b.innerHTML=`<i><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[id]||''}</svg></i><span>${P[id].name}</span>`;b.setAttribute('aria-label',P[id].name);b.addEventListener('click',()=>showCard(id));return b};
   chipsEl.innerHTML=LAYERS.map((l,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-l="${l.id}">${l.label}</button>`).join('');
@@ -752,7 +770,7 @@ footer .wrap{border-color:#2f4537}
       g+=`<path d="${line(water,1)}" fill="#cfdcd6"/><path d="${line(lake,1)}" fill="#cfdcd6"/><path d="${line(river)}" stroke="#cfdcd6" stroke-width="${Math.max(2,cam.s*1.5).toFixed(1)}" fill="none" stroke-linecap="round"/>`;
       g+=roads.map(r=>`<path d="${line(r)}" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
       g+=labels.map(l=>{const[x,y]=S(l[1],l[2]);return`<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="500" fill="#9a8c7e" style="paint-order:stroke;stroke:#ebe8da;stroke-width:4px">${l[0]}</text>`}).join('');
-      routes.forEach((r,i)=>{const pts=r.map(p=>S(p[0],p[1]));const t=clamp(el-i*.25);const pp=partial(pts,reduce?1:1-(1-t)**3);if(!pp)return;g+=`<path d="${pp.d}" stroke="#2a211c" stroke-opacity=".18" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${pp.d}" stroke="#2a211c" stroke-width="3" fill="none" stroke-dasharray="1 8" stroke-linecap="round" stroke-linejoin="round"/>`;if(t>=1&&!reduce){const k=((now/5200)+i*.37)%1;const q=partial(pts,k);if(q)g+=`<circle cx="${q.end[0].toFixed(1)}" cy="${q.end[1].toFixed(1)}" r="6" fill="${'#c9965a'}" stroke="#fff" stroke-width="2.5"/>`}});
+      routes.forEach((r,i)=>{const pts=r.map(p=>S(p[0],p[1]));const t=clamp(el-i*.25);const pp=partial(pts,reduce?1:1-(1-t)**3);if(!pp)return;g+=`<path d="${pp.d}" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/><path d="${pp.d}" stroke="#24382c" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;if(t>=1&&!reduce){const k=((now/5200)+i*.37)%1;const q=partial(pts,k);if(q)g+=`<circle cx="${q.end[0].toFixed(1)}" cy="${q.end[1].toFixed(1)}" r="4.5" fill="#fff" stroke="#24382c" stroke-width="2.5"/>`}});
       svg.innerHTML=g;
       pins.querySelectorAll('.pin').forEach(b=>{const p=P[b.dataset.id];const[x,y]=S(p.lat,p.lng);b.style.left=x.toFixed(1)+'px';b.style.top=y.toFixed(1)+'px'});
     };
@@ -795,9 +813,9 @@ footer .wrap{border-color:#2f4537}
     class Pin extends g.OverlayView{constructor(id){super();this.id=id;this.el=pinEl(id)}onAdd(){this.el.classList.toggle('sel',selected===this.id);this.getPanes().overlayMouseTarget.appendChild(this.el);requestAnimationFrame(()=>this.el.classList.add('show'))}draw(){const pt=this.getProjection().fromLatLngToDivPixel(new g.LatLng(P[this.id].lat,P[this.id].lng));this.el.style.left=pt.x+'px';this.el.style.top=pt.y+'px'}onRemove(){this.el.remove()}}
     const cache={};let live=[],bounds=null;
     const animate=(line,path,halo)=>{if(reduce){line.setPath(path);halo&&halo.setPath(path);return}const t0=performance.now();const step=now=>{const k=clamp((now-t0)/1600);const e=1-(1-k)**3;const sub=path.slice(0,Math.max(2,Math.round(path.length*e)));line.setPath(sub);halo&&halo.setPath(sub);if(k<1)requestAnimationFrame(step);else glide(line)};requestAnimationFrame(step)};
-    const glide=line=>{let o=0;const tick=()=>{if(!line.getMap())return;o=(o+.12)%100;const ic=line.get('icons');ic[1].offset=o+'%';line.set('icons',ic);requestAnimationFrame(tick)};requestAnimationFrame(tick)};
-    const mkLine=()=>new g.Polyline({map,strokeOpacity:0,icons:[{icon:{path:'M 0,-1 0,1',strokeOpacity:1,strokeColor:'#2a211c',scale:3},offset:'0',repeat:'12px'},{icon:{path:g.SymbolPath.CIRCLE,scale:6,fillColor:'#c9965a',fillOpacity:1,strokeColor:'#fff',strokeWeight:2.5},offset:'0%'}]});
-    const route=(a,b)=>{const key=a+b;const halo=new g.Polyline({map,strokeColor:'#d9a85f',strokeOpacity:.35,strokeWeight:10,zIndex:1});const line=mkLine();line.setOptions({zIndex:2});live.push(halo,line);const use=path=>animate(line,path,halo);if(cache[key])return use(cache[key]);
+    const glide=line=>{let o=0;const tick=()=>{if(!line.getMap())return;o=(o+.12)%100;const ic=line.get('icons');ic[ic.length-1].offset=o+'%';line.set('icons',ic);requestAnimationFrame(tick)};requestAnimationFrame(tick)};
+    const mkLine=()=>new g.Polyline({map,strokeColor:'#24382c',strokeOpacity:.95,strokeWeight:4,icons:[{icon:{path:g.SymbolPath.CIRCLE,scale:4,fillColor:'#ffffff',fillOpacity:1,strokeColor:'#24382c',strokeWeight:2.5},offset:'0%'}]});
+    const route=(a,b)=>{const key=a+b;const halo=new g.Polyline({map,strokeColor:'#ffffff',strokeOpacity:.95,strokeWeight:8,zIndex:1});const line=mkLine();line.setOptions({zIndex:2});live.push(halo,line);const use=path=>animate(line,path,halo);if(cache[key])return use(cache[key]);
       g.importLibrary('routes').then(({Route})=>{const req=f=>Route.computeRoutes({origin:{lat:P[a].lat,lng:P[a].lng},destination:{lat:P[b].lat,lng:P[b].lng},travelMode:'DRIVING',fields:f});return req(['path','durationMillis','distanceMeters','description']).catch(()=>req(['path','durationMillis','distanceMeters']))}).then(({routes})=>{const r=routes[0];const path=r.path.map(p=>new g.LatLng(p.lat,p.lng));cache[key]=path;path.forEach(pt=>bounds.extend(pt));map.fitBounds(bounds,pad());const mins=Math.round(r.durationMillis/60000),mi=Math.round(r.distanceMeters/1609.34);const t=mins>=60?`${Math.floor(mins/60)} hr ${mins%60} min`:`${mins} min`;P[a].meta=`${t} drive to the lodge · ${mi} miles`;if(r.description)P[a].via=`Fastest route right now: via ${r.description}`;if(selected===a)showCard(a);use(path)}).catch(()=>use([new g.LatLng(P[a].lat,P[a].lng),new g.LatLng(P[b].lat,P[b].lng)]))};
     return{show(l){live.forEach(o=>o.setMap(null));live=[];l.pins.forEach(id=>{const p=new Pin(id);p.setMap(map);live.push(p)});bounds=new g.LatLngBounds();l.pins.forEach(id=>bounds.extend({lat:P[id].lat,lng:P[id].lng}));l.routes.forEach(r=>(cache[r[0]+r[1]]||[]).forEach(pt=>bounds.extend(pt)));map.fitBounds(bounds,pad());l.routes.forEach(r=>route(r[0],r[1]));g.event.addListenerOnce(map,'idle',()=>{if(map.getZoom()>13)map.setZoom(13)})}};
   };
