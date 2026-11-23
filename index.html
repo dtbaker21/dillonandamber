@@ -451,7 +451,7 @@ footer .wrap{border-color:#2f4537}
 
 
 <section class="bleed" id="venue" aria-label="The venue">
-  <img data-plx="0.12" src="img/lodge.jpg" alt="A timber lodge on a hilltop at blue hour, windows glowing" loading="lazy">
+  <img data-plx="0.12" src="img/venue.jpg" alt="The ceremony site at The Lookout Lodge: a log arbor and log benches under tall firs" loading="lazy">
   <div class="cap"><h2 class="rv">The Lookout Lodge</h2><p class="rv d1">Snohomish, Washington · About an hour north of Seattle</p></div>
 </section>
 
@@ -572,7 +572,7 @@ footer .wrap{border-color:#2f4537}
   const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 
   // Content
-  const slides=[["overlook","Friday, June 4","Welcome drop-in","Casual and optional. Stop by any time after 6 pm for snacks and drinks."],["ceremony","Saturday, June 5","The wedding","Ceremony at 4 pm on the lawn, with dinner and dancing after. Shuttles leave the hotel at 3:15."],["fog","Sunday, June 6","Farewell coffee","Coffee and pastries from 10 am before you head home."]];
+  const slides=[["overlook","Friday, June 4","Welcome drop-in","Casual and optional. Stop by any time after 6 pm for snacks and drinks."],["venue","Saturday, June 5","The wedding","Ceremony at 4 pm on the lawn, with dinner and dancing after. Shuttles leave the hotel at 3:15."],["fog","Sunday, June 6","Farewell coffee","Coffee and pastries from 10 am before you head home."]];
   $('rail').innerHTML=slides.map(s=>`<article class="slide"><img src="img/${s[0]}.jpg" alt="" loading="lazy"><div class="cap"><p class="when">${s[1]}</p><h3>${s[2]}</h3></div><p class="d">${s[3]}</p></article>`).join('');
 
   const party=[["Alex Rivera","Best man","#3a5a46"],["Priya Shah","Maid of honor","#9a6a3a"],["Sam Ortiz","Groomsman","#4f6b4a"],["Casey Nguyen","Bridesmaid","#7a5a46"],["Jamie Cole","Groomsman","#5a6b3e"],["Taylor Kim","Bridesmaid","#8a6a4a"],["Morgan Lee","Officiant","#2f4a3a"],["Riley Baker","Ring bearer","#6b5a3a"]];
@@ -706,7 +706,7 @@ footer .wrap{border-color:#2f4537}
   $('ics').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
   // ---- Layered map: real Google Maps on the live site, a matching drawn preview here ----
   const P={
-    lodge:{name:'The Lookout Lodge',lat:48.018486,lng:-122.009789,kind:'venue',img:'lodge',meta:'Ceremony 4:00 pm · Reception to follow',desc:'2410 Newberg Rd, Snohomish. Free parking on site.'},
+    lodge:{name:'The Lookout Lodge',lat:48.018486,lng:-122.009789,kind:'venue',img:'venue',meta:'Ceremony 4:00 pm · Reception to follow',desc:'2410 Newberg Rd, Snohomish. Free parking on site.'},
     hotel:{name:'Our hotel block',lat:47.977479,lng:-122.208225,kind:'stay',img:'town',meta:'Everett · Saturday shuttle stop',desc:'Group rate through early May. The shuttle leaves here at 3:15 pm.'},
     sea:{name:'Sea-Tac',lat:47.448365,lng:-122.308593,kind:'air',meta:'About an hour to the lodge',desc:'Most guests will fly in here. Pick up a rental car and head north; allow extra time on Friday afternoons, when I-5 gets busy.'},
     town:{name:'Downtown Snohomish',lat:47.911598,lng:-122.095657,kind:'stay',img:'town',meta:'About 20 minutes to the lodge',desc:'Inns, cafés and antique shops along First Street and the river.'},
