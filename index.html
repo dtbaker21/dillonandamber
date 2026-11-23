@@ -369,6 +369,22 @@ footer .wrap{border-color:#2f4537}
 @media(max-width:700px){.hero .scene .t h1{font-size:10.6vw}.hero .scene .t .sub{font-size:15px}}
 @media(min-width:701px){.hero .scene .t{text-align:left;padding-left:max(12vw,48px)}.hero .scene .t h1{font-size:clamp(56px,8vw,128px)}}
 @media(max-width:700px){.hero .frame .scene>img{object-position:28% 50%}}
+
+/* Illustrated map pins + vignette */
+.mapx::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(60,40,20,.08),inset 0 0 90px rgba(90,60,30,.16)}
+.pin{transform:translate(-17px,-17px);gap:10px}
+.pin i{width:34px;height:34px;display:grid;place-items:center;border:2.5px solid #fbf8f3;box-shadow:0 6px 16px -6px rgba(40,25,10,.55),0 0 0 1px rgba(40,25,10,.08)}
+.pin i svg{width:18px;height:18px;fill:none;stroke:#fbf8f3;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pin.venue{transform:translate(-22px,-22px)}
+.pin.venue i{width:44px;height:44px;background:linear-gradient(150deg,#e2b46e,#b9813e)}
+.pin.venue i svg{width:22px;height:22px}
+.pin.air i{background:linear-gradient(150deg,#6f8f9a,#4c6a75)}
+.pin.stay i{background:linear-gradient(150deg,#6f9a7c,#3f6b50)}
+.pin.explore i{background:linear-gradient(150deg,#a08262,#6d5238)}
+.pin span{font:600 13px Inter,sans-serif;color:#2a211c;background:rgba(251,248,243,.94);opacity:0;transform:translateX(-6px);transition:opacity .35s var(--ease),transform .35s var(--ease),background-color .3s,color .3s;pointer-events:none}
+.pin:hover span,.pin:focus-visible span,.pin.sel span,.pin.venue span{opacity:1;transform:none}
+.pin.sel i{transform:scale(1.12)}
+.pin.sel span{background:#24382c;color:#fbf8f3}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -677,13 +693,14 @@ footer .wrap{border-color:#2f4537}
     sea:{name:'Sea-Tac',lat:47.448365,lng:-122.308593,kind:'air',meta:'About an hour to the lodge',desc:'The most flights. Allow extra time Friday afternoon on I-5.'},
     town:{name:'Downtown Snohomish',lat:47.911598,lng:-122.095657,kind:'stay',img:'town',meta:'About 20 minutes to the lodge',desc:'Inns, cafés and antique shops along First Street and the river.'},
     trail:{name:'Centennial Trail',lat:48.095606,lng:-122.125029,kind:'explore',img:'fog',meta:'Paved, flat, through farmland',desc:'Rent a bike or walk a stretch before the big day.'},
-    falls:{name:'Franklin Falls',lat:47.413077,lng:-121.44247,kind:'explore',img:'couplefalls',meta:'Where it all started · about 90 minutes',desc:'An easy hike to the falls. Get there early for parking.'}
+    falls:{name:'Snoqualmie Pass',lat:47.4245,lng:-121.4137,kind:'explore',img:'couplefalls',meta:'Where we met · about 90 minutes',desc:'Franklin Falls is just down the road. An easy hike, and our favorite.'}
   };
   const LAYERS=[
     {id:'day',label:'Wedding day',pins:['lodge','hotel'],routes:[['hotel','lodge']],focus:'lodge'},
     {id:'here',label:'Getting here',pins:['lodge','pae','sea'],routes:[['pae','lodge'],['sea','lodge']],focus:'lodge'},
     {id:'stay',label:'Where to stay',pins:['lodge','hotel','town'],routes:[],focus:'hotel'},
-    {id:'explore',label:'Explore',pins:['lodge','town','trail','falls'],routes:[],focus:'falls'}
+    {id:'explore',label:'Explore',pins:['lodge','town','trail','falls'],routes:[],focus:'falls'},
+    {id:'all',label:'Everything',pins:['lodge','hotel','town','trail','pae','sea','falls'],routes:[],focus:'lodge'}
   ];
   const mx=$('mapx'),canvas=$('mapCanvas'),chipsEl=$('chips'),card=$('mcard');
   const dirUrl=p=>`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`;
@@ -691,7 +708,16 @@ footer .wrap{border-color:#2f4537}
   const pad=()=>innerWidth>700?{top:90,right:190,bottom:60,left:410}:{top:80,right:140,bottom:270,left:30};
   let layer=LAYERS[0],selected='lodge',R=null;
   const showCard=id=>{const p=P[id];selected=id;card.innerHTML=`<div class="in">${p.img?`<img src="img/${p.img}.jpg" alt="">`:''}<div class="tx"><h3>${p.name}</h3><p class="meta">${p.meta}</p><p>${p.desc}</p><a class="link" href="${dirUrl(p)}">Directions</a></div></div>`;document.querySelectorAll('.pin').forEach(el=>el.classList.toggle('sel',el.dataset.id===id))};
-  const pinEl=id=>{const b=document.createElement('button');b.type='button';b.className='pin '+P[id].kind;b.dataset.id=id;b.innerHTML=`<i></i><span>${P[id].name}</span>`;b.addEventListener('click',()=>showCard(id));return b};
+  const ICON={
+    lodge:'<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/>',
+    hotel:'<path d="M3 18.5v-8"/><path d="M3 14.5h18v4"/><path d="M21 14.5v-2.5a3 3 0 0 0-3-3h-7v5.5"/><circle cx="7" cy="11.5" r="1.8"/>',
+    pae:'<path d="M2.5 13.5 21 7l-5.5 13-3.2-5.4z"/><path d="m12.3 14.6 3.2-3.1"/>',
+    sea:'<path d="M2.5 13.5 21 7l-5.5 13-3.2-5.4z"/><path d="m12.3 14.6 3.2-3.1"/>',
+    town:'<path d="M4 9.5h16l-1.3-4.5H5.3z"/><path d="M5 9.5v10h14v-10"/><path d="M10 19.5v-5h4v5"/>',
+    trail:'<circle cx="6" cy="16" r="3.5"/><circle cx="18" cy="16" r="3.5"/><path d="M6 16l4-7h5l3 7M10 9l3 7"/>',
+    falls:'<path d="M3 19.5 9 8l3.5 6 2.2-3.5 6.3 9z"/><path d="m7.6 10.8 1.4 1.5 1.3-1.5"/>'
+  };
+  const pinEl=id=>{const b=document.createElement('button');b.type='button';b.className='pin '+P[id].kind;b.dataset.id=id;b.innerHTML=`<i><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[id]||''}</svg></i><span>${P[id].name}</span>`;b.setAttribute('aria-label',P[id].name);b.addEventListener('click',()=>showCard(id));return b};
   chipsEl.innerHTML=LAYERS.map((l,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-l="${l.id}">${l.label}</button>`).join('');
   const setLayer=id=>{layer=LAYERS.find(l=>l.id===id);chipsEl.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',b.dataset.l===id));R&&R.show(layer);showCard(layer.focus)};
   chipsEl.addEventListener('click',e=>{const b=e.target.closest('button');if(b)setLayer(b.dataset.l)});
@@ -734,16 +760,40 @@ footer .wrap{border-color:#2f4537}
   };
 
   // Google Maps renderer: styled map, HTML pins, real driving routes with live times
-  const STYLE=[{elementType:'geometry',stylers:[{color:'#f1ebe1'}]},{elementType:'labels.icon',stylers:[{visibility:'off'}]},{elementType:'labels.text.fill',stylers:[{color:'#94877a'}]},{elementType:'labels.text.stroke',stylers:[{color:'#ffffff'}]},{featureType:'poi',stylers:[{visibility:'off'}]},{featureType:'poi.park',elementType:'geometry',stylers:[{visibility:'on'},{color:'#e2e4d2'}]},{featureType:'landscape.natural',elementType:'geometry',stylers:[{color:'#ebe5d6'}]},{featureType:'road',elementType:'geometry',stylers:[{color:'#ffffff'}]},{featureType:'road.highway',elementType:'geometry',stylers:[{color:'#ebe5d8'}]},{featureType:'transit',stylers:[{visibility:'off'}]},{featureType:'water',elementType:'geometry',stylers:[{color:'#cfdcd6'}]},{featureType:'administrative',elementType:'geometry',stylers:[{visibility:'off'}]}];
+  const STYLE=[
+    {elementType:'geometry',stylers:[{color:'#efe8dc'}]},
+    {elementType:'labels.icon',stylers:[{visibility:'off'}]},
+    {elementType:'labels.text.fill',stylers:[{color:'#8a7c6c'}]},
+    {elementType:'labels.text.stroke',stylers:[{color:'#f6f1e8'},{weight:3}]},
+    {featureType:'administrative',elementType:'geometry',stylers:[{visibility:'off'}]},
+    {featureType:'administrative.land_parcel',stylers:[{visibility:'off'}]},
+    {featureType:'administrative.neighborhood',stylers:[{visibility:'off'}]},
+    {featureType:'administrative.locality',elementType:'labels.text.fill',stylers:[{color:'#5f5347'}]},
+    {featureType:'landscape.natural',elementType:'geometry',stylers:[{color:'#e9e4d2'}]},
+    {featureType:'landscape.natural.terrain',elementType:'geometry',stylers:[{color:'#e1dcc4'}]},
+    {featureType:'landscape.natural.landcover',elementType:'geometry',stylers:[{color:'#e3e3cb'}]},
+    {featureType:'landscape.man_made',elementType:'geometry',stylers:[{color:'#ece4d6'}]},
+    {featureType:'poi',stylers:[{visibility:'off'}]},
+    {featureType:'poi.park',elementType:'geometry',stylers:[{visibility:'on'},{color:'#d6dcc0'}]},
+    {featureType:'road',elementType:'labels',stylers:[{visibility:'off'}]},
+    {featureType:'road.highway',elementType:'geometry.fill',stylers:[{color:'#f8f3ea'}]},
+    {featureType:'road.highway',elementType:'geometry.stroke',stylers:[{color:'#e2d6c2'}]},
+    {featureType:'road.arterial',elementType:'geometry',stylers:[{color:'#f4eee3'}]},
+    {featureType:'road.local',stylers:[{visibility:'simplified'},{color:'#f1ebdf'}]},
+    {featureType:'transit',stylers:[{visibility:'off'}]},
+    {featureType:'water',elementType:'geometry',stylers:[{color:'#bfd2cf'}]},
+    {featureType:'water',elementType:'labels.text.fill',stylers:[{color:'#6f8f8b'}]},
+    {featureType:'water',elementType:'labels.text.stroke',stylers:[{color:'#d5e2df'}]}
+  ];
   const GoogleR=()=>{
     const g=google.maps;
-    const map=new g.Map(canvas,{center:{lat:47.9,lng:-122.1},zoom:10,disableDefaultUI:true,zoomControl:true,gestureHandling:'cooperative',clickableIcons:false,...(CONFIG.mapId?{mapId:CONFIG.mapId}:{styles:STYLE})});
+    const map=new g.Map(canvas,{center:{lat:47.9,lng:-122.1},zoom:10,disableDefaultUI:true,zoomControl:true,gestureHandling:'cooperative',clickableIcons:false,...(CONFIG.mapId?{mapId:CONFIG.mapId}:{styles:STYLE,mapTypeId:'terrain'})});
     class Pin extends g.OverlayView{constructor(id){super();this.id=id;this.el=pinEl(id)}onAdd(){this.el.classList.toggle('sel',selected===this.id);this.getPanes().overlayMouseTarget.appendChild(this.el);requestAnimationFrame(()=>this.el.classList.add('show'))}draw(){const pt=this.getProjection().fromLatLngToDivPixel(new g.LatLng(P[this.id].lat,P[this.id].lng));this.el.style.left=pt.x+'px';this.el.style.top=pt.y+'px'}onRemove(){this.el.remove()}}
     const cache={};let live=[],bounds=null;
-    const animate=(line,path)=>{if(reduce){line.setPath(path);return}const t0=performance.now();const step=now=>{const k=clamp((now-t0)/1600);const e=1-(1-k)**3;line.setPath(path.slice(0,Math.max(2,Math.round(path.length*e))));if(k<1)requestAnimationFrame(step);else glide(line)};requestAnimationFrame(step)};
+    const animate=(line,path,halo)=>{if(reduce){line.setPath(path);halo&&halo.setPath(path);return}const t0=performance.now();const step=now=>{const k=clamp((now-t0)/1600);const e=1-(1-k)**3;const sub=path.slice(0,Math.max(2,Math.round(path.length*e)));line.setPath(sub);halo&&halo.setPath(sub);if(k<1)requestAnimationFrame(step);else glide(line)};requestAnimationFrame(step)};
     const glide=line=>{let o=0;const tick=()=>{if(!line.getMap())return;o=(o+.12)%100;const ic=line.get('icons');ic[1].offset=o+'%';line.set('icons',ic);requestAnimationFrame(tick)};requestAnimationFrame(tick)};
     const mkLine=()=>new g.Polyline({map,strokeOpacity:0,icons:[{icon:{path:'M 0,-1 0,1',strokeOpacity:1,strokeColor:'#2a211c',scale:3},offset:'0',repeat:'12px'},{icon:{path:g.SymbolPath.CIRCLE,scale:6,fillColor:'#c9965a',fillOpacity:1,strokeColor:'#fff',strokeWeight:2.5},offset:'0%'}]});
-    const route=(a,b)=>{const key=a+b;const line=mkLine();live.push(line);const use=path=>animate(line,path);if(cache[key])return use(cache[key]);
+    const route=(a,b)=>{const key=a+b;const halo=new g.Polyline({map,strokeColor:'#d9a85f',strokeOpacity:.35,strokeWeight:10,zIndex:1});const line=mkLine();line.setOptions({zIndex:2});live.push(halo,line);const use=path=>animate(line,path,halo);if(cache[key])return use(cache[key]);
       g.importLibrary('routes').then(({Route})=>Route.computeRoutes({origin:{lat:P[a].lat,lng:P[a].lng},destination:{lat:P[b].lat,lng:P[b].lng},travelMode:'DRIVING',fields:['path','durationMillis','distanceMeters']})).then(({routes})=>{const r=routes[0];const path=r.path.map(p=>new g.LatLng(p.lat,p.lng));cache[key]=path;path.forEach(pt=>bounds.extend(pt));map.fitBounds(bounds,pad());const mins=Math.round(r.durationMillis/60000),mi=Math.round(r.distanceMeters/1609.34);const t=mins>=60?`${Math.floor(mins/60)} hr ${mins%60} min`:`${mins} min`;P[a].meta=`${t} drive to the lodge · ${mi} miles`;if(selected===a)showCard(a);use(path)}).catch(()=>use([new g.LatLng(P[a].lat,P[a].lng),new g.LatLng(P[b].lat,P[b].lng)]))};
     return{show(l){live.forEach(o=>o.setMap(null));live=[];l.pins.forEach(id=>{const p=new Pin(id);p.setMap(map);live.push(p)});bounds=new g.LatLngBounds();l.pins.forEach(id=>bounds.extend({lat:P[id].lat,lng:P[id].lng}));l.routes.forEach(r=>(cache[r[0]+r[1]]||[]).forEach(pt=>bounds.extend(pt)));map.fitBounds(bounds,pad());l.routes.forEach(r=>route(r[0],r[1]));g.event.addListenerOnce(map,'idle',()=>{if(map.getZoom()>13)map.setZoom(13)})}};
   };
