@@ -477,6 +477,22 @@ footer .wrap{border-color:#2f4537}
 .toc-ind{position:absolute;top:6px;bottom:6px;left:0;width:0;border-radius:999px;background:#24382c;opacity:0;transition:transform .55s var(--ease),width .55s var(--ease),opacity .3s}
 @media(max-width:600px){.toc a{padding:10px 13px;font-size:13.5px}}
 @media(prefers-reduced-motion:reduce){.toc,.toc-ind{transition:none}.bang.pop{animation:none}}
+
+/* Compact map card */
+.mcard{width:min(300px,calc(100% - 32px));border-radius:20px}
+.mcard img{height:120px}
+.mcard .tx{padding:16px 18px 16px}
+.mcard .k{font:600 12px Inter,sans-serif;letter-spacing:0;margin:0 0 4px;color:#9a8c7e}
+.mcard .k-venue{color:#24382c}.mcard .k-air{color:#35566a}.mcard .k-stay{color:#8a6334}.mcard .k-explore{color:#6b5d4e}
+.mcard h3{font:400 24px/1.1 Fraunces,Georgia,serif;letter-spacing:-.015em;margin:0}
+.mcard .stat{margin-top:12px;display:grid;gap:2px}
+.mcard .stat b{font:400 34px/1 Fraunces,Georgia,serif;letter-spacing:-.02em;color:#2a211c}
+.mcard .stat span{font-size:14px;color:var(--soft)}
+.mcard .ln{font-size:15px;color:var(--soft);margin:6px 0 0}
+.mcard .go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;min-height:38px;padding:0 14px 0 16px;border-radius:999px;background:#24382c;color:#fbf8f3;font:500 14px Inter,sans-serif;text-decoration:none;transition:background-color .3s}
+.mcard .go:hover{background:#2f4a39}
+.mcard .go svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:700px){.mcard img{height:96px}.mcard .stat b{font-size:28px}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -853,12 +869,12 @@ footer .wrap{border-color:#2f4537}
   $('ics').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
   // ---- Layered map: real Google Maps on the live site, a matching drawn preview here ----
   const P={
-    lodge:{name:'The Lookout Lodge',lat:48.018486,lng:-122.009789,kind:'venue',img:'venue',meta:'Ceremony 4:00 pm · Reception to follow',desc:'2410 Newberg Rd, Snohomish. Free parking on site.'},
-    hotel:{name:'Our hotel block',lat:47.977479,lng:-122.208225,kind:'stay',img:'town',meta:'Everett · Saturday shuttle stop',desc:'Group rate through early May. The shuttle leaves here at 3:15 pm.'},
-    sea:{name:'Sea-Tac',lat:47.448365,lng:-122.308593,kind:'air',meta:'About an hour to the lodge',desc:'Most guests will fly in here. Pick up a rental car and head north; allow extra time on Friday afternoons, when I-5 gets busy.'},
-    town:{name:'Downtown Snohomish',lat:47.911598,lng:-122.095657,kind:'stay',img:'town',meta:'About 20 minutes to the lodge',desc:'Inns, cafés and antique shops along First Street and the river.'},
-    trail:{name:'Centennial Trail',lat:48.095606,lng:-122.125029,kind:'explore',img:'fog',meta:'Paved, flat, through farmland',desc:'Rent a bike or walk a stretch before the big day.'},
-    falls:{name:'Snoqualmie Pass',lat:47.4245,lng:-121.4137,kind:'explore',img:'couplefalls',meta:'Where we met · about 90 minutes',desc:'Franklin Falls is just down the road. An easy hike, and our favorite.'}
+    lodge:{name:'The Lookout Lodge',lat:48.018486,lng:-122.009789,kind:'venue',label:'Venue',img:'venue',line:'Ceremony at 4 pm'},
+    hotel:{name:'Our hotel block',lat:47.977479,lng:-122.208225,kind:'stay',label:'Hotel',line:'Group rate · shuttle stop'},
+    sea:{name:'Sea-Tac',lat:47.448365,lng:-122.308593,kind:'air',label:'Airport',time:'About 1 hr',dist:'to the lodge'},
+    town:{name:'Downtown Snohomish',lat:47.911598,lng:-122.095657,kind:'explore',label:'In town',img:'town',line:'Cafés, antiques and the river'},
+    trail:{name:'Centennial Trail',lat:48.095606,lng:-122.125029,kind:'explore',label:'Outdoors',img:'fog',line:'Paved and flat, great by bike'},
+    falls:{name:'Snoqualmie Pass',lat:47.4245,lng:-121.4137,kind:'explore',label:'Where we met',img:'couplefalls',line:'Home of Franklin Falls'},
   };
   const LAYERS=[
     {id:'sea',label:'From Sea-Tac',pins:['sea','hotel','lodge'],routes:[['sea','lodge']],focus:'sea'},
@@ -870,7 +886,7 @@ footer .wrap{border-color:#2f4537}
   $('dirs').href=dirUrl(P.lodge);$('amaps').href=`https://maps.apple.com/?daddr=${P.lodge.lat},${P.lodge.lng}&q=${q}`;
   const pad=()=>innerWidth>700?{top:90,right:190,bottom:60,left:410}:{top:80,right:140,bottom:270,left:30};
   let layer=LAYERS[0],selected='lodge',R=null;
-  const showCard=id=>{const p=P[id];selected=id;card.innerHTML=`<div class="in">${p.img?`<img src="img/${p.img}.jpg" alt="">`:''}<div class="tx"><h3>${p.name}</h3><p class="meta">${p.meta}</p><p>${p.desc}</p>${p.via?`<p class="via">${p.via}</p>`:''}<a class="link" href="${p.kind==='air'?fromUrl(p):dirUrl(p)}">${p.kind==='air'?`Directions from ${p.name}`:'Directions'}</a></div></div>`;document.querySelectorAll('.pin').forEach(el=>el.classList.toggle('sel',el.dataset.id===id))};
+  const showCard=id=>{const p=P[id];selected=id;card.className='mcard'+(p.img?' has-img':'');card.innerHTML=`<div class="in">${p.img?`<img src="img/${p.img}.jpg" alt="">`:''}<div class="tx"><p class="k k-${p.kind}">${p.label}</p><h3>${p.name}</h3>${p.time?`<div class="stat"><b>${p.time}</b><span>${[p.dist,p.via].filter(Boolean).join(' · ')}</span></div>`:`<p class="ln">${p.line||''}</p>`}<a class="go" href="${p.kind==='air'?fromUrl(p):dirUrl(p)}">Directions<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l5 5-5 5"/></svg></a></div></div>`;document.querySelectorAll('.pin').forEach(el=>el.classList.toggle('sel',el.dataset.id===id))};
   const ICON={
     lodge:'<circle cx="8.6" cy="13.4" r="5.1"/><circle cx="15.4" cy="13.4" r="5.1"/><path d="M14 5.6 15.4 3.8l1.4 1.8-1.4 1.6z"/>',
     hotel:'<path d="M2.5 19.5v-7.5a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v7.5"/><path d="M4.5 10V6.5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2V10"/><path d="M12 4.5V10"/><path d="M2.5 16.5h19"/>',
@@ -957,7 +973,7 @@ footer .wrap{border-color:#2f4537}
     const glide=line=>{let o=0;const tick=()=>{if(!line.getMap())return;o=(o+.12)%100;const ic=line.get('icons');ic[ic.length-1].offset=o+'%';line.set('icons',ic);requestAnimationFrame(tick)};requestAnimationFrame(tick)};
     const mkLine=()=>new g.Polyline({map,strokeColor:'#24382c',strokeOpacity:.95,strokeWeight:4,icons:[{icon:{path:g.SymbolPath.CIRCLE,scale:4,fillColor:'#ffffff',fillOpacity:1,strokeColor:'#24382c',strokeWeight:2.5},offset:'0%'}]});
     const route=(a,b)=>{const key=a+b;const halo=new g.Polyline({map,strokeColor:'#ffffff',strokeOpacity:.95,strokeWeight:8,zIndex:1});const line=mkLine();line.setOptions({zIndex:2});live.push(halo,line);const use=path=>animate(line,path,halo);if(cache[key])return use(cache[key]);
-      g.importLibrary('routes').then(({Route})=>{const req=f=>Route.computeRoutes({origin:{lat:P[a].lat,lng:P[a].lng},destination:{lat:P[b].lat,lng:P[b].lng},travelMode:'DRIVING',fields:f});return req(['path','durationMillis','distanceMeters','description']).catch(()=>req(['path','durationMillis','distanceMeters']))}).then(({routes})=>{const r=routes[0];const path=r.path.map(p=>new g.LatLng(p.lat,p.lng));cache[key]=path;path.forEach(pt=>bounds.extend(pt));map.fitBounds(bounds,pad());const mins=Math.round(r.durationMillis/60000),mi=Math.round(r.distanceMeters/1609.34);const t=mins>=60?`${Math.floor(mins/60)} hr ${mins%60} min`:`${mins} min`;P[a].meta=`${t} drive to the lodge · ${mi} miles`;if(r.description)P[a].via=`Fastest route right now: via ${r.description}`;if(selected===a)showCard(a);use(path)}).catch(()=>use([new g.LatLng(P[a].lat,P[a].lng),new g.LatLng(P[b].lat,P[b].lng)]))};
+      g.importLibrary('routes').then(({Route})=>{const req=f=>Route.computeRoutes({origin:{lat:P[a].lat,lng:P[a].lng},destination:{lat:P[b].lat,lng:P[b].lng},travelMode:'DRIVING',fields:f});return req(['path','durationMillis','distanceMeters','description']).catch(()=>req(['path','durationMillis','distanceMeters']))}).then(({routes})=>{const r=routes[0];const path=r.path.map(p=>new g.LatLng(p.lat,p.lng));cache[key]=path;path.forEach(pt=>bounds.extend(pt));map.fitBounds(bounds,pad());const mins=Math.round(r.durationMillis/60000),mi=Math.round(r.distanceMeters/1609.34);const t=mins>=60?`${Math.floor(mins/60)} hr ${mins%60} min`:`${mins} min`;P[a].time=t;P[a].dist=`${mi} mi`;P[a].via=r.description?`via ${r.description}`:'';if(selected===a)showCard(a);use(path)}).catch(()=>use([new g.LatLng(P[a].lat,P[a].lng),new g.LatLng(P[b].lat,P[b].lng)]))};
     return{show(l){live.forEach(o=>o.setMap(null));live=[];l.pins.forEach(id=>{const p=new Pin(id);p.setMap(map);live.push(p)});bounds=new g.LatLngBounds();l.pins.forEach(id=>bounds.extend({lat:P[id].lat,lng:P[id].lng}));l.routes.forEach(r=>(cache[r[0]+r[1]]||[]).forEach(pt=>bounds.extend(pt)));map.fitBounds(bounds,pad());l.routes.forEach(r=>route(r[0],r[1]));g.event.addListenerOnce(map,'idle',()=>{if(map.getZoom()>13)map.setZoom(13)})}};
   };
 
