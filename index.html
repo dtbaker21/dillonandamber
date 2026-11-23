@@ -559,6 +559,50 @@ html.locked body>:not(.gate){visibility:hidden}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
 .opts button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid #ddd2c5;background:#fffdf9;color:var(--ink);font:500 15px Inter,sans-serif;cursor:pointer;transition:border-color .3s,background-color .3s,color .3s}
 .opts button[aria-pressed=true]{background:#24382c;border-color:#24382c;color:#fbf8f3}
+
+/* Sticky split layouts: one side pins while the other scrolls */
+.pinwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(40px,6vw,100px);max-width:1180px;margin:0 auto;align-items:start}
+.pinside{position:sticky;top:92px}
+.pinph{position:relative;height:min(calc(100vh - 140px),720px);min-height:420px;border-radius:28px;overflow:hidden;background:#1b1512}
+.pinph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.1s var(--ease),transform 2.2s var(--ease)}
+.pinph img.on{opacity:1;transform:none}
+.pinph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.5))}
+.pincap{position:absolute;z-index:2;left:30px;bottom:26px;color:#fff;font:400 clamp(30px,3.4vw,46px)/1 Fraunces,Georgia,serif;letter-spacing:-.02em;transition:opacity .5s}
+.pincap.swap{opacity:0}
+.pinmain .days{margin-top:36px;max-width:none}
+.pinmain .day{padding-bottom:12vh}
+.pinmain .day:last-child{padding-bottom:0}
+.stayp{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.stayp h2{font-size:clamp(40px,5vw,68px)}
+.staylead{margin-top:14px;font-size:18px}
+.stayp .block{grid-template-columns:minmax(0,1fr);margin-top:28px}
+.stayp .block .ph{min-height:0;height:clamp(160px,24vh,260px)}
+.stayp .block .in{padding:26px 28px 30px;gap:6px}
+.stayp .block h3{font-size:clamp(26px,2.4vw,34px)}
+.stayp .pinmain .subh:first-child{margin-top:0}
+.cards.one{grid-template-columns:minmax(0,1fr);margin-top:18px}
+.faqp{grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr)}
+.faqp .faq{grid-template-columns:minmax(0,1fr);margin:0}
+.faqp .faq div:first-child{border-top:0;padding-top:0}
+/* Pinned sideways scroll */
+.hscroll{position:relative;height:300vh}
+.hs-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(24px,4vh,44px)}
+.hs-head{padding:0 var(--pad);max-width:calc(1180px + 2*var(--pad));width:100%;margin:0 auto}
+.hs-head p{margin-top:10px;font-size:18px}
+.hs-track{display:flex;gap:20px;padding:0 max(var(--pad),calc((100vw - 1180px)/2));will-change:transform}
+.hs-track .card{flex:none;width:min(78vw,370px)}
+.hs-track .card .cimg{aspect-ratio:4/3}
+.hs-bar{margin:0 auto;width:min(240px,50vw);height:3px;border-radius:3px;background:#e2d8cb;overflow:hidden}
+.hs-bar i{display:block;height:100%;width:100%;background:#24382c;transform-origin:left;transform:scaleX(0)}
+.hscroll.off{height:auto}.hscroll.off .hs-stick{position:static;height:auto;padding:clamp(90px,13vw,180px) 0}.hscroll.off .hs-track{overflow-x:auto;scroll-snap-type:x mandatory}.hscroll.off .card{scroll-snap-align:start}.hscroll.off .hs-bar{display:none}
+@media(max-width:900px){
+  .pinwrap,.stayp,.faqp{grid-template-columns:minmax(0,1fr);gap:28px}
+  .pinside{position:static}
+  .sched-side{display:none}
+  .pinmain .day{padding-bottom:0}
+  .hs-head h2{font-size:clamp(36px,9vw,52px)}
+}
+@media(max-height:700px){.hs-head p{display:none}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -608,8 +652,13 @@ html.locked body>:not(.gate){visibility:hidden}
 </section>
 
 <section class="sec" id="schedule">
-  <div class="wrap center"><h2 class="rv">Schedule</h2></div>
-  <div class="days" id="days"></div>
+  <div class="pinwrap">
+    <div class="pinside sched-side" aria-hidden="true"><div class="pinph" id="schedPh">
+      <img class="on" src="img/overlook.jpg" alt=""><img src="img/venue.jpg" alt="" loading="lazy"><img src="img/table.jpg" alt="" loading="lazy">
+      <p class="pincap" id="schedCap">Friday</p>
+    </div></div>
+    <div class="pinmain"><h2 class="rv">Schedule</h2><div class="days" id="days"></div></div>
+  </div>
 </section>
 
 <section class="bleed" id="venue" aria-label="The venue">
@@ -639,22 +688,29 @@ html.locked body>:not(.gate){visibility:hidden}
 
 
 <section class="sec" id="stay">
-  <div class="wrap"><h2 class="rv">Where to stay</h2><p class="lead rv d1" style="margin-left:0">Book early. June is peak season around Seattle, and rooms near Snohomish go fast.</p></div>
-  <div class="block rv">
-    <div class="ph"><img data-plx="0.06" src="img/town.jpg" alt="A historic brick main street with hanging flower baskets" loading="lazy"></div>
-    <div class="in">
-      <p class="kick">Our hotel block</p>
-      <h3 id="hbName">A group rate for our guests</h3>
-      <p class="soft" id="hbNote">Group rate held until early May. It's also the shuttle stop.</p>
-      <p class="who" id="hbWho" hidden><i></i><span></span></p>
-      <div class="acts" style="margin-top:18px"><a class="pill" id="hbBook" href="#" aria-disabled="true">Booking link coming soon</a></div>
+  <div class="pinwrap stayp">
+    <div class="pinside">
+      <h2 class="rv">Where to stay</h2>
+      <p class="soft rv d1 staylead">Book early. June is peak season around Seattle, and rooms go fast.</p>
+      <div class="block rv d2">
+        <div class="ph"><img data-plx="0.06" src="img/town.jpg" alt="A historic brick main street with hanging flower baskets" loading="lazy"></div>
+        <div class="in">
+          <p class="kick">Our hotel block</p>
+          <h3 id="hbName">A group rate for our guests</h3>
+          <p class="soft" id="hbNote">Group rate held until early May. It's also the shuttle stop.</p>
+          <p class="who" id="hbWho" hidden><i></i><span></span></p>
+          <div class="acts" style="margin-top:10px"><a class="pill" id="hbBook" href="#" aria-disabled="true">Booking link coming soon</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="pinmain">
+      <h3 class="subh rv">More hotels nearby</h3>
+      <div class="cards one" id="hotels"></div>
+      <h3 class="subh rv">Rent a place together</h3>
+      <p class="subp rv">Coming with friends or staying a few extra days? These areas are an easy drive to the lodge.</p>
+      <div class="cards one" id="hoods"></div>
     </div>
   </div>
-  <h3 class="subh rv">More hotels nearby</h3>
-  <div class="cards" id="hotels"></div>
-  <h3 class="subh rv">Rent a place together</h3>
-  <p class="subp rv">Coming with friends or staying a few extra days? These areas are an easy drive to the lodge.</p>
-  <div class="cards" id="hoods"></div>
 </section>
 
 
@@ -668,8 +724,10 @@ html.locked body>:not(.gate){visibility:hidden}
 
 
 <section class="sec paper" id="faq">
-  <div class="wrap"><h2 class="rv">FAQ</h2></div>
-  <div class="faq" id="faqList"></div>
+  <div class="pinwrap faqp">
+    <div class="pinside"><h2 class="rv">FAQ</h2><p class="soft rv d1" style="margin-top:14px">Anything else? Text or email us any time.</p></div>
+    <div class="faq" id="faqList"></div>
+  </div>
 </section>
 
 
@@ -686,11 +744,17 @@ html.locked body>:not(.gate){visibility:hidden}
   </div>
 </section>
 
-<section class="sec paper" id="explore">
-  <div class="wrap"><h2 class="rv">While you're here</h2><p class="lead rv d1" style="margin-left:0">A few of our favorite trails and places nearby, if you're making a weekend of it.</p></div>
-  <div class="cards" id="todo"></div>
-  <div class="wrap center" style="margin-top:72px"><div class="cell garden rv" style="min-height:0;padding:clamp(30px,4vw,48px);text-align:left;border-radius:28px">
-    <h3 style="font:400 clamp(28px,3vw,38px)/1.1 Fraunces,Georgia,serif;color:#fbf8f3">Help us capture the day</h3>
+<section class="hscroll paper" id="explore">
+  <div class="hs-stick">
+    <div class="hs-head"><h2 class="rv">While you're here</h2><p class="soft rv d1">Our favorite trails and places nearby, if you're making a weekend of it.</p></div>
+    <div class="hs-track" id="todo"></div>
+    <div class="hs-bar" aria-hidden="true"><i id="hsBar"></i></div>
+  </div>
+</section>
+
+<section class="sec" id="photos" style="padding-top:clamp(60px,8vw,110px);padding-bottom:clamp(60px,8vw,110px)">
+  <div class="wrap"><div class="cell garden rv" style="min-height:0;padding:clamp(30px,4vw,52px);border-radius:28px">
+    <h3 style="font:400 clamp(28px,3vw,40px)/1.1 Fraunces,Georgia,serif;color:#fbf8f3">Help us capture the day</h3>
     <p style="margin-top:8px;max-width:34em">Took a photo we'd love? Upload it straight from your phone. It goes into a shared album for us, full quality, no app needed.</p>
     <div class="acts" style="margin-top:22px;justify-content:flex-start"><a class="pill light" href="photos/">Share your photos</a></div>
   </div></div>
@@ -770,6 +834,13 @@ html.locked body>:not(.gate){visibility:hidden}
       const place=e[3]==='hotel'?(SITEINFO.hotel&&SITEINFO.hotel.name||''):e[3];
       return `<div class="ev${tba?' tba':''}"><time>${tba?'To be announced':e[0]}</time><div><b>${e[1]}${tba?'<span class="chip">Soon</span>':''}</b><p>${esc(note)}</p></div><div class="evacts">${place?`<a href="${gmap(place)}" target="_blank" rel="noopener">Map</a>`:''}${e[4]?`<a href="${calUrl(`${e[1]} · Dillon & Amber`,e[4],e[5],note,place||'Snohomish, WA')}" target="_blank" rel="noopener">Add to calendar</a>`:''}</div></div>`}).join('')}</div>`).join('');
     $('days').querySelectorAll('.rv').forEach(e=>e.classList.add('in'));
+    // Pinned photo beside the schedule follows whichever day is in view
+    const imgs=[...$('schedPh').querySelectorAll('img')],cap=$('schedCap'),dayEls=[...$('days').children];
+    if(window.__dayIO)__dayIO.disconnect();
+    if('IntersectionObserver' in window){window.__dayIO=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const i=dayEls.indexOf(e.target);
+      imgs.forEach((m,j)=>m.classList.toggle('on',j===i));const t=DAYS[i][0].split(',')[0];
+      if(cap.textContent!==t){cap.classList.add('swap');setTimeout(()=>{cap.textContent=t;cap.classList.remove('swap')},260)}}),{rootMargin:'-40% 0px -55% 0px'});
+      dayEls.forEach(d=>__dayIO.observe(d))}
   };
   // Hotels and rentals: links open with the wedding dates filled in
   const HOTELS=[
@@ -794,6 +865,11 @@ html.locked body>:not(.gate){visibility:hidden}
     ['Snoqualmie Falls','Viewpoint · about 50 min','A huge waterfall a few steps from the parking lot. Worth the drive.','Snoqualmie Falls, WA','overlook']
   ];
   $('todo').innerHTML=TODO.map((t,i)=>`<div class="card rv d${i%3}"><div class="cimg"><img src="img/${t[4]}.jpg" alt="" loading="lazy"></div><h4>${t[0]}</h4><span class="m">${t[1]}</span><p>${t[2]}</p><div class="acts2"><a href="${gmap(t[3])}" target="_blank" rel="noopener">Map</a><a href="https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent('The Lookout Lodge, Snohomish, WA')}&destination=${encodeURIComponent(t[3])}" target="_blank" rel="noopener">Directions</a></div></div>`).join('');
+  // Things to do: the row pins and slides sideways as you scroll down
+  const hs=$('explore'),hsT=$('todo'),hsBar=$('hsBar');let hsOver=0;
+  const hsSize=()=>{if(reduce){hs.classList.add('off');return}hsT.style.transform='';hsOver=Math.max(0,hsT.scrollWidth-innerWidth);hs.style.height=(innerHeight+hsOver)+'px';hsMove()};
+  const hsMove=()=>{if(reduce)return;const r=hs.getBoundingClientRect();const p=clamp(-r.top/Math.max(1,r.height-innerHeight));hsT.style.transform=`translate3d(${(-p*hsOver).toFixed(1)}px,0,0)`;hsBar.style.transform=`scaleX(${p.toFixed(3)})`};
+  addEventListener('scroll',()=>requestAnimationFrame(hsMove),{passive:true});addEventListener('resize',hsSize);addEventListener('load',hsSize);hsSize();
 
   const party=[["Alex Rivera","Best man","#3a5a46"],["Priya Shah","Maid of honor","#9a6a3a"],["Sam Ortiz","Groomsman","#4f6b4a"],["Casey Nguyen","Bridesmaid","#7a5a46"],["Jamie Cole","Groomsman","#5a6b3e"],["Taylor Kim","Bridesmaid","#8a6a4a"],["Morgan Lee","Officiant","#2f4a3a"],["Riley Baker","Ring bearer","#6b5a3a"]];
   $('people').innerHTML=party.map((p,i)=>`<div class="person rv d${i%4}"><div class="face" style="background:${p[3]?`center/cover url(${p[3]})`:`linear-gradient(150deg,${p[2]},#2a211c)`}">${p[3]?'':p[0].split(' ').map(w=>w[0]).join('')}</div><b>${p[0]}</b><span>${p[1]}</span></div>`).join('');
