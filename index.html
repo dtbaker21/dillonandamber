@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dillon &amp; Amber Wedding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE occasion, hushed and cinematic: a product launch keynote, but the product is a weekend in the foothills
+   IDEA scroll like an Apple product page: pinned photo moments, giant type, quiet light and dark chapters
+   PICTURE photography carries everything: the hero landscape pins and settles into a framed card as you scroll
+   COLOUR one visual world: white and #f4eee6 paper, near-black #2a211c ink, black film bands; photos supply all colour, warm gold gradient only on the date
+   TYPE Inter Tight 600-700 for display, Inter for text
+   LAYOUT full-bleed photo bands alternate with centred type; story pins its photos on the left on laptop, stacks on phone */
+:root{color-scheme:light;--ink:#2a211c;--soft:#76695e;--faint:#ddd2c5;--paper:#f4eee6;--line:#ebe2d6;--gold:#c9965a;--ease:cubic-bezier(.22,.61,.36,1);--pad:max(5vw,20px)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:56px}
+body{margin:0;background:#fbf8f3;color:var(--ink);font:17px/1.55 Inter,system-ui,-apple-system,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;letter-spacing:-.011em}
+h1,h2,h3,.disp{font-family:"Inter Tight",Inter,system-ui,sans-serif;font-weight:600;letter-spacing:-.025em;line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(40px,6vw,80px)}
+h3{font-size:clamp(22px,2.2vw,28px);letter-spacing:-.018em}
+p{margin:0}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto}
+.narrow{max-width:820px;margin:0 auto}
+.sec{padding:clamp(90px,13vw,180px) var(--pad)}
+.paper{background:var(--paper)}
+.dark{background:#1b1512;color:#f4eee6}
+.dark .soft{color:#b3a698}
+.soft{color:var(--soft)}
+.center{text-align:center}
+.kicker{font-size:clamp(19px,1.8vw,24px);font-weight:600;color:var(--soft);margin-bottom:14px;letter-spacing:-.015em}
+.dark .kicker{color:#b3a698}
+.lead{font-size:clamp(19px,1.9vw,24px);line-height:1.45;color:var(--soft);max-width:38em;margin-top:22px}
+.dark .lead{color:#b3a698}
+.center .lead{margin-inline:auto}
+
+nav{position:fixed;inset:0 0 auto;z-index:20;height:52px;display:flex;align-items:center;gap:22px;padding:0 var(--pad);background:rgba(251,248,243,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06);font-size:13px}
+nav .mark{font:600 17px "Inter Tight",sans-serif;text-decoration:none;margin-right:auto;letter-spacing:-.02em}
+nav .links{display:flex;gap:22px}
+nav .links a{text-decoration:none;opacity:.8;transition:opacity .3s;padding:14px 0}
+nav .links a:hover,nav .links a.on{opacity:1}
+nav .links a.on{font-weight:600}
+.pill{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border-radius:999px;background:var(--ink);color:#fff;border:0;font:500 16px Inter,sans-serif;text-decoration:none;cursor:pointer;transition:background-color .3s var(--ease),transform .3s var(--ease)}
+.pill:hover{background:#4a3d33}
+.pill:active{transform:scale(.97)}
+.pill.light{background:#f4eee6;color:#2a211c}
+.pill.light:hover{background:#fff}
+nav .pill{min-height:30px;padding:0 14px;font-size:13px}
+.link{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-size:17px;font-weight:500;color:#9a6a2e;text-decoration:none}
+.dark .link{color:#e0b47a}
+.link::after{content:"›";font-size:22px;line-height:1;transition:transform .3s var(--ease)}
+.link:hover::after{transform:translateX(3px)}
+.acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:34px}
+.center .acts{justify-content:center}
+.pill:focus-visible,.link:focus-visible,nav a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.seg button:focus-visible,.arrow:focus-visible{outline:3px solid #9a6a2e;outline-offset:3px}
+
+/* Hero: pins, then the photo settles into a framed card */
+.hero{position:relative;height:220vh;background:#fbf8f3}
+.hero .stick{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+.hero .frame{position:absolute;inset:0;clip-path:inset(var(--iy,0px) var(--ix,0px) round var(--r,0px));will-change:clip-path}
+.hero .frame img{width:100%;height:100%;object-fit:cover;transform:scale(var(--s,1.14));will-change:transform}
+.hero .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.05) 40%,rgba(0,0,0,.35))}
+.hero .t{position:relative;z-index:2;text-align:center;color:#fff;padding:0 var(--pad);will-change:transform,opacity}
+.hero h1{font-size:clamp(64px,12vw,176px);font-weight:600;letter-spacing:-.045em;line-height:.92}
+.hero .sub{margin-top:22px;font:500 clamp(19px,2.2vw,28px)/1.3 "Inter Tight",sans-serif;letter-spacing:-.015em}
+.hero .t2{position:absolute;z-index:2;bottom:12vh;left:0;right:0;text-align:center;color:#fff;opacity:0;padding:0 var(--pad)}
+.hero .t2 p{font:600 clamp(26px,3.4vw,44px)/1.1 "Inter Tight",sans-serif;letter-spacing:-.025em}
+.cue{position:absolute;bottom:28px;left:50%;width:1px;height:46px;background:linear-gradient(#fff0,#fff);transform:translateX(-50%);z-index:2;animation:cue 2.4s var(--ease) infinite}
+@keyframes cue{0%{transform:translateX(-50%) scaleY(0);transform-origin:top}50%{transform:translateX(-50%) scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:translateX(-50%) scaleY(0);transform-origin:bottom}}
+.intro{opacity:0;transform:translateY(16px);animation:intro 1.6s var(--ease) .15s forwards}
+.intro.b{animation-delay:.45s}
+@keyframes intro{to{opacity:1;transform:none}}
+
+/* Statement: words light up as you read */
+.statement p{font:600 clamp(32px,4.6vw,64px)/1.12 "Inter Tight",sans-serif;letter-spacing:-.03em;text-wrap:pretty}
+.statement span{color:var(--faint);transition:color .5s var(--ease)}
+.statement span.lit{color:var(--ink)}
+
+/* Story: pinned photos on the left, chapters scroll on the right */
+.story{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);padding:0 var(--pad) clamp(60px,8vw,120px);max-width:1280px;margin:0 auto}
+.story .media{position:sticky;top:calc(52px + 6vh);height:min(78vh,760px);border-radius:28px;overflow:hidden;background:#111}
+.story .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity 1.2s var(--ease),transform 2.4s var(--ease)}
+.story .media img.on{opacity:1;transform:scale(1)}
+.chap{min-height:min(78vh,760px);display:flex;flex-direction:column;justify-content:center;opacity:.22;transition:opacity .8s var(--ease)}
+.chap.on{opacity:1}
+.chap .m{display:none}
+.chap h3{font-size:clamp(30px,3.4vw,48px);margin-bottom:18px}
+.chap p{font-size:clamp(18px,1.6vw,21px);line-height:1.55;color:var(--soft);max-width:30em}
+.chap .yr{font-weight:600;color:var(--ink);margin-bottom:10px;font-size:17px}
+
+/* Date */
+.date .big{font:700 clamp(64px,13vw,200px)/.92 "Inter Tight",sans-serif;letter-spacing:-.05em;background:linear-gradient(100deg,#f6dcb0 10%,#e0a45e 45%,#b97a8a 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.date .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:28px 64px;margin-top:56px}
+.date .meta div{min-width:9em}
+.date .meta b{display:block;font:600 clamp(30px,3.4vw,44px)/1 "Inter Tight",sans-serif;letter-spacing:-.03em;color:#f4eee6;margin-bottom:8px;white-space:nowrap}
+.date .meta span{color:#b3a698;font-size:15px}
+
+/* Weekend rail */
+.railhead{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;max-width:1180px;margin:0 auto 44px;padding:0 var(--pad)}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:min(80vw,380px);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;--in:max(var(--pad),calc((100vw - 1180px)/2 + var(--pad)));padding:0 var(--in) 8px;scroll-padding-inline:var(--in);scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.slide{position:relative;scroll-snap-align:start;height:min(70vh,560px);min-height:460px;border-radius:28px;overflow:hidden;color:#fff;background:#222}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.slide:hover img{transform:scale(1.04)}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0) 46%,rgba(0,0,0,0) 60%,rgba(0,0,0,.45))}
+.slide .cap{position:relative;z-index:2;padding:28px}
+.slide .when{font-size:15px;font-weight:600;opacity:.9;margin-bottom:8px}
+.slide h3{font-size:30px}
+.slide p.d{position:absolute;z-index:2;left:28px;right:28px;bottom:26px;font-size:16px;line-height:1.45;opacity:.92}
+.arrows{display:flex;gap:12px}
+.arrow{width:44px;height:44px;border-radius:50%;border:0;background:#ece4d9;color:var(--ink);font-size:22px;cursor:pointer;transition:background-color .3s,opacity .3s}
+.arrow:hover{background:#e2d8cb}
+.arrow:disabled{opacity:.35;cursor:default}
+.sched{max-width:1180px;margin:72px auto 0;padding:0 var(--pad);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.sched h3{font-size:22px;margin-bottom:12px}
+.sched ol{list-style:none;margin:0;padding:0}
+.sched li{display:grid;grid-template-columns:5.6em minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--line);font-size:16px}
+.sched time{font-weight:600;white-space:nowrap}
+
+/* Full-bleed photo bands */
+.bleed{position:relative;height:min(100svh,920px);min-height:560px;overflow:hidden;color:#fff;background:#111}
+.bleed img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;will-change:transform}
+.bleed::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.55))}
+.bleed .cap{position:absolute;z-index:2;left:var(--pad);right:var(--pad);bottom:clamp(40px,7vw,88px);max-width:1180px;margin:0 auto}
+.bleed h2{font-size:clamp(48px,8vw,112px);letter-spacing:-.04em}
+.bleed .cap p{font-size:clamp(19px,2vw,24px);margin-top:14px;opacity:.92}
+
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;max-width:1180px;margin:0 auto}
+.stats b{display:block;font:600 clamp(30px,3.6vw,48px)/1.05 "Inter Tight",sans-serif;letter-spacing:-.03em;margin-bottom:10px}
+.stats span{color:var(--soft)}
+.map{position:relative;max-width:1180px;margin:80px auto 0;border-radius:28px;overflow:hidden;height:clamp(300px,40vw,480px);background:#ece4d9}
+.map iframe,.rsvpframe iframe{width:100%;height:100%;border:0;display:block}
+.map .off{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
+.map .off svg{position:absolute;inset:0;width:100%;height:100%}
+.map .off p{position:relative;font:600 24px "Inter Tight",sans-serif;background:#fff;padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px -12px rgba(0,0,0,.25)}
+.route{stroke-dasharray:8 10;animation:march 3s linear infinite}
+@keyframes march{to{stroke-dashoffset:-36}}
+.mapacts{max-width:1180px;margin:22px auto 0;display:flex;flex-wrap:wrap;gap:6px 28px}
+/* Layered map */
+.mapx{position:relative;max-width:1180px;margin:80px auto 0;height:clamp(520px,62vw,680px);border-radius:28px;overflow:hidden;background:#ebe8da;isolation:isolate}
+.mcanvas{position:absolute;inset:0}
+.mcanvas svg{position:absolute;inset:0;width:100%;height:100%}
+.mcanvas .pins{position:absolute;inset:0;pointer-events:none}
+.pin{position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;cursor:pointer;font:600 14px Inter,sans-serif;color:var(--ink);transform:translate(-9px,-9px);pointer-events:auto;white-space:nowrap;opacity:0;transition:opacity .6s var(--ease)}
+.pin.show{opacity:1}
+.pin i{position:relative;flex:none;width:18px;height:18px;border-radius:50%;background:#2a211c;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:transform .4s var(--ease)}
+.pin span{background:rgba(255,255,255,.92);padding:5px 10px;border-radius:999px;box-shadow:0 4px 16px -6px rgba(0,0,0,.25);transition:background-color .3s,color .3s}
+.pin:hover i,.pin.sel i{transform:scale(1.25)}
+.pin.sel span{background:#2a211c;color:#fff}
+.pin.venue i{background:var(--gold)}
+.pin.venue i::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid var(--gold);animation:ping 2.6s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(.5);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.pin.air i{background:#9a6a2e}
+.pin.stay i{background:#5b7a69}
+.pin.explore i{background:#8a6a9a}
+.chips{position:absolute;z-index:3;top:16px;left:16px;right:16px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;min-height:40px;padding:0 16px;border-radius:999px;border:0;background:rgba(255,255,255,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);font:500 14px Inter,sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 4px 14px -8px rgba(0,0,0,.3);transition:background-color .35s var(--ease),color .35s}
+.chips button[aria-selected=true]{background:#2a211c;color:#fff}
+.chips button:focus-visible{outline:3px solid #9a6a2e;outline-offset:2px}
+.mcard{position:absolute;z-index:3;left:16px;bottom:16px;width:min(340px,calc(100% - 32px));background:rgba(255,255,255,.86);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border-radius:22px;overflow:hidden;box-shadow:0 20px 50px -24px rgba(0,0,0,.4)}
+.mcard .in{animation:stepIn .6s var(--ease)}
+.mcard img{width:100%;height:150px;object-fit:cover}
+.mcard .tx{padding:16px 18px 14px}
+.mcard h3{font-size:22px}
+.mcard .meta{font-size:14px;font-weight:600;color:#9a6a2e;margin:4px 0 6px}
+.mcard p{font-size:15px;line-height:1.45;color:var(--soft)}
+.mcard .link{min-height:40px;font-size:15px}
+@media(max-width:700px){.mcard img{height:110px}.mapx{height:600px}}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:1180px;margin:56px auto 0}
+.tile{padding-top:22px;border-top:1px solid #ddd2c5}
+.strip{overflow:hidden;padding:clamp(40px,6vw,80px) 0}
+.strip .track{display:flex;gap:20px;width:max-content;will-change:transform}
+.strip figure{margin:0;flex:none;width:clamp(220px,26vw,380px);aspect-ratio:3/4;border-radius:24px;overflow:hidden;background:#ddd}
+.strip figure:nth-child(even){aspect-ratio:4/3;width:clamp(280px,34vw,500px);align-self:center}
+.strip img{width:100%;height:100%;object-fit:cover}
+.tile h3{margin-bottom:6px}
+.tile .meta{font-size:15px;color:var(--soft);margin-bottom:14px}
+
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);align-items:center;max-width:1180px;margin:0 auto}
+.split .ph{border-radius:28px;overflow:hidden;aspect-ratio:4/5;position:relative;background:#ddd}
+.split .ph img{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;will-change:transform}
+.list{margin-top:36px}
+.list div{padding:22px 0;border-top:1px solid var(--line)}
+.list h3{font-size:22px;margin-bottom:4px}
+
+/* RSVP */
+.panel{background:var(--paper);border-radius:28px;padding:clamp(24px,4vw,44px);max-width:640px;margin:48px auto 0;text-align:left}
+.step{animation:stepIn .7s var(--ease)}
+@keyframes stepIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel h3{font-size:28px}
+label{display:block;font-weight:600;font-size:15px;margin:0 0 8px}
+input,select,textarea{width:100%;font:17px Inter,sans-serif;color:var(--ink);background:#fff;border:1px solid #ddd2c5;border-radius:14px;padding:13px 16px;min-height:52px;transition:border-color .3s,box-shadow .3s}
+input:focus,select:focus,textarea:focus{border-color:#9a6a2e;box-shadow:0 0 0 4px rgba(201,150,90,.22);outline:0}
+textarea{min-height:96px;resize:vertical}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row input{flex:1 1 220px}
+.field{margin-top:20px}
+.guest{border-top:1px solid #e6ddd1;padding-top:20px;margin-top:20px}
+.guest .name{font-weight:600;margin-bottom:12px}
+.seg{display:inline-flex;background:#ece4d9;border-radius:12px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{min-height:40px;padding:0 16px;border:0;border-radius:10px;background:transparent;color:var(--ink);font:500 15px Inter,sans-serif;cursor:pointer;transition:background-color .35s var(--ease),box-shadow .35s}
+.seg button[aria-pressed=true]{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.reveal{animation:stepIn .5s var(--ease)}
+.hint{font-size:15px;color:var(--soft);margin-top:6px}
+.err{color:#c4291c;font-size:15px;margin-top:10px}
+.done ul{padding-left:20px;margin:14px 0 20px}
+.rfacts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;max-width:900px;margin:56px auto 0;text-align:left}
+.rfacts b{display:block;margin-bottom:4px}
+.rfacts span{color:var(--soft);font-size:16px}
+.rsvpframe{height:820px;border-radius:28px;overflow:hidden;max-width:720px;margin:48px auto 0;background:#fff;border:1px solid var(--line)}
+
+/* Registry bento */
+.bento{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);grid-template-rows:auto auto;gap:20px;max-width:1180px;margin:64px auto 0}
+.cell{position:relative;border-radius:28px;overflow:hidden;min-height:300px;background:#2a221d;padding:32px;display:flex;flex-direction:column;justify-content:flex-end}
+.cell.big{grid-row:span 2;min-height:620px}
+.cell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
+.cell:hover img{transform:scale(1.04)}
+.cell.ph::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.6))}
+.cell>*:not(img){position:relative;z-index:2}
+.cell h3{font-size:clamp(26px,2.6vw,34px);margin-bottom:6px}
+.cell p{color:#d4c8ba}
+.cell.garden{background:linear-gradient(160deg,#2b4a3c,#152a21)}
+.cell svg.ic{position:absolute;top:30px;left:32px;width:44px;height:44px;color:#9fd1b2}
+
+.people{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 24px;max-width:980px;margin:64px auto 0}
+.person{text-align:center}
+.person .face{width:min(132px,100%);aspect-ratio:1;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;font:600 34px "Inter Tight",sans-serif;color:#fff;letter-spacing:-.02em;transition:transform .8s var(--ease)}
+.person:hover .face{transform:scale(1.04)}
+.person b{display:block;font-weight:600}
+.person span{font-size:15px;color:var(--soft)}
+
+.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 64px;max-width:1180px;margin:64px auto 0}
+.faq div{padding:26px 0;border-top:1px solid var(--line)}
+.faq h3{font-size:21px;margin-bottom:8px}
+.faq p{color:var(--soft)}
+
+.final{text-align:center}
+.final .cap{text-align:center}
+.final .acts{justify-content:center}
+footer{background:var(--paper);color:var(--soft);font-size:13px;padding:22px var(--pad) 30px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;border-top:1px solid #ddd2c5;padding-top:18px}
+
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.12s}.js .rv.d2{transition-delay:.24s}.js .rv.d3{transition-delay:.36s}
+
+@media(max-width:900px){
+  .story{grid-template-columns:minmax(0,1fr)}.story .media{display:none}.chap{min-height:0;opacity:1;padding:24px 0 48px}.chap .m{display:block;border-radius:24px;aspect-ratio:4/5;width:100%;object-fit:cover;margin-bottom:28px}
+  .sched,.tiles,.stats,.rfacts{grid-template-columns:minmax(0,1fr)}.split{grid-template-columns:minmax(0,1fr)}.bento{grid-template-columns:minmax(0,1fr)}.cell.big{grid-row:auto;min-height:440px}.people{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){nav .links{display:none}.faq{grid-template-columns:minmax(0,1fr)}.hero{height:180vh}.split .ph{aspect-ratio:4/4.4}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.intro{opacity:1;transform:none}.js .rv{opacity:1;transform:none}.hero{height:100svh}.hero .t2{display:none}.chap{opacity:1}}
+
+/* Cozy layer: warm serif display, film grain, candlelit darks */
+h1,h2,.date .big,.statement p,.chap h3,.cell h3,.bleed h2,.hero .t2 p{font-family:Fraunces,Georgia,serif;font-weight:400;letter-spacing:-.02em;font-optical-sizing:auto}
+.hero h1{font-weight:400;letter-spacing:-.03em}
+.date .big{font-weight:300;letter-spacing:-.035em}
+.statement p{font-weight:400;line-height:1.15}
+h2 em,.hero h1 em{font-style:italic}
+body::after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.07;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.dark{background:radial-gradient(120% 80% at 50% 0%,#2a1f17 0%,#1b1512 60%)}
+.hero .frame::after{background:linear-gradient(180deg,rgba(40,24,12,.3),rgba(40,24,12,.05) 40%,rgba(30,18,10,.42))}
+.bleed::after{background:linear-gradient(180deg,rgba(30,18,10,0) 40%,rgba(30,18,10,.6))}
+.slide::after{background:linear-gradient(180deg,rgba(30,18,10,.55),rgba(30,18,10,0) 46%,rgba(30,18,10,0) 60%,rgba(30,18,10,.5))}
+.panel,.mcard{box-shadow:0 20px 50px -28px rgba(70,45,20,.35)}
+input,select,textarea{background:#fffdf9;border-color:#ddd2c5}
+.tile,.list div,.faq div,.sched li{border-color:#dcdfca}
+
+/* Woodsy layer: evergreen darks, moss accents, a quiet treeline */
+.dark{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%201600%20140%27%20preserveAspectRatio%3D%27xMidYMax%20slice%27%3E%3Cpath%20fill%3D%27%23243429%27%20d%3D%27M-20%2073L-9%2097L-31%2097ZM-20%2087L-4%20111L-36%20111ZM-20%20100L1%20124L-41%20124ZM-20%20113L6%20137L-46%20137ZM-23%20132h6v8h-6ZM4%2062L17%2090L-8%2090ZM4%2078L23%20106L-14%20106ZM4%2093L29%20121L-20%20121ZM4%20109L35%20137L-26%20137ZM1%20131h6v9h-6ZM30%2085L39%20105L21%20105ZM30%2096L43%20116L17%20116ZM30%20107L47%20127L13%20127ZM30%20118L51%20138L9%20138ZM27%20133h6v7h-6ZM62%2026L80%2067L44%2067ZM62%2049L89%2090L35%2090ZM62%2071L97%20113L26%20113ZM62%2094L106%20135L18%20135ZM59%20126h6v14h-6ZM103%2036L120%2074L87%2074ZM103%2057L127%2094L79%2094ZM103%2078L135%20115L71%20115ZM103%2099L143%20136L63%20136ZM100%20128h6v12h-6ZM130%2052L144%2084L116%2084ZM130%2070L151%20101L110%20101ZM130%2087L158%20119L103%20119ZM130%20105L164%20136L96%20136ZM127%20129h6v11h-6ZM159%2078L169%20100L149%20100ZM159%2090L174%20113L144%20113ZM159%20103L178%20125L140%20125ZM159%20115L183%20138L135%20138ZM156%20133h6v7h-6ZM184%2075L194%2098L173%2098ZM184%2088L199%20111L168%20111ZM184%20101L204%20124L163%20124ZM184%20114L209%20137L158%20137ZM181%20132h6v8h-6ZM228%2032L245%2071L211%2071ZM228%2054L253%2092L202%2092ZM228%2075L261%20114L194%20114ZM228%2097L270%20136L186%20136ZM225%20127h6v13h-6ZM269%2034L286%2072L252%2072ZM269%2055L294%2093L244%2093ZM269%2076L302%20115L236%20115ZM269%2098L310%20136L228%20136ZM266%20127h6v13h-6ZM296%2068L307%2094L284%2094ZM296%2083L313%20108L279%20108ZM296%2097L318%20123L273%20123ZM296%20111L324%20137L268%20137ZM293%20131h6v9h-6ZM333%2039L349%2075L317%2075ZM333%2059L357%2095L309%2095ZM333%2079L364%20116L301%20116ZM333%20100L372%20136L294%20136ZM330%20128h6v12h-6ZM375%2028L393%2069L358%2069ZM375%2051L402%2091L349%2091ZM375%2073L410%20113L341%20113ZM375%2095L419%20136L332%20136ZM372%20127h6v13h-6ZM399%2048L414%2081L385%2081ZM399%2066L421%2099L378%2099ZM399%2085L428%20118L371%20118ZM399%20103L435%20136L364%20136ZM396%20129h6v11h-6ZM438%2055L451%2085L424%2085ZM438%2072L458%20102L417%20102ZM438%2089L464%20119L411%20119ZM438%20106L471%20137L404%20137ZM435%20130h6v10h-6ZM464%2057L477%2087L451%2087ZM464%2073L483%20103L444%20103ZM464%2090L490%20120L438%20120ZM464%20107L496%20137L432%20137ZM461%20130h6v10h-6ZM488%2025L506%2066L470%2066ZM488%2048L515%2089L461%2089ZM488%2071L524%20112L452%20112ZM488%2094L533%20135L443%20135ZM485%20126h6v14h-6ZM531%2052L545%2083L517%2083ZM531%2069L552%20101L510%20101ZM531%2087L558%20119L503%20119ZM531%20105L565%20136L497%20136ZM528%20129h6v11h-6ZM560%2026L578%2067L542%2067ZM560%2049L587%2090L533%2090ZM560%2072L595%20113L525%20113ZM560%2095L604%20135L516%20135ZM557%20126h6v14h-6ZM596%2028L614%2068L578%2068ZM596%2051L622%2091L569%2091ZM596%2073L631%20113L561%20113ZM596%2095L639%20136L552%20136ZM593%20127h6v13h-6ZM638%2054L652%2085L624%2085ZM638%2072L658%20102L618%20102ZM638%2089L665%20119L611%20119ZM638%20106L671%20137L605%20137ZM635%20130h6v10h-6ZM670%2048L685%2081L655%2081ZM670%2066L692%20100L648%20100ZM670%2085L699%20118L641%20118ZM670%20103L706%20136L634%20136ZM667%20129h6v11h-6ZM702%2079L712%20101L693%20101ZM702%2091L717%20113L688%20113ZM702%20103L721%20125L683%20125ZM702%20115L726%20138L679%20138ZM699%20133h6v7h-6ZM732%2033L749%2072L715%2072ZM732%2054L757%2093L706%2093ZM732%2076L765%20114L698%20114ZM732%2097L773%20136L690%20136ZM729%20127h6v13h-6ZM755%2087L763%20106L746%20106ZM755%2097L767%20117L742%20117ZM755%20108L771%20127L738%20127ZM755%20119L775%20138L734%20138ZM752%20134h6v6h-6ZM792%2070L803%2095L781%2095ZM792%2084L808%20109L775%20109ZM792%2098L813%20123L770%20123ZM792%20112L819%20137L765%20137ZM789%20132h6v8h-6ZM827%2057L840%2087L813%2087ZM827%2074L846%20103L807%20103ZM827%2090L852%20120L801%20120ZM827%20107L859%20137L794%20137ZM824%20130h6v10h-6ZM857%2020L876%2063L838%2063ZM857%2044L885%2087L829%2087ZM857%2068L894%20111L819%20111ZM857%2092L903%20135L810%20135ZM854%20126h6v14h-6ZM883%2061L896%2090L871%2090ZM883%2077L902%20105L865%20105ZM883%2093L908%20121L859%20121ZM883%20108L914%20137L853%20137ZM880%20131h6v9h-6ZM910%2046L925%2080L895%2080ZM910%2065L933%2099L888%2099ZM910%2083L940%20117L881%20117ZM910%20102L947%20136L874%20136ZM907%20129h6v11h-6ZM939%2065L951%2092L927%2092ZM939%2080L957%20107L921%20107ZM939%2095L962%20122L916%20122ZM939%20110L968%20137L910%20137ZM936%20131h6v9h-6ZM979%2068L990%2094L967%2094ZM979%2082L996%20108L962%20108ZM979%2097L1001%20123L956%20123ZM979%20111L1007%20137L951%20137ZM976%20131h6v9h-6ZM1014%2027L1032%2067L996%2067ZM1014%2049L1041%2090L988%2090ZM1014%2072L1050%20113L979%20113ZM1014%2095L1058%20135L970%20135ZM1011%20126h6v14h-6ZM1039%2086L1047%20105L1030%20105ZM1039%2097L1052%20116L1026%20116ZM1039%20107L1056%20127L1022%20127ZM1039%20118L1060%20138L1018%20138ZM1036%20133h6v7h-6ZM1066%2036L1083%2074L1050%2074ZM1066%2057L1091%2094L1042%2094ZM1066%2078L1098%20115L1034%20115ZM1066%2099L1106%20136L1026%20136ZM1063%20128h6v12h-6ZM1103%2073L1114%2097L1092%2097ZM1103%2087L1119%20111L1087%20111ZM1103%20100L1124%20124L1082%20124ZM1103%20113L1129%20137L1077%20137ZM1100%20132h6v8h-6ZM1133%2078L1143%20100L1123%20100ZM1133%2090L1148%20113L1118%20113ZM1133%20103L1152%20125L1113%20125ZM1133%20115L1157%20138L1109%20138ZM1130%20133h6v7h-6ZM1166%2087L1174%20106L1158%20106ZM1166%2098L1178%20117L1153%20117ZM1166%20108L1182%20127L1149%20127ZM1166%20119L1187%20138L1145%20138ZM1163%20134h6v6h-6ZM1205%2027L1223%2068L1187%2068ZM1205%2050L1231%2090L1178%2090ZM1205%2072L1240%20113L1170%20113ZM1205%2095L1248%20135L1161%20135ZM1202%20126h6v14h-6ZM1250%2039L1266%2075L1233%2075ZM1250%2059L1274%2095L1226%2095ZM1250%2079L1281%20116L1218%20116ZM1250%2099L1289%20136L1210%20136ZM1247%20128h6v12h-6ZM1295%2089L1303%20107L1286%20107ZM1295%2099L1307%20117L1283%20117ZM1295%20109L1311%20128L1279%20128ZM1295%20119L1315%20138L1275%20138ZM1292%20134h6v6h-6ZM1324%2022L1342%2065L1305%2065ZM1324%2046L1351%2088L1296%2088ZM1324%2069L1360%20112L1287%20112ZM1324%2093L1369%20135L1278%20135ZM1321%20126h6v14h-6ZM1364%2061L1377%2090L1352%2090ZM1364%2077L1383%20105L1346%20105ZM1364%2093L1389%20121L1340%20121ZM1364%20109L1395%20137L1334%20137ZM1361%20131h6v9h-6ZM1409%2047L1424%2080L1394%2080ZM1409%2065L1431%2099L1387%2099ZM1409%2084L1438%20118L1380%20118ZM1409%20103L1445%20136L1373%20136ZM1406%20129h6v11h-6ZM1450%2069L1462%2095L1439%2095ZM1450%2084L1467%20109L1434%20109ZM1450%2098L1472%20123L1428%20123ZM1450%20112L1478%20137L1423%20137ZM1447%20132h6v8h-6ZM1477%2059L1490%2088L1464%2088ZM1477%2075L1496%20104L1458%20104ZM1477%2091L1502%20121L1452%20121ZM1477%20108L1508%20137L1446%20137ZM1474%20130h6v10h-6ZM1502%2063L1515%2091L1490%2091ZM1502%2079L1520%20106L1484%20106ZM1502%2094L1526%20122L1478%20122ZM1502%20109L1532%20137L1473%20137ZM1499%20131h6v9h-6ZM1547%2067L1559%2093L1536%2093ZM1547%2081L1565%20108L1530%20108ZM1547%2096L1570%20122L1525%20122ZM1547%20111L1576%20137L1519%20137ZM1544%20131h6v9h-6ZM1570%2087L1578%20106L1561%20106ZM1570%2097L1582%20117L1557%20117ZM1570%20108L1586%20127L1553%20127ZM1570%20119L1590%20138L1549%20138ZM1567%20134h6v6h-6ZM1596%2035L1612%2073L1579%2073ZM1596%2056L1620%2094L1571%2094ZM1596%2077L1628%20115L1563%20115ZM1596%2098L1636%20136L1555%20136ZM1593%20127h6v13h-6Z%27/%3E%3C/svg%3E") bottom center/max(1600px,100%) 96px no-repeat,radial-gradient(120% 80% at 50% 0%,#2b3d31 0%,#1d2a21 65%)}
+.dark.date,#rsvp{padding-bottom:clamp(150px,16vw,220px)}
+.kicker{color:#5f7a5c}
+.dark .kicker{color:#a9c0a2}
+.pill{background:#24382c}
+.pill:hover{background:#2f4a39}
+nav .pill{background:#24382c}
+.pill.light{background:#f4eee6;color:#24382c}
+.seg button[aria-pressed=true]{color:#24382c}
+.cell.garden{background:linear-gradient(160deg,#3a5a46,#1c2c22)}
+.chips button[aria-selected=true]{background:#24382c}
+.pin.sel span{background:#24382c}
+.pin.stay i{background:#4f7a5c}
+footer{background:#1a251e;color:#b3a698}
+footer .wrap{border-color:#2f4537}
+.statement{text-align:center;padding-bottom:clamp(40px,5vw,64px)}
+
+/* Long-distance map chapter */
+.ld{position:absolute;inset:0;background:#f4eee6;opacity:0;transform:scale(1.04);transition:opacity 1.2s var(--ease),transform 2.4s var(--ease)}
+.story .media .ld.on{opacity:1;transform:none}
+.chap .m.ld{position:relative;display:none;aspect-ratio:4/5;border-radius:24px;overflow:hidden;opacity:1;transform:none;margin-bottom:28px}
+.ldsvg{position:absolute;inset:0;width:100%;height:100%}
+.ld .wa,.ld .sd{fill-opacity:.12;transition:fill-opacity 1.2s var(--ease)}
+.ld .sd{transition-delay:.45s}
+.ld.go .wa,.ld.go .sd{fill-opacity:1}
+.ld .arc{transition:stroke-dashoffset 2s var(--ease) 1.2s}
+.ld.go .arc{stroke-dashoffset:0}
+.ld .pt,.ld .lb,.ld .lb2{opacity:0;transition:opacity .8s var(--ease)}
+.ld.go .pt.a,.ld.go .lb.a,.ld.go .lb2.a{opacity:1;transition-delay:.3s}
+.ld.go .pt.b,.ld.go .lb.b,.ld.go .lb2.b{opacity:1;transition-delay:.8s}
+.ld .lb{font:400 26px Fraunces,Georgia,serif;fill:#2a211c;paint-order:stroke;stroke:#f4eee6;stroke-width:5px}
+.ld .lb2{font:500 13px Inter,sans-serif;fill:#76695e;paint-order:stroke;stroke:#f4eee6;stroke-width:4px}
+.ldcap{position:absolute;left:24px;right:24px;bottom:22px;opacity:0;transform:translateY(8px);transition:opacity 1s var(--ease) 2.8s,transform 1s var(--ease) 2.8s}
+.ld.go .ldcap{opacity:1;transform:none}
+.ldcap b{display:block;font:400 clamp(28px,3vw,38px)/1.1 Fraunces,Georgia,serif;letter-spacing:-.02em;color:#2a211c}
+.ldcap span{color:#76695e;font-size:15px}
+@media(max-width:900px){.chap .m.ld{display:block}}
+@media(prefers-reduced-motion:reduce){.ld{opacity:1}.ld .wa,.ld .sd{fill-opacity:1}.ld .arc{stroke-dashoffset:0}.ld .pt,.ld .lb,.ld .lb2,.ldcap{opacity:1;transform:none}}
+
+/* Long-distance options */
+.ldo{position:relative;overflow:hidden;min-height:min(100svh,900px);display:grid}
+.optl{position:absolute;z-index:5;top:20px;left:20px;font:600 13px Inter,sans-serif;background:#2a211c;color:#fbf8f3;padding:7px 12px;border-radius:999px}
+.ldo .txt{position:relative;z-index:3;text-align:center;padding:0 var(--pad)}
+.ldo .txt h2{font-size:clamp(40px,6vw,80px)}
+.ldo .txt p{margin-top:16px;font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:var(--soft)}
+.ldo [data-draw]{stroke-dasharray:1;stroke-dashoffset:1}
+.o1{grid-template-columns:1fr 1fr;background:#111}
+.o1 .half{position:relative;overflow:hidden;min-height:min(100svh,900px)}
+.o1 .half img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover}
+.o1 .half::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,10,.45),rgba(20,14,10,0) 40%,rgba(20,14,10,.4))}
+.o1 .tag{position:absolute;z-index:2;bottom:36px;font:400 clamp(26px,3vw,40px) Fraunces,Georgia,serif;color:#fff}
+.o1 .l .tag{left:40px}.o1 .r .tag{right:40px}
+.o1 .thread{position:absolute;inset:0;width:100%;height:100%;z-index:2}
+.o1 .thread path{fill:none;stroke:#f3d9a8;stroke-width:2}
+.o1 .txt{position:absolute;left:0;right:0;top:clamp(60px,10vh,120px);color:#fff}
+.o1 .txt p{color:rgba(255,255,255,.85)}
+.o2,.o5{background:#fbf8f3;align-content:center;padding:clamp(80px,10vw,140px) var(--pad)}
+.o2 .art,.o5 .art{width:100%;max-width:1180px;margin:48px auto 0}
+.sl{font:400 24px Fraunces,Georgia,serif;fill:#2a211c}
+.o3{background:radial-gradient(120% 90% at 50% 100%,#1d2f3a,#0c141b 70%);color:#f3ede3;align-content:center;padding:clamp(80px,10vw,140px) var(--pad)}
+.o3 .art{width:100%;max-width:1180px;margin:0 auto}
+.o3 .txt{margin-top:24px}.o3 .txt p{color:#b9c3c8}
+.tw{animation:tw 5s ease-in-out infinite;opacity:.4}
+@keyframes tw{50%{opacity:1}}
+.glowstar{filter:drop-shadow(0 0 6px #fff)}
+.o4{background:#ece0cc;min-height:min(110svh,980px)}
+.o4 .art{position:absolute;inset:0;width:100%;height:100%}
+.o4 .txt{position:absolute;left:0;right:0;top:clamp(60px,9vh,110px)}
+.hl{font:400 26px Fraunces,Georgia,serif;fill:#2a211c;paint-order:stroke;stroke:rgba(251,248,243,.6);stroke-width:5px}
+@media(max-width:700px){.o1{grid-template-columns:1fr;grid-template-rows:1fr 1fr}.o1 .half{min-height:50svh}.o1 .thread{display:none}.o1 .txt{top:64px}.o1 .l .tag{bottom:20px}.o1 .r .tag{bottom:20px}}
+@media(prefers-reduced-motion:reduce){.ldo [data-draw]{stroke-dashoffset:0}.tw{animation:none}}
+
+.tale{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center;max-width:1180px;margin:0 auto;padding:clamp(60px,8vw,110px) var(--pad)}
+.tale.rev .ph{order:2}
+.tale .ph{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;background:#ddd}
+.tale .ph img{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover}
+.tale h3{font:400 clamp(32px,3.6vw,52px)/1.05 Fraunces,Georgia,serif;letter-spacing:-.02em;margin-bottom:16px}
+.tale p{font-size:clamp(18px,1.6vw,21px);color:var(--soft);max-width:30em}
+@media(max-width:800px){.tale{grid-template-columns:1fr}.tale.rev .ph{order:0}}
+.o1 .tag small{display:block;font:500 14px Inter,sans-serif;opacity:.85;margin-top:4px}
+.o1 .r .tag{text-align:right}
+.o1 .txt{text-shadow:0 2px 28px rgba(10,18,30,.55),0 1px 3px rgba(10,18,30,.35)}
+.o1 .half::after{background:linear-gradient(180deg,rgba(14,20,30,.55),rgba(14,20,30,.08) 42%,rgba(14,10,6,.45))}
+@media(max-width:700px){.o1 .l::after{background:linear-gradient(180deg,rgba(14,20,30,.7),rgba(14,20,30,.25) 70%,rgba(14,10,6,.5))}}
+
+/* Layered hero: photo, then names, then the far-skyline cut-out on top */
+.hero .scene{position:absolute;inset:0;transform:scale(var(--s,1.14));transform-origin:50% 40%;will-change:transform}
+.hero .frame .scene>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:none}
+.hero .frame::after{display:none}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,24,12,.28),rgba(40,24,12,0) 46%)}
+.hero .scene .t{position:absolute;left:0;right:0;top:18%;z-index:auto;padding:0 var(--pad);text-align:center;color:#fff;text-shadow:0 2px 30px rgba(70,35,10,.28)}
+.hero .scene .t .sub{margin:0 0 14px}
+.hero .fg{pointer-events:none}
+.hero .scene .t h1{white-space:nowrap}
+@media(max-width:700px){.hero .scene .t h1{font-size:10.6vw}.hero .scene .t .sub{font-size:15px}}
+@media(min-width:701px){.hero .scene .t{text-align:left;padding-left:max(12vw,48px)}.hero .scene .t h1{font-size:clamp(56px,8vw,128px)}}
+@media(max-width:700px){.hero .frame .scene>img{object-position:28% 50%}}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<nav aria-label="Main" id="nav">
+  <a class="mark" href="#top">Dillon &amp; Amber</a>
+  <div class="links"><a href="#weekend">Weekend</a><a href="#venue">Venue</a><a href="#stay">Stay</a><a href="#faq">FAQ</a><a href="#registry">Registry</a><a href="#story">Our story</a></div>
+  <a class="pill" href="#rsvp">RSVP</a>
+</nav>
+<header class="hero" id="top">
+  <div class="stick">
+    <div class="frame" id="heroFrame"><div class="scene" id="scene">
+      <img class="bg" id="heroImg" src="img/hero.jpg" alt="Mount Rainier and forested Cascade foothills at golden hour" width="1536" height="864" fetchpriority="high">
+      <div class="shade"></div>
+      <div class="t" id="heroT"><p class="sub intro">June 5, 2027 · Snohomish, Washington</p><h1 class="intro b">Dillon &amp; Amber</h1></div>
+      <img class="fg" src="img/hero-fg.webp" alt="" aria-hidden="true" width="1536" height="864" fetchpriority="high">
+    </div></div>
+    
+    <div class="t2" id="heroT2"><p>We're getting married.</p></div>
+    <span class="cue" id="cue" aria-hidden="true"></span>
+  </div>
+</header>
+
+
+<section class="sec dark date center" aria-label="Save the date">
+  <p class="kicker rv">Save the date</p>
+  <p class="big rv d1">June 5, 2027</p>
+  <div class="meta rv d2">
+    <div><b>4:00 pm</b><span>Ceremony begins</span></div>
+    <div><b id="cDays">–</b><span>Days to go</span></div>
+    <div><b>April 15</b><span>Please RSVP by</span></div>
+  </div>
+  <div class="acts rv d3"><a class="pill light" href="#rsvp">RSVP</a><a class="link" id="gcal" href="#">Add to Google Calendar</a><a class="link" id="ics" href="#" download="dillon-amber-wedding.ics">Apple or Outlook</a></div>
+</section>
+
+
+<section class="sec paper" id="weekend" style="padding-inline:0">
+  <div class="railhead">
+    <div><h2 class="rv">The weekend</h2></div>
+    <div class="arrows rv d2"><button class="arrow" id="prev" type="button" aria-label="Previous">‹</button><button class="arrow" id="next" type="button" aria-label="Next">›</button></div>
+  </div>
+  <div class="rail rv" id="rail" tabindex="0" aria-label="Weekend events"></div>
+</section>
+
+
+<section class="bleed" id="venue" aria-label="The venue">
+  <img data-plx="0.12" src="img/lodge.jpg" alt="A timber lodge on a hilltop at blue hour, windows glowing" loading="lazy">
+  <div class="cap"><h2 class="rv">The Lookout Lodge</h2><p class="rv d1">Snohomish, Washington · About an hour north of Seattle</p></div>
+</section>
+
+
+<section class="sec paper" aria-label="Getting there">
+  <div class="stats">
+    <div class="rv"><b>On the lawn</b><span>Ceremony outdoors, weather permitting. We move inside if it rains.</span></div>
+    <div class="rv d1"><b>Garden attire</b><span>Dresses, suits, or a nice shirt and slacks. Skip the stilettos on the grass.</span></div>
+    <div class="rv d2"><b>Free parking</b><span>Plenty of space at the lodge, or ride our Saturday shuttle.</span></div>
+  </div>
+  <div class="mapx rv" id="mapx">
+    <div class="mcanvas" id="mapCanvas" aria-label="Map of the wedding weekend"></div>
+    <div class="chips" id="chips" role="tablist" aria-label="Map layers"></div>
+    <div class="mcard" id="mcard" aria-live="polite"></div>
+  </div>
+  <div class="mapacts"><a class="link" id="dirs" href="#">Directions to the lodge</a><a class="link" id="amaps" href="#">Open in Apple Maps</a></div>
+  <div class="tiles">
+    <div class="tile rv"><h3>Paine Field (PAE)</h3><p class="meta">Everett · about 35 minutes to the lodge</p><p>The closest airport, small and quick, with flights from most West Coast hubs.</p></div>
+    <div class="tile rv d1"><h3>Sea-Tac (SEA)</h3><p class="meta">Seattle · about an hour to the lodge</p><p>The most flights from everywhere. Allow extra time Friday afternoon, when I-5 north gets busy.</p></div>
+    <div class="tile rv d2"><h3>Saturday shuttle</h3><p class="meta">From our hotel block</p><p>Runs to the lodge before the ceremony and back after the send-off, so nobody has to drive.</p></div>
+  </div>
+</section>
+
+
+<section class="sec" id="stay">
+  <div class="split">
+    <div>
+      <h2 class="rv">Where to stay</h2>
+      <div class="list">
+        <div class="rv"><h3>Our hotel block</h3><p class="soft">Group rate in Everett, held until early May, and it's the shuttle stop.</p><a class="link joy" data-path="/travel" href="https://withjoy.com">Book a room</a></div>
+        <div class="rv d1"><h3>Downtown Snohomish</h3><p class="soft">Inns and B&amp;Bs on a walkable historic main street, about 20 minutes away. Rooms are limited, so book early.</p></div>
+        <div class="rv d2"><h3>Getting home</h3><p class="soft">Rideshares are scarce in the hills late at night. Plan a ride ahead, or hop on the shuttle back.</p></div>
+      </div>
+    </div>
+    <div class="ph rv"><img data-plx="0.08" src="img/town.jpg" alt="A historic brick main street with hanging flower baskets" loading="lazy"></div>
+  </div>
+</section>
+
+
+<section class="sec dark center" id="rsvp">
+  <h2 class="rv">RSVP</h2>
+  <p class="lead rv d2">Please reply by Thursday, April 15, 2027. Look yourself up by the last name on your invitation.</p>
+  <div class="panel rv d2" id="rsvpPanel" aria-live="polite" style="color:var(--ink)"></div>
+  <div class="rsvpframe" id="rsvpLive" hidden></div>
+  <p class="soft rv" style="margin-top:28px;font-size:15px">Plans changed? Look yourself up again any time before the deadline.</p>
+</section>
+
+
+<section class="sec paper" id="faq">
+  <div class="wrap"><h2 class="rv">FAQ</h2></div>
+  <div class="faq" id="faqList"></div>
+</section>
+
+
+<section class="sec" id="registry">
+  <div class="wrap center">
+    <h2 class="rv">Registry</h2>
+    <p class="lead rv d1">No gifts needed. If you'd like to give something anyway, here are a few things we're saving for.</p>
+    <div class="acts rv d3"><a class="pill joy" data-path="/registry" href="https://withjoy.com">View our registry</a><a class="link joy" data-path="/photos" href="https://withjoy.com">Share your photos with us</a></div>
+  </div>
+  <div class="bento">
+    <div class="cell big ph rv"><img src="img/iceland.jpg" alt="Black sand beach with basalt sea stacks in Iceland" loading="lazy"><h3>Honeymoon in Iceland</h3><p>Hot springs, black-sand beaches and a very long drive around the ring road.</p></div>
+    <div class="cell garden rv d1"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 9 11 5 20 4c0 9-4 15-14 15m0 0l7-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><h3>Our first garden</h3><p>Raised beds, a lemon tree, and one ambitious tomato.</p></div>
+    <div class="cell ph rv d2"><img src="img/fog.jpg" alt="Fir forest in soft fog" loading="lazy"><h3>Cascades weekends</h3><p>Cabin nights and trail mornings.</p></div>
+  </div>
+</section>
+
+
+<section class="sec statement" aria-label="Welcome">
+  <div class="narrow"><p id="words">Our story</p></div>
+</section>
+
+
+<div id="story">
+<section class="tale" aria-label="How we met"><div class="ph"><img data-plx="0.06" src="img/trail.jpg" alt="A couple walking a mossy forest trail" loading="lazy"></div><div><h3 class="rv">How we met</h3><p class="rv d1">We met at Snoqualmie Pass, up in the mountains east of Seattle.</p></div></section>
+<section class="ldo o1" aria-label="Long distance">
+ <div class="half l"><img data-plx="0.06" src="img/rainier.jpg" alt="Mount Rainier above misty forested ridges"><span class="tag">Mount Rainier<small>Washington</small></span></div>
+ <div class="half r"><img data-plx="-0.06" src="img/blackhills.jpg" alt="Pine-covered granite spires of the Black Hills at golden hour"><span class="tag">Black Hills<small>South Dakota</small></span></div>
+ <svg class="thread" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><path data-draw d="M160 330 C 380 250, 620 410, 840 330" pathLength="1" vector-effect="non-scaling-stroke"/></svg>
+ <div class="txt"><h2>Long distance</h2><p>Dillon in Washington. Amber in Rapid City, South Dakota.<br>A couple of years, 1,000+ miles apart.</p></div>
+</section>
+<section class="tale rev" aria-label="The proposal"><div class="ph"><img data-plx="0.06" src="img/hands.jpg" alt="Two hands held together, an engagement ring on one" loading="lazy"></div><div><h3 class="rv">The proposal</h3><p class="rv d1">Now we're getting married a short drive from where it all began, and we can't imagine doing it without you.</p></div></section>
+</div>
+
+
+<section class="strip" aria-label="Photos of us">
+  <div class="track" id="track">
+    <figure><img src="img/trail.jpg" alt="" loading="lazy"></figure>
+    <figure><img src="img/couplefalls.jpg" alt="" loading="lazy"></figure>
+    <figure><img src="img/falls.jpg" alt="" loading="lazy"></figure>
+    <figure><img src="img/overlook.jpg" alt="" loading="lazy"></figure>
+    <figure><img src="img/hands.jpg" alt="" loading="lazy"></figure>
+    <figure><img src="img/hero.jpg" alt="" loading="lazy"></figure>
+    <figure><img src="img/fog.jpg" alt="" loading="lazy"></figure>
+  </div>
+</section>
+
+
+<section class="sec paper" id="party">
+  <div class="wrap center"><h2 class="rv">Wedding party</h2></div>
+  <div class="people" id="people"></div>
+</section>
+
+
+<section class="bleed final" aria-label="Closing">
+  <img data-plx="0.12" src="img/dance.jpg" alt="A couple dancing under string lights" loading="lazy">
+  <div class="cap"><h2 class="rv">See you June 5</h2><div class="acts rv d1"><a class="pill light" href="#rsvp">RSVP</a></div></div>
+</section>
+
+<footer>
+  <div class="wrap"><span>Dillon &amp; Amber · June 5, 2027 · The Lookout Lodge, Snohomish, WA</span><span>Questions? hello@dillonandamber.com · (555) 014-2027</span></div>
+</footer>
+
+<script>
+{
+  const $=id=>document.getElementById(id);
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+
+  // Content
+  const slides=[["overlook","Friday, June 4","Welcome drop-in","Casual and optional. Stop by any time after 6 pm for snacks and drinks."],["ceremony","Saturday, June 5","The wedding","Ceremony at 4 pm on the lawn, with dinner and dancing after. Shuttles leave the hotel at 3:15."],["fog","Sunday, June 6","Farewell coffee","Coffee and pastries from 10 am before you head home."]];
+  $('rail').innerHTML=slides.map(s=>`<article class="slide"><img src="img/${s[0]}.jpg" alt="" loading="lazy"><div class="cap"><p class="when">${s[1]}</p><h3>${s[2]}</h3></div><p class="d">${s[3]}</p></article>`).join('');
+
+  const party=[["Alex Rivera","Best man","#3a5a46"],["Priya Shah","Maid of honor","#9a6a3a"],["Sam Ortiz","Groomsman","#4f6b4a"],["Casey Nguyen","Bridesmaid","#7a5a46"],["Jamie Cole","Groomsman","#5a6b3e"],["Taylor Kim","Bridesmaid","#8a6a4a"],["Morgan Lee","Officiant","#2f4a3a"],["Riley Baker","Ring bearer","#6b5a3a"]];
+  $('people').innerHTML=party.map((p,i)=>`<div class="person rv d${i%4}"><div class="face" style="background:linear-gradient(150deg,${p[2]},#2a211c)">${p[0].split(' ').map(w=>w[0]).join('')}</div><b>${p[0]}</b><span>${p[1]}</span></div>`).join('');
+  const faq=[["What should I wear?","Garden attire: dresses, suits, or a nice shirt and slacks. The ceremony is on grass, so skip stilettos, and bring a layer for when the sun drops behind the hills."],["Is the ceremony outdoors?","Yes, on the lawn if the weather cooperates. If it rains, we'll move inside the lodge, which is just as lovely."],["Can I bring a date?","If your invitation includes a guest, they'll appear when you RSVP. We're keeping things intimate, so we can't add guests beyond that."],["Are kids invited?","Children named on your invitation are very welcome."],["What about dietary needs?","Tell us in your RSVP. Every dish can be made gluten-free, and there's a vegetarian option."],["Can I take photos?","We'd love an unplugged ceremony, so please keep phones away until after the kiss. Snap away at the reception and share them with us."],["Is there parking?","Yes, free at the lodge. Or skip driving with the shuttle from the hotel block."],["When's the RSVP deadline?","Thursday, April 15, 2027."]];
+  $('faqList').innerHTML=faq.map((q,i)=>`<div class="rv d${i%2}"><h3>${q[0]}</h3><p>${q[1]}</p></div>`).join('');
+
+  // Statement words
+  const wordsEl=$('words');
+  wordsEl.innerHTML=wordsEl.textContent.split(' ').map(w=>`<span>${w}</span>`).join(' ');
+  const words=[...wordsEl.children];
+
+  // Countdown, counted up once when seen
+  const wed=new Date('2027-06-05T16:00:00-07:00');
+  const daysLeft=Math.max(0,Math.ceil((wed-new Date())/864e5));
+  const cd=$('cDays');cd.textContent=daysLeft;
+  let counted=false;
+  const countUp=()=>{if(counted||reduce)return;counted=true;const t0=performance.now();const step=t=>{const k=clamp((t-t0)/1800);cd.textContent=Math.round(daysLeft*(1-(1-k)**3));if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)};
+
+  // Reveal
+  const rvs=document.querySelectorAll('.rv');
+  if(reduce||!('IntersectionObserver' in window)){rvs.forEach(e=>e.classList.add('in'))}
+  else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.closest('.date'))countUp();io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px',threshold:.08});rvs.forEach(e=>io.observe(e))}
+
+  // Scroll-driven scenes
+  const hero=$('top'),frame=$('heroFrame'),scene=$('scene'),ht=$('heroT'),ht2=$('heroT2'),cue=$('cue');
+  const plx=[...document.querySelectorAll('[data-plx]')],track=$('track');
+  const draws=[...document.querySelectorAll('[data-draw]')],plys=[...document.querySelectorAll('[data-ply]')];
+  const links=[...document.querySelectorAll('nav .links a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+
+  // Tuck the names behind the far skyline (image y = 332 of 864), on any screen size
+  const SKY=332,IW=1536,IH=864;
+  const placeT=()=>{const W=scene.clientWidth,H=scene.clientHeight;const s=Math.max(W/IW,H/IH);const sky=(H-IH*s)/2+SKY*s;const h1=ht.querySelector('h1');const fs=parseFloat(getComputedStyle(h1).fontSize);ht.style.top=Math.round(sky+fs*.03-ht.offsetHeight)+'px'};
+  placeT();addEventListener('resize',placeT);document.fonts&&document.fonts.ready.then(placeT);
+  let lastY=-1,cur=0;
+  const frameTick=()=>{
+    const y=scrollY,vh=innerHeight,vw=innerWidth;
+    if(y!==lastY){
+      lastY=y;
+      // hero
+      const hr=hero.getBoundingClientRect();
+      if(hr.bottom>0){
+        const p=clamp(-hr.top/(hr.height-vh));
+        const e=p*p*(3-2*p);
+        frame.style.setProperty('--ix',(e*Math.min(vw*.06,72)).toFixed(1)+'px');
+        frame.style.setProperty('--iy',(e*Math.min(vh*.1,90)).toFixed(1)+'px');
+        frame.style.setProperty('--r',(e*32).toFixed(1)+'px');
+        scene.style.setProperty('--s',(1.14-.14*e).toFixed(4));
+        ht.style.opacity=clamp(1-p*1.8).toFixed(3);
+        ht.style.transform=`translateY(${(p*90).toFixed(1)}px)`;
+        const q=clamp((p-.42)/.3);ht2.style.opacity=q.toFixed(3);ht2.style.transform=`translateY(${((1-q)*24).toFixed(1)}px)`;
+        cue.style.opacity=clamp(1-p*6).toFixed(2);
+      }
+      // words
+      const wr=wordsEl.getBoundingClientRect();
+      if(wr.top<vh&&wr.bottom>0){const p=clamp((vh*.88-wr.top)/(wr.height+vh*.35));const n=Math.round(p*words.length*1.08);words.forEach((w,i)=>w.classList.toggle('lit',i<n))}
+      // parallax photos
+      for(const el of plx){const r=el.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>vh)continue;const c=(r.top+r.height/2-vh/2)/vh;el.style.transform=`translateY(${(c*-100*(+el.dataset.plx)).toFixed(2)}%) scale(1.02)`}
+      // photo strip drifts sideways with scroll
+      const tr=track.parentElement.getBoundingClientRect();
+      if(tr.bottom>0&&tr.top<vh){const p=clamp((vh-tr.top)/(vh+tr.height));const max=track.scrollWidth-vw;track.style.transform=`translateX(${(-p*max*.85+vw*.04).toFixed(1)}px)`}
+      // long-distance options: draw threads and drift layers with scroll
+      for(const d of draws){const sec=d.closest('.ldo');const r=sec.getBoundingClientRect();if(r.bottom<0||r.top>vh)continue;const p=clamp((vh*.9-r.top)/(r.height*.75));d.style.strokeDashoffset=(1-p*p*(3-2*p)).toFixed(4)}
+      for(const g of plys){const r=g.closest('.ldo').getBoundingClientRect();if(r.bottom<0||r.top>vh)continue;const c=(r.top+r.height/2-vh/2);g.style.transform=`translateY(${(c*-+g.dataset.ply).toFixed(1)}px)`}
+      // nav
+      let act=-1;secs.forEach((s,i)=>{if(s){const r=s.getBoundingClientRect();if(r.top<vh*.45&&r.bottom>vh*.45)act=i}});
+      links.forEach((a,i)=>a.classList.toggle('on',i===act));
+    }
+    requestAnimationFrame(frameTick);
+  };
+  if(reduce){words.forEach(w=>w.classList.add('lit'))}
+  else requestAnimationFrame(frameTick);
+
+
+  // Rail arrows
+  const rail=$('rail'),prev=$('prev'),next=$('next');
+  const stepW=()=>rail.firstElementChild.getBoundingClientRect().width+20;
+  const upd=()=>{const over=rail.scrollWidth>rail.clientWidth+8;prev.parentElement.style.visibility=over?'visible':'hidden';prev.disabled=rail.scrollLeft<8;next.disabled=rail.scrollLeft>rail.scrollWidth-rail.clientWidth-8};addEventListener('resize',()=>upd());
+  prev.addEventListener('click',()=>rail.scrollBy({left:-stepW(),behavior:reduce?'auto':'smooth'}));
+  next.addEventListener('click',()=>rail.scrollBy({left:stepW(),behavior:reduce?'auto':'smooth'}));
+  rail.addEventListener('scroll',upd,{passive:true});upd();
+
+  // RSVP preview flow
+  const guests={baker:{party:"The Baker family",people:["Pat Baker","Chris Baker","Riley Baker"]},nguyen:{party:"Casey Nguyen and guest",people:["Casey Nguyen","Guest of Casey"]},ortiz:{party:"Sam Ortiz",people:["Sam Ortiz"]}};
+  const meals=["Grilled king salmon","Braised short rib","Wild mushroom risotto (vegetarian)","Kids' plate"];
+  const panel=$('rsvpPanel');
+  const fresh=()=>({step:'find',key:null,ans:{},welcome:null,diet:'',song:''});
+  let state=fresh(),last='';
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const keep=()=>{const d=$('diet'),s=$('song');if(d)state.diet=d.value;if(s)state.song=s.value};
+  const render=(opened)=>{
+    const cls=state.step!==last?'step':'';last=state.step;
+    if(state.step==='find'){
+      panel.innerHTML=`<div class="${cls}"><h3>Find your invitation</h3><p class="hint">Enter the last name on your invitation.</p><form id="findF" class="field"><div class="row"><input id="lname" autocomplete="family-name" placeholder="Last name" aria-label="Last name"><button class="pill" type="submit">Continue</button></div><div id="findErr"></div></form></div>`;
+      $('findF').addEventListener('submit',e=>{e.preventDefault();const v=$('lname').value.trim().toLowerCase().split(' ').pop();const k=Object.keys(guests).find(g=>v&&g.startsWith(v));if(!k){$('findErr').innerHTML='<p class="err reveal">We couldn’t find that name. Try the spelling on your invitation, or text us.</p>';return}state=fresh();state.step='form';state.key=k;guests[k].people.forEach(p=>state.ans[p]={go:null,meal:''});render()});
+    } else if(state.step==='form'){
+      const g=guests[state.key];
+      panel.innerHTML=`<div class="${cls}"><h3>${esc(g.party)}</h3><p class="hint">Saturday, June 5 · The Lookout Lodge</p>`+g.people.map((p,i)=>`<div class="guest"><div class="name">${esc(p)}</div><div class="seg" role="group" aria-label="${esc(p)} attending"><button type="button" data-i="${i}" data-v="yes" aria-pressed="${state.ans[p].go==='yes'}">Joyfully accepts</button><button type="button" data-i="${i}" data-v="no" aria-pressed="${state.ans[p].go==='no'}">Regretfully declines</button></div>${state.ans[p].go==='yes'?`<div class="field ${opened===i?'reveal':''}"><label for="meal${i}">Dinner</label><select id="meal${i}" data-m="${i}"><option value="">Choose a meal</option>${meals.map(m=>`<option${state.ans[p].meal===m?' selected':''}>${m}</option>`).join('')}</select></div>`:''}</div>`).join('')+
+      `<div class="guest"><div class="name">Friday welcome drop-in</div><div class="seg" role="group" aria-label="Friday welcome"><button type="button" data-w="yes" aria-pressed="${state.welcome==='yes'}">We'll stop by</button><button type="button" data-w="no" aria-pressed="${state.welcome==='no'}">Can't make it</button></div></div>
+      <div class="field"><label for="diet">Allergies or dietary needs</label><textarea id="diet" placeholder="Anything the kitchen should know">${esc(state.diet)}</textarea></div>
+      <div class="field"><label for="song">A song that'll get you dancing</label><input id="song" value="${esc(state.song)}" placeholder="Song and artist"></div>
+      <div id="formErr"></div><div class="row field" style="align-items:center"><button class="pill" id="send" type="button">Send RSVP</button><button class="link" id="back" type="button" style="background:none;border:0;cursor:pointer;font-family:inherit">Not you?</button></div></div>`;
+      panel.querySelectorAll('[data-i]').forEach(b=>b.addEventListener('click',()=>{keep();const i=+b.dataset.i,p=g.people[i];const was=state.ans[p].go;state.ans[p].go=b.dataset.v;if(b.dataset.v==='no')state.ans[p].meal='';render(was!=='yes'&&b.dataset.v==='yes'?i:null)}));
+      panel.querySelectorAll('[data-m]').forEach(s=>s.addEventListener('change',()=>{state.ans[g.people[s.dataset.m]].meal=s.value}));
+      panel.querySelectorAll('[data-w]').forEach(b=>b.addEventListener('click',()=>{keep();state.welcome=b.dataset.w;render()}));
+      $('back').addEventListener('click',()=>{state=fresh();render()});
+      $('send').addEventListener('click',()=>{keep();const miss=g.people.filter(p=>!state.ans[p].go||(state.ans[p].go==='yes'&&!state.ans[p].meal));if(miss.length){$('formErr').innerHTML=`<p class="err reveal">Please finish the reply for ${esc(miss.join(', '))}.</p>`;return}state.step='done';render()});
+    } else {
+      const g=guests[state.key];const yes=g.people.filter(p=>state.ans[p].go==='yes');
+      panel.innerHTML=`<div class="done ${cls}"><h3>${yes.length?'See you in Snohomish.':'We’ll miss you.'}</h3><p class="hint">${yes.length?`${yes.length} of ${g.people.length} attending. A confirmation email is on its way.`:'Thank you for letting us know.'}</p><ul>${g.people.map(p=>`<li>${esc(p)}: ${state.ans[p].go==='yes'?esc(state.ans[p].meal):'not attending'}</li>`).join('')}${state.welcome?`<li>Friday drop-in: ${state.welcome==='yes'?'yes':'no'}</li>`:''}${state.song?`<li>Song: ${esc(state.song)}</li>`:''}</ul><button class="pill" id="edit" type="button">Edit reply</button></div>`;
+      $('edit').addEventListener('click',()=>{state.step='form';render()});
+    }
+  };
+  render();
+
+  // Integrations: fill these in and the live site wires itself up
+  const CONFIG={
+    rsvpifyUrl:'',                  // e.g. https://dillonandamber.rsvpify.com
+    joyUrl:'https://withjoy.com',   // e.g. https://withjoy.com/dillon-and-amber
+    venue:'The Lookout Lodge, Snohomish, WA',
+    mapsKey:'AIzaSyCW1n3bcpANhnlktzGkzxOz1L5KQ_ObnMI',                     // Google Maps JavaScript API key (restrict it to your domain)
+    mapId:''                        // optional: a Map ID with cloud styling or 3D; leave blank to use the built-in style
+  };
+  const live=!/claude|anthropic/i.test(location.hostname);
+  const q=encodeURIComponent(CONFIG.venue);
+  const evs=[["Welcome drop-in","20270605T010000Z","20270605T043000Z","Casual come-and-go. Location shared with your invite."],["Dillon & Amber's wedding","20270605T230000Z","20270606T053000Z","Ceremony at 4:00 pm. Shuttles leave the hotel at 3:15 pm."],["Farewell coffee","20270606T170000Z","20270606T190000Z","Drop by before you head home."]];
+  const w=evs[1];
+  $('gcal').href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(w[0])}&dates=${w[1]}/${w[2]}&details=${encodeURIComponent(w[3])}&location=${q}`;
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Dillon and Amber//Wedding//EN',...evs.flatMap((e,i)=>['BEGIN:VEVENT',`UID:da-wedding-${i}@dillonandamber.com`,'DTSTAMP:20261122T000000Z',`DTSTART:${e[1]}`,`DTEND:${e[2]}`,`SUMMARY:${e[0]}`,`DESCRIPTION:${e[3]}`,`LOCATION:${i===1?CONFIG.venue.replace(/,/g,'\\,'):'Snohomish\\, WA'}`,'END:VEVENT']),'END:VCALENDAR'].join('\r\n');
+  $('ics').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
+  // ---- Layered map: real Google Maps on the live site, a matching drawn preview here ----
+  const P={
+    lodge:{name:'The Lookout Lodge',lat:48.018486,lng:-122.009789,kind:'venue',img:'lodge',meta:'Ceremony 4:00 pm · Reception to follow',desc:'2410 Newberg Rd, Snohomish. Free parking on site.'},
+    hotel:{name:'Our hotel block',lat:47.977479,lng:-122.208225,kind:'stay',img:'town',meta:'Everett · Saturday shuttle stop',desc:'Group rate through early May. The shuttle leaves here at 3:15 pm.'},
+    pae:{name:'Paine Field',lat:47.908564,lng:-122.278519,kind:'air',meta:'About 35 minutes to the lodge',desc:'The closest airport, with flights from most West Coast hubs.'},
+    sea:{name:'Sea-Tac',lat:47.448365,lng:-122.308593,kind:'air',meta:'About an hour to the lodge',desc:'The most flights. Allow extra time Friday afternoon on I-5.'},
+    town:{name:'Downtown Snohomish',lat:47.911598,lng:-122.095657,kind:'stay',img:'town',meta:'About 20 minutes to the lodge',desc:'Inns, cafés and antique shops along First Street and the river.'},
+    trail:{name:'Centennial Trail',lat:48.095606,lng:-122.125029,kind:'explore',img:'fog',meta:'Paved, flat, through farmland',desc:'Rent a bike or walk a stretch before the big day.'},
+    falls:{name:'Franklin Falls',lat:47.413077,lng:-121.44247,kind:'explore',img:'couplefalls',meta:'Where it all started · about 90 minutes',desc:'An easy hike to the falls. Get there early for parking.'}
+  };
+  const LAYERS=[
+    {id:'day',label:'Wedding day',pins:['lodge','hotel'],routes:[['hotel','lodge']],focus:'lodge'},
+    {id:'here',label:'Getting here',pins:['lodge','pae','sea'],routes:[['pae','lodge'],['sea','lodge']],focus:'lodge'},
+    {id:'stay',label:'Where to stay',pins:['lodge','hotel','town'],routes:[],focus:'hotel'},
+    {id:'explore',label:'Explore',pins:['lodge','town','trail','falls'],routes:[],focus:'falls'}
+  ];
+  const mx=$('mapx'),canvas=$('mapCanvas'),chipsEl=$('chips'),card=$('mcard');
+  const dirUrl=p=>`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`;
+  $('dirs').href=dirUrl(P.lodge);$('amaps').href=`https://maps.apple.com/?daddr=${P.lodge.lat},${P.lodge.lng}&q=${q}`;
+  const pad=()=>innerWidth>700?{top:90,right:190,bottom:60,left:410}:{top:80,right:140,bottom:270,left:30};
+  let layer=LAYERS[0],selected='lodge',R=null;
+  const showCard=id=>{const p=P[id];selected=id;card.innerHTML=`<div class="in">${p.img?`<img src="img/${p.img}.jpg" alt="">`:''}<div class="tx"><h3>${p.name}</h3><p class="meta">${p.meta}</p><p>${p.desc}</p><a class="link" href="${dirUrl(p)}">Directions</a></div></div>`;document.querySelectorAll('.pin').forEach(el=>el.classList.toggle('sel',el.dataset.id===id))};
+  const pinEl=id=>{const b=document.createElement('button');b.type='button';b.className='pin '+P[id].kind;b.dataset.id=id;b.innerHTML=`<i></i><span>${P[id].name}</span>`;b.addEventListener('click',()=>showCard(id));return b};
+  chipsEl.innerHTML=LAYERS.map((l,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-l="${l.id}">${l.label}</button>`).join('');
+  const setLayer=id=>{layer=LAYERS.find(l=>l.id===id);chipsEl.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',b.dataset.l===id));R&&R.show(layer);showCard(layer.focus)};
+  chipsEl.addEventListener('click',e=>{const b=e.target.closest('button');if(b)setLayer(b.dataset.l)});
+
+  // Drawn preview renderer (same data, projected), used where Google can't load
+  const Drawn=()=>{
+    const K=1000,C=Math.cos(47.7*Math.PI/180);
+    const pr=(lat,lng)=>[(lng+122.6)*K*C,(48.3-lat)*K];
+    const ns='http://www.w3.org/2000/svg';
+    const svg=document.createElementNS(ns,'svg');svg.setAttribute('aria-hidden','true');canvas.appendChild(svg);
+    const pins=document.createElement('div');pins.className='pins';canvas.appendChild(pins);
+    const water=[[48.3,-122.6],[48.3,-122.235],[48.1,-122.215],[48.02,-122.205],[47.99,-122.222],[47.95,-122.26],[47.9,-122.31],[47.8,-122.345],[47.65,-122.405],[47.55,-122.395],[47.45,-122.36],[47.3,-122.39],[47.2,-122.6]];
+    const lake=[[47.76,-122.27],[47.7,-122.255],[47.6,-122.245],[47.5,-122.22],[47.53,-122.205],[47.62,-122.21],[47.72,-122.235]];
+    const roads=[[[47.3,-122.29],[47.45,-122.29],[47.6,-122.32],[47.75,-122.31],[47.91,-122.24],[47.98,-122.19],[48.15,-122.18],[48.3,-122.2]],[[47.98,-122.19],[47.94,-122.11],[47.911,-122.095],[47.96,-122.06],[48.018,-122.01]],[[47.59,-122.32],[47.55,-122.05],[47.49,-121.78],[47.43,-121.5],[47.41,-121.2]],[[47.91,-122.24],[47.905,-122.275]]];
+    const river=[[47.88,-121.98],[47.911,-122.09],[47.95,-122.15],[47.99,-122.19],[48.02,-122.2]];
+    const labels=[['Puget Sound',47.72,-122.48],['Everett',48.0,-122.17],['Seattle',47.61,-122.29],['Snohomish',47.89,-122.06],['Cascades',47.62,-121.6],['Lake Stevens',48.02,-122.09]];
+    const peaks=[];let sd=11;const rr=()=>(sd=sd*16807%2147483647)/2147483647;for(let i=0;i<70;i++)peaks.push([47.35+rr()*0.85,-121.85+rr()*0.65,0.6+rr()*0.8]);
+    let W=0,H=0,cam=null,tgt=null,routes=[],t0=0;
+    const fit=l=>{const pts=[...l.pins.map(id=>pr(P[id].lat,P[id].lng)),...l.routes.flatMap(r=>routePts(r[0],r[1]).map(p=>pr(p[0],p[1])))];const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);let x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);const pd=pad();const bw=Math.max(x1-x0,40),bh=Math.max(y1-y0,40);const s=Math.min((W-pd.left-pd.right)/bw,(H-pd.top-pd.bottom)/bh,9);return{cx:(x0+x1)/2,cy:(y0+y1)/2,s,ox:pd.left+(W-pd.left-pd.right)/2,oy:pd.top+(H-pd.top-pd.bottom)/2}};
+    const S=(lat,lng)=>{const[x,y]=pr(lat,lng);return[(x-cam.cx)*cam.s+cam.ox,(y-cam.cy)*cam.s+cam.oy]};
+    const line=(arr,close)=>'M'+arr.map(p=>S(p[0],p[1]).map(v=>v.toFixed(1)).join(' ')).join(' L')+(close?'Z':'');
+    const partial=(pts,t)=>{if(t<=0)return'';const seg=[];let L=0;for(let i=1;i<pts.length;i++)L+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);let need=L*t,out=[pts[0]];for(let i=1;i<pts.length&&need>0;i++){const d=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);if(d<=need){out.push(pts[i]);need-=d}else{const k=need/d;out.push([pts[i-1][0]+(pts[i][0]-pts[i-1][0])*k,pts[i-1][1]+(pts[i][1]-pts[i-1][1])*k]);need=0}}return{d:'M'+out.map(p=>p.map(v=>v.toFixed(1)).join(' ')).join(' L'),end:out[out.length-1]}};
+    const routePts=(a,b)=>{const A=P[a],B=P[b];const via=a==='hotel'?[[47.94,-122.11],[47.911,-122.095],[47.96,-122.06]]:a==='pae'?[[47.91,-122.24],[47.98,-122.19],[47.94,-122.11],[47.96,-122.06]]:[[47.6,-122.32],[47.75,-122.31],[47.91,-122.24],[47.98,-122.19],[47.94,-122.11],[47.96,-122.06]];return[[A.lat,A.lng],...via,[B.lat,B.lng]]};
+    const draw=now=>{
+      if(!cam)return;
+      const el=(now-t0)/1600;
+      let g=`<rect width="${W}" height="${H}" fill="#ebe8da"/>`;
+      g+=peaks.map(p=>{const[x,y]=S(p[0],p[1]);const r=10*p[2]*Math.min(1.6,cam.s/1.2);return`<path d="M${(x-r).toFixed(1)} ${(y+r*.5).toFixed(1)} L${x.toFixed(1)} ${(y-r).toFixed(1)} L${(x+r).toFixed(1)} ${(y+r*.5).toFixed(1)}Z" fill="#dcdfca"/>`}).join('');
+      g+=`<path d="${line(water,1)}" fill="#cfdcd6"/><path d="${line(lake,1)}" fill="#cfdcd6"/><path d="${line(river)}" stroke="#cfdcd6" stroke-width="${Math.max(2,cam.s*1.5).toFixed(1)}" fill="none" stroke-linecap="round"/>`;
+      g+=roads.map(r=>`<path d="${line(r)}" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
+      g+=labels.map(l=>{const[x,y]=S(l[1],l[2]);return`<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="500" fill="#9a8c7e" style="paint-order:stroke;stroke:#ebe8da;stroke-width:4px">${l[0]}</text>`}).join('');
+      routes.forEach((r,i)=>{const pts=r.map(p=>S(p[0],p[1]));const t=clamp(el-i*.25);const pp=partial(pts,reduce?1:1-(1-t)**3);if(!pp)return;g+=`<path d="${pp.d}" stroke="#2a211c" stroke-opacity=".18" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${pp.d}" stroke="#2a211c" stroke-width="3" fill="none" stroke-dasharray="1 8" stroke-linecap="round" stroke-linejoin="round"/>`;if(t>=1&&!reduce){const k=((now/5200)+i*.37)%1;const q=partial(pts,k);if(q)g+=`<circle cx="${q.end[0].toFixed(1)}" cy="${q.end[1].toFixed(1)}" r="6" fill="${'#c9965a'}" stroke="#fff" stroke-width="2.5"/>`}});
+      svg.innerHTML=g;
+      pins.querySelectorAll('.pin').forEach(b=>{const p=P[b.dataset.id];const[x,y]=S(p.lat,p.lng);b.style.left=x.toFixed(1)+'px';b.style.top=y.toFixed(1)+'px'});
+    };
+    const loop=now=>{if(tgt){const k=reduce?1:.08;for(const key in tgt)cam[key]+=(tgt[key]-cam[key])*k}draw(now);requestAnimationFrame(loop)};
+    const size=()=>{W=canvas.clientWidth;H=canvas.clientHeight;tgt=fit(layer);if(!cam)cam={...tgt}};
+    new ResizeObserver(size).observe(canvas);size();requestAnimationFrame(loop);
+    return{show(l){tgt=fit(l);routes=l.routes.map(r=>routePts(r[0],r[1]));t0=performance.now();pins.innerHTML='';l.pins.forEach((id,i)=>{const b=pinEl(id);pins.appendChild(b);setTimeout(()=>b.classList.add('show'),120+i*110)})}};
+  };
+
+  // Google Maps renderer: styled map, HTML pins, real driving routes with live times
+  const STYLE=[{elementType:'geometry',stylers:[{color:'#f1ebe1'}]},{elementType:'labels.icon',stylers:[{visibility:'off'}]},{elementType:'labels.text.fill',stylers:[{color:'#94877a'}]},{elementType:'labels.text.stroke',stylers:[{color:'#ffffff'}]},{featureType:'poi',stylers:[{visibility:'off'}]},{featureType:'poi.park',elementType:'geometry',stylers:[{visibility:'on'},{color:'#e2e4d2'}]},{featureType:'landscape.natural',elementType:'geometry',stylers:[{color:'#ebe5d6'}]},{featureType:'road',elementType:'geometry',stylers:[{color:'#ffffff'}]},{featureType:'road.highway',elementType:'geometry',stylers:[{color:'#ebe5d8'}]},{featureType:'transit',stylers:[{visibility:'off'}]},{featureType:'water',elementType:'geometry',stylers:[{color:'#cfdcd6'}]},{featureType:'administrative',elementType:'geometry',stylers:[{visibility:'off'}]}];
+  const GoogleR=()=>{
+    const g=google.maps;
+    const map=new g.Map(canvas,{center:{lat:47.9,lng:-122.1},zoom:10,disableDefaultUI:true,zoomControl:true,gestureHandling:'cooperative',clickableIcons:false,...(CONFIG.mapId?{mapId:CONFIG.mapId}:{styles:STYLE})});
+    class Pin extends g.OverlayView{constructor(id){super();this.id=id;this.el=pinEl(id)}onAdd(){this.el.classList.toggle('sel',selected===this.id);this.getPanes().overlayMouseTarget.appendChild(this.el);requestAnimationFrame(()=>this.el.classList.add('show'))}draw(){const pt=this.getProjection().fromLatLngToDivPixel(new g.LatLng(P[this.id].lat,P[this.id].lng));this.el.style.left=pt.x+'px';this.el.style.top=pt.y+'px'}onRemove(){this.el.remove()}}
+    const cache={};let live=[],bounds=null;
+    const animate=(line,path)=>{if(reduce){line.setPath(path);return}const t0=performance.now();const step=now=>{const k=clamp((now-t0)/1600);const e=1-(1-k)**3;line.setPath(path.slice(0,Math.max(2,Math.round(path.length*e))));if(k<1)requestAnimationFrame(step);else glide(line)};requestAnimationFrame(step)};
+    const glide=line=>{let o=0;const tick=()=>{if(!line.getMap())return;o=(o+.12)%100;const ic=line.get('icons');ic[1].offset=o+'%';line.set('icons',ic);requestAnimationFrame(tick)};requestAnimationFrame(tick)};
+    const mkLine=()=>new g.Polyline({map,strokeOpacity:0,icons:[{icon:{path:'M 0,-1 0,1',strokeOpacity:1,strokeColor:'#2a211c',scale:3},offset:'0',repeat:'12px'},{icon:{path:g.SymbolPath.CIRCLE,scale:6,fillColor:'#c9965a',fillOpacity:1,strokeColor:'#fff',strokeWeight:2.5},offset:'0%'}]});
+    const route=(a,b)=>{const key=a+b;const line=mkLine();live.push(line);const use=path=>animate(line,path);if(cache[key])return use(cache[key]);
+      g.importLibrary('routes').then(({Route})=>Route.computeRoutes({origin:{lat:P[a].lat,lng:P[a].lng},destination:{lat:P[b].lat,lng:P[b].lng},travelMode:'DRIVING',fields:['path','durationMillis','distanceMeters']})).then(({routes})=>{const r=routes[0];const path=r.path.map(p=>new g.LatLng(p.lat,p.lng));cache[key]=path;path.forEach(pt=>bounds.extend(pt));map.fitBounds(bounds,pad());const mins=Math.round(r.durationMillis/60000),mi=Math.round(r.distanceMeters/1609.34);const t=mins>=60?`${Math.floor(mins/60)} hr ${mins%60} min`:`${mins} min`;P[a].meta=`${t} drive to the lodge · ${mi} miles`;if(selected===a)showCard(a);use(path)}).catch(()=>use([new g.LatLng(P[a].lat,P[a].lng),new g.LatLng(P[b].lat,P[b].lng)]))};
+    return{show(l){live.forEach(o=>o.setMap(null));live=[];l.pins.forEach(id=>{const p=new Pin(id);p.setMap(map);live.push(p)});bounds=new g.LatLngBounds();l.pins.forEach(id=>bounds.extend({lat:P[id].lat,lng:P[id].lng}));l.routes.forEach(r=>(cache[r[0]+r[1]]||[]).forEach(pt=>bounds.extend(pt)));map.fitBounds(bounds,pad());l.routes.forEach(r=>route(r[0],r[1]));g.event.addListenerOnce(map,'idle',()=>{if(map.getZoom()>13)map.setZoom(13)})}};
+  };
+
+  const startMap=()=>{R=R||Drawn();setLayer(layer.id)};
+  if(live&&CONFIG.mapsKey){
+    window.__gmReady=()=>{try{canvas.innerHTML='';R=GoogleR();setLayer(layer.id)}catch(e){startMap()}};
+    const s=document.createElement('script');s.src=`https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(CONFIG.mapsKey)}&callback=__gmReady&v=weekly&loading=async`;s.async=true;s.onerror=startMap;document.head.appendChild(s);
+  } else startMap();
+
+  const joySlug=CONFIG.joyUrl.split('withjoy.com/')[1];
+  document.querySelectorAll('a.joy').forEach(a=>{a.href=CONFIG.joyUrl.replace(/\/$/,'')+(joySlug?a.dataset.path:'')});
+  if(live&&CONFIG.rsvpifyUrl){const box=$('rsvpLive');box.innerHTML=`<iframe title="RSVP form" src="${CONFIG.rsvpifyUrl.replace(/\/$/,'')}?embed=1&oEmbed=1"></iframe>`;box.hidden=false;panel.hidden=true}
+}
+</script>
+</body>
+</html>
