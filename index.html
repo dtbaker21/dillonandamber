@@ -411,7 +411,7 @@ footer .wrap{border-color:#2f4537}
 
 <nav aria-label="Main" id="nav">
   <a class="mark" href="#top">Dillon &amp; Amber</a>
-  <div class="links"><a href="#weekend">Weekend</a><a href="#venue">Venue</a><a href="#stay">Stay</a><a href="#faq">FAQ</a><a href="#registry">Registry</a><a href="#story">Our story</a></div>
+  <div class="links"><a href="#venue">Venue</a><a href="#stay">Stay</a><a href="#faq">FAQ</a><a href="#registry">Registry</a><a href="#story">Our story</a></div>
   <a class="pill" href="#rsvp">RSVP</a>
 </nav>
 <header class="hero" id="top">
@@ -439,16 +439,6 @@ footer .wrap{border-color:#2f4537}
   </div>
   <div class="acts rv d3"><a class="pill light" href="#rsvp">RSVP</a><a class="link" id="gcal" href="#">Add to Google Calendar</a><a class="link" id="ics" href="#" download="dillon-amber-wedding.ics">Apple or Outlook</a></div>
 </section>
-
-
-<section class="sec paper" id="weekend" style="padding-inline:0">
-  <div class="railhead">
-    <div><h2 class="rv">The weekend</h2></div>
-    <div class="arrows rv d2"><button class="arrow" id="prev" type="button" aria-label="Previous">‹</button><button class="arrow" id="next" type="button" aria-label="Next">›</button></div>
-  </div>
-  <div class="rail rv" id="rail" tabindex="0" aria-label="Weekend events"></div>
-</section>
-
 
 <section class="bleed" id="venue" aria-label="The venue">
   <img data-plx="0.12" src="img/venue.jpg" alt="The ceremony site at The Lookout Lodge: a log arbor and log benches under tall firs" loading="lazy">
@@ -555,6 +545,14 @@ footer .wrap{border-color:#2f4537}
   <div class="people" id="people"></div>
 </section>
 
+
+<section class="sec paper" id="weekend" style="padding-inline:0">
+  <div class="railhead">
+    <div><h2 class="rv">The weekend</h2></div>
+    <div class="arrows rv d2"><button class="arrow" id="prev" type="button" aria-label="Previous">‹</button><button class="arrow" id="next" type="button" aria-label="Next">›</button></div>
+  </div>
+  <div class="rail rv" id="rail" tabindex="0" aria-label="Weekend events"></div>
+</section>
 
 <section class="bleed final" aria-label="Closing">
   <img data-plx="0.12" src="img/dance.jpg" alt="A couple dancing under string lights" loading="lazy">
@@ -714,11 +712,8 @@ footer .wrap{border-color:#2f4537}
     falls:{name:'Snoqualmie Pass',lat:47.4245,lng:-121.4137,kind:'explore',img:'couplefalls',meta:'Where we met · about 90 minutes',desc:'Franklin Falls is just down the road. An easy hike, and our favorite.'}
   };
   const LAYERS=[
-    {id:'day',label:'Wedding day',pins:['lodge','hotel'],routes:[['hotel','lodge']],focus:'lodge'},
-    {id:'sea',label:'From Sea-Tac',pins:['sea','lodge'],routes:[['sea','lodge']],focus:'sea'},
-    {id:'stay',label:'Where to stay',pins:['lodge','hotel','town'],routes:[],focus:'hotel'},
-    {id:'explore',label:'Explore',pins:['lodge','town','trail','falls'],routes:[],focus:'falls'},
-    {id:'all',label:'Everything',pins:['lodge','hotel','town','trail','sea','falls'],routes:[],focus:'lodge'}
+    {id:'sea',label:'From Sea-Tac',pins:['sea','hotel','lodge'],routes:[['sea','lodge']],focus:'sea'},
+    {id:'explore',label:'Things to do',pins:['lodge','town','trail','falls'],routes:[],focus:'town'}
   ];
   const mx=$('mapx'),canvas=$('mapCanvas'),chipsEl=$('chips'),card=$('mcard');
   const dirUrl=p=>`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`;
