@@ -493,6 +493,7 @@ footer .wrap{border-color:#2f4537}
 .mcard .go:hover{background:#2f4a39}
 .mcard .go svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:700px){.mcard img{height:96px}.mcard .stat b{font-size:28px}}
+.replied{display:inline-block;margin:10px 0 2px;font-size:14px;color:#24382c;background:#e6ede3;padding:6px 12px;border-radius:999px}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -765,13 +766,13 @@ footer .wrap{border-color:#2f4537}
       if(useApi()){const r=await fetch(`${CONFIG.rsvpEndpoint}?action=lookup&first=${encodeURIComponent(first)}&last=${encodeURIComponent(last)}`);if(!r.ok)throw new Error('network');return r.json()}
       await wait(450);const f=norm(first),l=norm(last);
       const inv=DEMO.filter(i=>i.guests.some(g=>nameMatch(g,f,l)));
-      return inv.length?{found:true,invites:JSON.parse(JSON.stringify(inv))}:{found:false};
+      return inv.length?{found:true,invites:inv.map(i=>({invite:i.invite,party:i.party,responded:!!i.responded,respondedOn:i.respondedOn||'',guests:i.guests.map(g=>({row:g.row,first:g.type==='Plus-one'?'':g.first,last:g.type==='Plus-one'?'':g.last,type:g.type}))}))}:{found:false};
     },
     async submit(p){
       if(useApi()){const r=await fetch(CONFIG.rsvpEndpoint,{method:'POST',body:JSON.stringify({action:'submit',...p})});if(!r.ok)throw new Error('network');return r.json()}
       await wait(650);const inv=DEMO.find(i=>i.invite===p.invite);
-      p.guests.forEach(g=>Object.assign(inv.guests.find(x=>x.row===g.row),g));
-      Object.assign(inv,{email:p.email,friday:p.friday,song:p.song,note:p.note,responded:true});
+      p.guests.forEach(g=>{const x=inv.guests.find(y=>y.row===g.row);if(x.type==='Plus-one'){x.first=g.first;x.last=g.last}});
+      inv.responded=true;inv.respondedOn=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric'});
       return {ok:true};
     }
   };
@@ -791,7 +792,7 @@ footer .wrap{border-color:#2f4537}
       <form id="rf" class="rgrid" novalidate><div><label for="rfirst">First name</label><input id="rfirst" autocomplete="given-name" value="${esc(S.first)}" required></div><div><label for="rlast">Last name</label><input id="rlast" autocomplete="family-name" value="${esc(S.last)}" required></div>${btn('go',S.busy?'Finding you':'Continue')}</form>${errBox()}
       ${useApi()?'':'<p class="demo">Preview mode: try “Pat Baker”, “Casey Nguyen” or “Sam Ortiz”.</p>'}`,
     choose:()=>`${progress()}<h3>Which invitation is yours?</h3><p class="hint">We found more than one with that name.</p><div class="choices">${S.invites.map((v,i)=>`<button type="button" class="choice" data-c="${i}"><b>${esc(v.party)}</b><span>${v.guests.map(who).map(esc).join(', ')}</span></button>`).join('')}</div>`,
-    reply:()=>`${progress()}<h3>${esc(S.inv.party)}</h3><p class="hint">Saturday, June 5, 2027 · The Lookout Lodge${S.updated?' · You already replied, and you can update it here.':''}</p>
+    reply:()=>`${progress()}<h3>${esc(S.inv.party)}</h3><p class="hint">Saturday, June 5, 2027 · The Lookout Lodge</p>${S.updated?`<p class="replied">You replied${S.inv.respondedOn?` on ${esc(S.inv.respondedOn)}`:''}. Sending again will update it.</p>`:''}<p class="hint" hidden></p>
       ${S.g.map((g,i)=>`<div class="gcard${g.attending==='Yes'?' on':''}"><div class="ghead"><span class="gname">${esc(who(g))}${g.type==='Child'?' <em>Child</em>':''}</span>
         <div class="seg" role="group" aria-label="${esc(who(g))} attending"><button type="button" data-a="${i}" data-v="Yes" aria-pressed="${g.attending==='Yes'}">Joyfully accepts</button><button type="button" data-a="${i}" data-v="No" aria-pressed="${g.attending==='No'}">Regretfully declines</button></div></div>
         ${g.attending==='Yes'?`<div class="gbody reveal">${g.type==='Plus-one'?`<div class="rgrid two"><div><label for="pf${i}">Guest's first name</label><input id="pf${i}" data-pf="${i}" value="${esc(g.first)}" autocomplete="off"></div><div><label for="pl${i}">Last name</label><input id="pl${i}" data-pl="${i}" value="${esc(g.last)}" autocomplete="off"></div></div>`:''}
@@ -822,7 +823,7 @@ footer .wrap{border-color:#2f4537}
         if(!S.first||!S.last){S.err='Please enter both your first and last name.';return render()}
         S.err='';S.busy=true;render();
         try{const r=await API.lookup(S.first,S.last);S.busy=false;
-          if(r.closed){S.step='closed'}else if(!r.found){S.err='We couldn’t find that name. Try the spelling on your invitation, or text us and we’ll help.'}
+          if(r.closed){S.step='closed'}else if(r.paused){S.err='Too many tries for now. Please wait a few minutes, or text us and we’ll help.'}else if(!r.found){S.err='We couldn’t find that name. Try the spelling on your invitation, or text us and we’ll help.'}
           else if(r.invites.length>1){S.invites=r.invites;S.step='choose'}else pick(r.invites[0]);
         }catch(_){S.busy=false;S.err='Something went wrong on our end. Please try again in a moment.'}
         render();});
