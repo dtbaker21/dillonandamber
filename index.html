@@ -404,14 +404,87 @@ footer .wrap{border-color:#2f4537}
 .mcanvas .pin i svg{position:static;inset:auto;display:block;flex:none}
 .mcanvas .pin i:not(.x) svg{width:16px;height:16px}
 .mcanvas .pin.venue i svg{width:22px;height:22px}
+
+/* RSVP flow */
+.panel{max-width:680px}
+.panel h3{font:400 clamp(28px,3vw,34px)/1.1 Fraunces,Georgia,serif;letter-spacing:-.02em;outline:0}
+.panel .center{text-align:center}
+.rsteps{display:flex;list-style:none;margin:0 0 26px;padding:0;gap:6px}
+.rsteps li{flex:1;display:grid;gap:8px}
+.rsteps li i{display:block;height:3px;border-radius:3px;background:#e2d8cb;overflow:hidden;position:relative}
+.rsteps li i::after{content:"";position:absolute;inset:0;background:#24382c;transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.rsteps li.past i::after,.rsteps li.now i::after{transform:none}
+.rsteps li span{font-size:13px;color:#9a8c7e;font-weight:500}
+.rsteps li.now span{color:#24382c;font-weight:600}
+.rgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:12px;align-items:end;margin-top:20px}
+.rgrid.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin:0 0 16px}
+.demo{font-size:13px;color:#9a8c7e;margin-top:14px}
+.choices{display:grid;gap:10px;margin-top:18px}
+.choice{display:grid;gap:2px;text-align:left;padding:16px 18px;border-radius:16px;border:1px solid #ddd2c5;background:#fffdf9;cursor:pointer;font:inherit;color:inherit;transition:border-color .3s,transform .3s var(--ease)}
+.choice:hover{border-color:#24382c;transform:translateY(-1px)}
+.choice span{font-size:15px;color:var(--soft)}
+.gcard{border:1px solid #e2d8cb;border-radius:18px;padding:16px 18px;margin-top:14px;background:#fffdf9;transition:border-color .4s,box-shadow .4s}
+.gcard.on{border-color:#c9b79c;box-shadow:0 10px 30px -22px rgba(60,40,20,.5)}
+.ghead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px}
+.gname{font-weight:600;font-size:17px}
+.gname em{font-style:normal;font-size:12px;font-weight:600;color:#8a6334;background:#f3e6cf;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.gbody{margin-top:16px;padding-top:16px;border-top:1px solid #efe7dc}
+.mlabel{font-weight:600;font-size:15px;margin:0 0 10px}
+.mlabel span{display:block;font-weight:400;font-size:14px;color:var(--soft);margin-top:2px}
+.meals{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.meal{display:grid;gap:4px;text-align:left;padding:14px 16px 14px 44px;border-radius:14px;border:1.5px solid #ddd2c5;background:#fff;cursor:pointer;font:inherit;color:inherit;position:relative;transition:border-color .3s,background-color .3s}
+.meal::before{content:"";box-sizing:border-box;position:absolute;left:16px;top:16px;width:18px;height:18px;border-radius:50%;border:1.5px solid #b9ab99;transition:all .3s var(--ease)}
+.meal[aria-checked=true]{border-color:#24382c;background:#f6f8f4}
+.meal[aria-checked=true]::before{border:5.5px solid #24382c}
+.meal b{font-size:15px}
+.meal span{font-size:13.5px;color:var(--soft);line-height:1.4}
+.qrow{margin-top:18px;padding-bottom:6px}
+.opt{font-weight:400;color:#9a8c7e;font-size:13px}
+.rbtns{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;margin-top:22px}
+.rbtns.center{justify-content:center}
+.panel .link{background:none;border:0;cursor:pointer;font-family:inherit;padding:0}
+.pill.busy{position:relative;color:transparent}
+.pill.busy::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pill:disabled{cursor:default}
+.doneck{width:64px;height:64px;margin:6px auto 14px}
+.doneck svg{width:100%;height:100%;fill:none;stroke:#24382c;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.doneck circle{stroke-dasharray:151;stroke-dashoffset:151;animation:draw 1s var(--ease) forwards}
+.doneck path{stroke-dasharray:36;stroke-dashoffset:36;animation:draw .6s var(--ease) .6s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.rsum{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid #e2d8cb}
+.rsum li{display:flex;justify-content:space-between;gap:16px;padding:12px 2px;border-bottom:1px solid #e2d8cb;font-size:15px}
+.rsum span{color:var(--soft);text-align:right}
+@media(max-width:600px){.rgrid{grid-template-columns:minmax(0,1fr)}.rgrid .pill{width:100%}.meals{grid-template-columns:minmax(0,1fr)}.ghead .seg{width:100%}.ghead .seg button{flex:1}}
+@media(prefers-reduced-motion:reduce){.doneck circle,.doneck path{stroke-dashoffset:0}}
+
+/* Hero exclamation points */
+.bangs{display:inline-flex}
+.bang{display:inline-block}
+.bang.pop{animation:bang .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes bang{from{opacity:0;transform:translateY(10px) scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
+/* Floating table of contents */
+.toc{position:fixed;z-index:30;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translate(-50%,28px);opacity:0;pointer-events:none;transition:transform .6s var(--ease),opacity .5s var(--ease);max-width:calc(100vw - 24px)}
+.toc.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.toc-in{position:relative;display:flex;gap:2px;padding:6px;border-radius:999px;background:rgba(251,248,243,.82);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:0 14px 34px -14px rgba(40,25,10,.45),0 0 0 1px rgba(60,40,20,.08);overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain}
+.toc-in::-webkit-scrollbar{display:none}
+.toc a{position:relative;z-index:1;flex:none;padding:10px 15px;border-radius:999px;font:500 14px Inter,sans-serif;color:#5f5347;text-decoration:none;white-space:nowrap;transition:color .35s var(--ease)}
+.toc a:hover{color:#24382c}
+.toc a.on{color:#fbf8f3}
+.toc a.rs:not(.on){color:#24382c;font-weight:600}
+.toc a.rs:not(.on)::after{content:"";position:absolute;top:8px;right:7px;width:5px;height:5px;border-radius:50%;background:#c9965a}
+.toc a:focus-visible{outline:2px solid #c9965a;outline-offset:-2px}
+.toc-ind{position:absolute;top:6px;bottom:6px;left:0;width:0;border-radius:999px;background:#24382c;opacity:0;transition:transform .55s var(--ease),width .55s var(--ease),opacity .3s}
+@media(max-width:600px){.toc a{padding:10px 13px;font-size:13.5px}}
+@media(prefers-reduced-motion:reduce){.toc,.toc-ind{transition:none}.bang.pop{animation:none}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
+<div class="toc" id="toc" role="navigation" aria-label="Page sections"><div class="toc-in" id="tocIn"><span class="toc-ind" id="tocInd" aria-hidden="true"></span><a href="#date">Date</a><a href="#venue">Venue</a><a href="#travel">Getting there</a><a href="#stay">Stay</a><a href="#rsvp" class="rs">RSVP</a><a href="#faq">FAQ</a><a href="#registry">Registry</a><a href="#story">Our story</a></div></div>
 <nav aria-label="Main" id="nav">
   <a class="mark" href="#top">Dillon &amp; Amber</a>
-  <div class="links"><a href="#venue">Venue</a><a href="#stay">Stay</a><a href="#faq">FAQ</a><a href="#registry">Registry</a><a href="#story">Our story</a></div>
   <a class="pill" href="#rsvp">RSVP</a>
 </nav>
 <header class="hero" id="top">
@@ -423,19 +496,18 @@ footer .wrap{border-color:#2f4537}
       <img class="fg" src="img/hero-fg.webp" alt="" aria-hidden="true" width="1536" height="864" fetchpriority="high">
     </div></div>
     
-    <div class="t2" id="heroT2"><p>We're getting married.</p></div>
+    <div class="t2" id="heroT2"><p>We're getting married<span class="bangs" id="bangs"><span class="bang">!</span></span></p></div>
     <span class="cue" id="cue" aria-hidden="true"></span>
   </div>
 </header>
 
 
-<section class="sec dark date center" aria-label="Save the date">
+<section class="sec dark date center" id="date" aria-label="Save the date">
   <p class="kicker rv">Save the date</p>
   <p class="big rv d1">June 5, 2027</p>
   <div class="meta rv d2">
     <div><b>4:00 pm</b><span>Ceremony begins</span></div>
     <div><b id="cDays">–</b><span>Days to go</span></div>
-    <div><b>April 15</b><span>Please RSVP by</span></div>
   </div>
   <div class="acts rv d3"><a class="pill light" href="#rsvp">RSVP</a><a class="link" id="gcal" href="#">Add to Google Calendar</a><a class="link" id="ics" href="#" download="dillon-amber-wedding.ics">Apple or Outlook</a></div>
 </section>
@@ -446,7 +518,7 @@ footer .wrap{border-color:#2f4537}
 </section>
 
 
-<section class="sec paper" aria-label="Getting there">
+<section class="sec paper" id="travel" aria-label="Getting there">
   <div class="stats">
     <div class="rv"><b>On the lawn</b><span>Ceremony outdoors, weather permitting. We move inside if it rains.</span></div>
     <div class="rv d1"><b>Garden attire</b><span>Dresses, suits, or a nice shirt and slacks. Skip the stilettos on the grass.</span></div>
@@ -483,7 +555,7 @@ footer .wrap{border-color:#2f4537}
 
 <section class="sec dark center" id="rsvp">
   <h2 class="rv">RSVP</h2>
-  <p class="lead rv d2">Please reply by Thursday, April 15, 2027. Look yourself up by the last name on your invitation.</p>
+  <p class="lead rv d2">Please reply by Thursday, April 15, 2027. One reply covers everyone on your invitation.</p>
   <div class="panel rv d2" id="rsvpPanel" aria-live="polite" style="color:var(--ink)"></div>
   <div class="rsvpframe" id="rsvpLive" hidden></div>
   <p class="soft rv" style="margin-top:28px;font-size:15px">Plans changed? Look yourself up again any time before the deadline.</p>
@@ -596,10 +668,11 @@ footer .wrap{border-color:#2f4537}
   else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.closest('.date'))countUp();io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px',threshold:.08});rvs.forEach(e=>io.observe(e))}
 
   // Scroll-driven scenes
+  const bangs=$('bangs');let bangN=1;
   const hero=$('top'),frame=$('heroFrame'),scene=$('scene'),ht=$('heroT'),ht2=$('heroT2'),cue=$('cue');
   const plx=[...document.querySelectorAll('[data-plx]')],track=$('track');
   const draws=[...document.querySelectorAll('[data-draw]')],plys=[...document.querySelectorAll('[data-ply]')];
-  const links=[...document.querySelectorAll('nav .links a')];
+  const links=[...document.querySelectorAll('#toc a')],toc=$('toc'),tocIn=$('tocIn'),tocInd=$('tocInd');let tocAct=-2;
   const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
 
   // Tuck the names behind the far skyline (image y = 332 of 864), on any screen size
@@ -623,6 +696,7 @@ footer .wrap{border-color:#2f4537}
         ht.style.opacity=clamp(1-p*1.8).toFixed(3);
         ht.style.transform=`translateY(${(p*90).toFixed(1)}px)`;
         const q=clamp((p-.42)/.3);ht2.style.opacity=q.toFixed(3);ht2.style.transform=`translateY(${((1-q)*24).toFixed(1)}px)`;
+        const nb=1+Math.floor(clamp((p-.5)/.45)*7);if(nb!==bangN){while(bangs.children.length<nb){const s=document.createElement('span');s.className='bang pop';s.textContent='!';bangs.appendChild(s)}while(bangs.children.length>nb)bangs.lastChild.remove();bangN=nb}
         cue.style.opacity=clamp(1-p*6).toFixed(2);
       }
       // words
@@ -637,8 +711,9 @@ footer .wrap{border-color:#2f4537}
       for(const d of draws){const sec=d.closest('.ldo');const r=sec.getBoundingClientRect();if(r.bottom<0||r.top>vh)continue;const p=clamp((vh*.9-r.top)/(r.height*.75));d.style.strokeDashoffset=(1-p*p*(3-2*p)).toFixed(4)}
       for(const g of plys){const r=g.closest('.ldo').getBoundingClientRect();if(r.bottom<0||r.top>vh)continue;const c=(r.top+r.height/2-vh/2);g.style.transform=`translateY(${(c*-+g.dataset.ply).toFixed(1)}px)`}
       // nav
-      let act=-1;secs.forEach((s,i)=>{if(s){const r=s.getBoundingClientRect();if(r.top<vh*.45&&r.bottom>vh*.45)act=i}});
-      links.forEach((a,i)=>a.classList.toggle('on',i===act));
+      let act=-1;secs.forEach((s,i)=>{if(s){const r=s.getBoundingClientRect();if(r.top<vh*.45)act=i}});
+      if(act!==tocAct){tocAct=act;links.forEach((a,i)=>{a.classList.toggle('on',i===act);a.toggleAttribute('aria-current',i===act)});const a=links[act];if(a){tocInd.style.opacity=1;tocInd.style.width=a.offsetWidth+'px';tocInd.style.transform=`translateX(${a.offsetLeft}px)`;const want=a.offsetLeft-(tocIn.clientWidth-a.offsetWidth)/2;tocIn.scrollTo({left:want,behavior:reduce?'auto':'smooth'})}else tocInd.style.opacity=0}
+      toc.classList.toggle('show',y>hero.offsetHeight*.55&&y<document.documentElement.scrollHeight-vh*1.15);
     }
     requestAnimationFrame(frameTick);
   };
@@ -654,38 +729,111 @@ footer .wrap{border-color:#2f4537}
   next.addEventListener('click',()=>rail.scrollBy({left:stepW(),behavior:reduce?'auto':'smooth'}));
   rail.addEventListener('scroll',upd,{passive:true});upd();
 
-  // RSVP preview flow
-  const guests={baker:{party:"The Baker family",people:["Pat Baker","Chris Baker","Riley Baker"]},nguyen:{party:"Casey Nguyen and guest",people:["Casey Nguyen","Guest of Casey"]},ortiz:{party:"Sam Ortiz",people:["Sam Ortiz"]}};
-  const meals=["Grilled king salmon","Braised short rib","Wild mushroom risotto (vegetarian)","Kids' plate"];
-  const panel=$('rsvpPanel');
-  const fresh=()=>({step:'find',key:null,ans:{},welcome:null,diet:'',song:''});
-  let state=fresh(),last='';
-  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const keep=()=>{const d=$('diet'),s=$('song');if(d)state.diet=d.value;if(s)state.song=s.value};
-  const render=(opened)=>{
-    const cls=state.step!==last?'step':'';last=state.step;
-    if(state.step==='find'){
-      panel.innerHTML=`<div class="${cls}"><h3>Find your invitation</h3><p class="hint">Enter the last name on your invitation.</p><form id="findF" class="field"><div class="row"><input id="lname" autocomplete="family-name" placeholder="Last name" aria-label="Last name"><button class="pill" type="submit">Continue</button></div><div id="findErr"></div></form></div>`;
-      $('findF').addEventListener('submit',e=>{e.preventDefault();const v=$('lname').value.trim().toLowerCase().split(' ').pop();const k=Object.keys(guests).find(g=>v&&g.startsWith(v));if(!k){$('findErr').innerHTML='<p class="err reveal">We couldn’t find that name. Try the spelling on your invitation, or text us.</p>';return}state=fresh();state.step='form';state.key=k;guests[k].people.forEach(p=>state.ans[p]={go:null,meal:''});render()});
-    } else if(state.step==='form'){
-      const g=guests[state.key];
-      panel.innerHTML=`<div class="${cls}"><h3>${esc(g.party)}</h3><p class="hint">Saturday, June 5 · The Lookout Lodge</p>`+g.people.map((p,i)=>`<div class="guest"><div class="name">${esc(p)}</div><div class="seg" role="group" aria-label="${esc(p)} attending"><button type="button" data-i="${i}" data-v="yes" aria-pressed="${state.ans[p].go==='yes'}">Joyfully accepts</button><button type="button" data-i="${i}" data-v="no" aria-pressed="${state.ans[p].go==='no'}">Regretfully declines</button></div>${state.ans[p].go==='yes'?`<div class="field ${opened===i?'reveal':''}"><label for="meal${i}">Dinner</label><select id="meal${i}" data-m="${i}"><option value="">Choose a meal</option>${meals.map(m=>`<option${state.ans[p].meal===m?' selected':''}>${m}</option>`).join('')}</select></div>`:''}</div>`).join('')+
-      `<div class="guest"><div class="name">Friday welcome drop-in</div><div class="seg" role="group" aria-label="Friday welcome"><button type="button" data-w="yes" aria-pressed="${state.welcome==='yes'}">We'll stop by</button><button type="button" data-w="no" aria-pressed="${state.welcome==='no'}">Can't make it</button></div></div>
-      <div class="field"><label for="diet">Allergies or dietary needs</label><textarea id="diet" placeholder="Anything the kitchen should know">${esc(state.diet)}</textarea></div>
-      <div class="field"><label for="song">A song that'll get you dancing</label><input id="song" value="${esc(state.song)}" placeholder="Song and artist"></div>
-      <div id="formErr"></div><div class="row field" style="align-items:center"><button class="pill" id="send" type="button">Send RSVP</button><button class="link" id="back" type="button" style="background:none;border:0;cursor:pointer;font-family:inherit">Not you?</button></div></div>`;
-      panel.querySelectorAll('[data-i]').forEach(b=>b.addEventListener('click',()=>{keep();const i=+b.dataset.i,p=g.people[i];const was=state.ans[p].go;state.ans[p].go=b.dataset.v;if(b.dataset.v==='no')state.ans[p].meal='';render(was!=='yes'&&b.dataset.v==='yes'?i:null)}));
-      panel.querySelectorAll('[data-m]').forEach(s=>s.addEventListener('change',()=>{state.ans[g.people[s.dataset.m]].meal=s.value}));
-      panel.querySelectorAll('[data-w]').forEach(b=>b.addEventListener('click',()=>{keep();state.welcome=b.dataset.w;render()}));
-      $('back').addEventListener('click',()=>{state=fresh();render()});
-      $('send').addEventListener('click',()=>{keep();const miss=g.people.filter(p=>!state.ans[p].go||(state.ans[p].go==='yes'&&!state.ans[p].meal));if(miss.length){$('formErr').innerHTML=`<p class="err reveal">Please finish the reply for ${esc(miss.join(', '))}.</p>`;return}state.step='done';render()});
-    } else {
-      const g=guests[state.key];const yes=g.people.filter(p=>state.ans[p].go==='yes');
-      panel.innerHTML=`<div class="done ${cls}"><h3>${yes.length?'See you in Snohomish.':'We’ll miss you.'}</h3><p class="hint">${yes.length?`${yes.length} of ${g.people.length} attending. A confirmation email is on its way.`:'Thank you for letting us know.'}</p><ul>${g.people.map(p=>`<li>${esc(p)}: ${state.ans[p].go==='yes'?esc(state.ans[p].meal):'not attending'}</li>`).join('')}${state.welcome?`<li>Friday drop-in: ${state.welcome==='yes'?'yes':'no'}</li>`:''}${state.song?`<li>Song: ${esc(state.song)}</li>`:''}</ul><button class="pill" id="edit" type="button">Edit reply</button></div>`;
-      $('edit').addEventListener('click',()=>{state.step='form';render()});
+  // ---------- RSVP: find your invitation, reply for everyone, confirm ----------
+  const MEALS=[
+    {id:'Herb-roasted chicken',d:'Lemon and thyme, with crispy fingerling potatoes'},
+    {id:'Wild mushroom risotto',d:'Vegetarian · parmesan, spring peas, gremolata'}
+  ];
+  const RSVP_DEADLINE=new Date('2027-04-16T07:00:00Z'); // end of April 15, Pacific
+  const DEMO=[
+    {invite:'SAMPLE-1',party:'The Baker family',guests:[{row:2,first:'Pat',last:'Baker',type:'Guest'},{row:3,first:'Chris',last:'Baker',type:'Guest'},{row:4,first:'Riley',last:'Baker',type:'Child'}]},
+    {invite:'SAMPLE-2',party:'Casey Nguyen and guest',guests:[{row:5,first:'Casey',last:'Nguyen',type:'Guest'},{row:6,first:'',last:'',type:'Plus-one'}]},
+    {invite:'SAMPLE-3',party:'Sam Ortiz',guests:[{row:7,first:'Sam',last:'Ortiz',type:'Guest'}]}
+  ];
+  const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z]/g,'');
+  const nameMatch=(g,f,l)=>{const gf=norm(g.first),gl=norm(g.last);return gl&&gl===l&&gf&&(gf===f||gf.startsWith(f)||f.startsWith(gf))};
+  const useApi=()=>!!(CONFIG.rsvpEndpoint&&live);
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  const API={
+    async lookup(first,last){
+      if(useApi()){const r=await fetch(`${CONFIG.rsvpEndpoint}?action=lookup&first=${encodeURIComponent(first)}&last=${encodeURIComponent(last)}`);if(!r.ok)throw new Error('network');return r.json()}
+      await wait(450);const f=norm(first),l=norm(last);
+      const inv=DEMO.filter(i=>i.guests.some(g=>nameMatch(g,f,l)));
+      return inv.length?{found:true,invites:JSON.parse(JSON.stringify(inv))}:{found:false};
+    },
+    async submit(p){
+      if(useApi()){const r=await fetch(CONFIG.rsvpEndpoint,{method:'POST',body:JSON.stringify({action:'submit',...p})});if(!r.ok)throw new Error('network');return r.json()}
+      await wait(650);const inv=DEMO.find(i=>i.invite===p.invite);
+      p.guests.forEach(g=>Object.assign(inv.guests.find(x=>x.row===g.row),g));
+      Object.assign(inv,{email:p.email,friday:p.friday,song:p.song,note:p.note,responded:true});
+      return {ok:true};
     }
   };
-  render();
+  const panel=$('rsvpPanel');
+  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let S={step:new Date()>RSVP_DEADLINE?'closed':'find',first:'',last:'',err:'',busy:false,invites:[],inv:null,g:[],friday:'',email:'',song:'',note:'',updated:false};
+  const STEPS=[['find','Find'],['reply','Reply'],['details','Details'],['done','Done']];
+  const who=g=>g.type==='Plus-one'&&!(g.first||'').trim()?'Your guest':`${g.first||''} ${g.last||''}`.trim();
+  const going=()=>S.g.filter(g=>g.attending==='Yes');
+  const pick=inv=>{S.inv=inv;S.g=inv.guests.map(g=>({row:g.row,first:g.first||'',last:g.last||'',type:g.type||'Guest',attending:g.attending||'',meal:g.meal||'',diet:g.diet||''}));S.friday=inv.friday||'';S.email=inv.email||'';S.song=inv.song||'';S.note=inv.note||'';S.updated=!!inv.responded;S.step='reply';S.err=''};
+  const progress=()=>{const cur=STEPS.findIndex(s=>s[0]===(S.step==='choose'?'find':S.step));return `<ol class="rsteps" aria-label="RSVP progress">${STEPS.map(([k,l],i)=>`<li class="${i<cur?'past':i===cur?'now':''}"${i===cur?' aria-current="step"':''}><i></i><span>${l}</span></li>`).join('')}</ol>`};
+  const errBox=()=>S.err?`<p class="err reveal" role="alert">${esc(S.err)}</p>`:'';
+  const btn=(id,label,cls='pill')=>`<button class="${cls}${S.busy&&cls==='pill'?' busy':''}" id="${id}" type="${id==='go'?'submit':'button'}"${S.busy?' disabled':''}><span>${label}</span></button>`;
+  const views={
+    closed:()=>`<h3>RSVPs are closed</h3><p class="hint">The reply deadline was April 15. If your plans changed, text or email us and we'll sort it out.</p>`,
+    find:()=>`${progress()}<h3>Find your invitation</h3><p class="hint">Enter your name as it appears on your invitation.</p>
+      <form id="rf" class="rgrid" novalidate><div><label for="rfirst">First name</label><input id="rfirst" autocomplete="given-name" value="${esc(S.first)}" required></div><div><label for="rlast">Last name</label><input id="rlast" autocomplete="family-name" value="${esc(S.last)}" required></div>${btn('go',S.busy?'Finding you':'Continue')}</form>${errBox()}
+      ${useApi()?'':'<p class="demo">Preview mode: try “Pat Baker”, “Casey Nguyen” or “Sam Ortiz”.</p>'}`,
+    choose:()=>`${progress()}<h3>Which invitation is yours?</h3><p class="hint">We found more than one with that name.</p><div class="choices">${S.invites.map((v,i)=>`<button type="button" class="choice" data-c="${i}"><b>${esc(v.party)}</b><span>${v.guests.map(who).map(esc).join(', ')}</span></button>`).join('')}</div>`,
+    reply:()=>`${progress()}<h3>${esc(S.inv.party)}</h3><p class="hint">Saturday, June 5, 2027 · The Lookout Lodge${S.updated?' · You already replied, and you can update it here.':''}</p>
+      ${S.g.map((g,i)=>`<div class="gcard${g.attending==='Yes'?' on':''}"><div class="ghead"><span class="gname">${esc(who(g))}${g.type==='Child'?' <em>Child</em>':''}</span>
+        <div class="seg" role="group" aria-label="${esc(who(g))} attending"><button type="button" data-a="${i}" data-v="Yes" aria-pressed="${g.attending==='Yes'}">Joyfully accepts</button><button type="button" data-a="${i}" data-v="No" aria-pressed="${g.attending==='No'}">Regretfully declines</button></div></div>
+        ${g.attending==='Yes'?`<div class="gbody reveal">${g.type==='Plus-one'?`<div class="rgrid two"><div><label for="pf${i}">Guest's first name</label><input id="pf${i}" data-pf="${i}" value="${esc(g.first)}" autocomplete="off"></div><div><label for="pl${i}">Last name</label><input id="pl${i}" data-pl="${i}" value="${esc(g.last)}" autocomplete="off"></div></div>`:''}
+          <p class="mlabel" id="ml${i}">Dinner</p><div class="meals" role="radiogroup" aria-labelledby="ml${i}">${MEALS.map((m,j)=>`<button type="button" role="radio" class="meal" data-m="${i}" data-mv="${j}" aria-checked="${g.meal===m.id}"><b>${m.id}</b><span>${m.d}</span></button>`).join('')}</div></div>`:''}</div>`).join('')}
+      ${errBox()}<div class="rbtns">${btn('next','Continue')}${btn('back','Not you?','link')}</div>`,
+    details:()=>{const any=going().length>0;return `${progress()}<h3>${any?'A few details':'Thanks for letting us know'}</h3><p class="hint">${any?'Almost done.':'We’ll miss you. Leave us a note if you like.'}</p>
+      ${any?`<div class="qrow"><p class="mlabel">Friday welcome drop-in <span>June 4, from 6 pm · casual and optional</span></p><div class="seg" role="group" aria-label="Friday welcome drop-in"><button type="button" data-f="Yes" aria-pressed="${S.friday==='Yes'}">We'll stop by</button><button type="button" data-f="No" aria-pressed="${S.friday==='No'}">Can't make it</button></div></div>
+      ${going().map(g=>{const i=S.g.indexOf(g);return `<div class="field"><label for="dt${i}">Allergies or dietary needs · ${esc(who(g))}</label><input id="dt${i}" data-d="${i}" value="${esc(g.diet)}" placeholder="None" autocomplete="off"></div>`}).join('')}
+      <div class="field"><label for="song">A song that'll get you on the dance floor</label><input id="song" value="${esc(S.song)}" placeholder="Song and artist" autocomplete="off"></div>`:''}
+      <div class="field"><label for="note">A note for Dillon &amp; Amber <span class="opt">optional</span></label><textarea id="note" placeholder="Say hi, share a memory, or ask us anything">${esc(S.note)}</textarea></div>
+      <div class="field"><label for="email">Email for your confirmation</label><input id="email" type="email" autocomplete="email" value="${esc(S.email)}" placeholder="you@example.com"></div>
+      ${errBox()}<div class="rbtns">${btn('send',S.busy?'Sending':'Send RSVP')}${btn('back2','Back','link')}</div>`},
+    done:()=>{const y=going();return `${progress()}<div class="doneck" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></div>
+      <h3 class="center">${y.length?'See you in Snohomish!':'We’ll miss you.'}</h3><p class="hint center">${y.length?`${y.length} of ${S.g.length} attending.`:'Thanks for letting us know.'}${S.email?` A confirmation is on its way to ${esc(S.email)}.`:''}</p>
+      <ul class="rsum">${S.g.map(g=>`<li><b>${esc(who(g))}</b><span>${g.attending==='Yes'?esc(g.meal):'Not attending'}</span></li>`).join('')}${y.length&&S.friday?`<li><b>Friday drop-in</b><span>${S.friday==='Yes'?'Stopping by':'Can’t make it'}</span></li>`:''}${S.song?`<li><b>Song request</b><span>${esc(S.song)}</span></li>`:''}</ul>
+      ${y.length?`<div class="rbtns center"><a class="pill" href="${$('gcal').href}">Add to Google Calendar</a><a class="link" href="${$('ics').href}" download="dillon-amber-wedding.ics">Apple or Outlook</a></div>`:''}
+      <div class="rbtns center"><button class="link" id="edit" type="button">Change your reply</button></div>`}
+  };
+  const keepDetails=()=>{const v=id=>{const e=$(id);return e?e.value.trim():null};if(v('song')!==null)S.song=v('song');if(v('note')!==null)S.note=v('note');if(v('email')!==null)S.email=v('email');panel.querySelectorAll('[data-d]').forEach(e=>S.g[+e.dataset.d].diet=e.value.trim())};
+  let lastStep='';
+  const render=()=>{
+    const fresh=S.step!==lastStep;lastStep=S.step;
+    panel.innerHTML=`<div class="${fresh?'step':''}">${views[S.step]()}</div>`;
+    if(fresh&&S.step!=='find'){const h=panel.querySelector('h3');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}}
+    const on=(sel,ev,fn)=>panel.querySelectorAll(sel).forEach(e=>e.addEventListener(ev,fn));
+    if(S.step==='find'){
+      $('rf').addEventListener('submit',async e=>{e.preventDefault();S.first=$('rfirst').value.trim();S.last=$('rlast').value.trim();
+        if(!S.first||!S.last){S.err='Please enter both your first and last name.';return render()}
+        S.err='';S.busy=true;render();
+        try{const r=await API.lookup(S.first,S.last);S.busy=false;
+          if(r.closed){S.step='closed'}else if(!r.found){S.err='We couldn’t find that name. Try the spelling on your invitation, or text us and we’ll help.'}
+          else if(r.invites.length>1){S.invites=r.invites;S.step='choose'}else pick(r.invites[0]);
+        }catch(_){S.busy=false;S.err='Something went wrong on our end. Please try again in a moment.'}
+        render();});
+    }
+    on('[data-c]','click',e=>{pick(S.invites[+e.currentTarget.dataset.c]);render()});
+    on('[data-a]','click',e=>{const b=e.currentTarget,g=S.g[+b.dataset.a];g.attending=b.dataset.v;if(g.attending==='No')g.meal='';S.err='';render()});
+    on('[data-m]','click',e=>{const b=e.currentTarget;S.g[+b.dataset.m].meal=MEALS[+b.dataset.mv].id;render()});
+    on('[data-pf]','input',e=>S.g[+e.target.dataset.pf].first=e.target.value);
+    on('[data-pl]','input',e=>S.g[+e.target.dataset.pl].last=e.target.value);
+    on('[data-f]','click',e=>{keepDetails();S.friday=e.currentTarget.dataset.f;render()});
+    const next=$('next');if(next)next.addEventListener('click',()=>{
+      const miss=S.g.find(g=>!g.attending);if(miss){S.err=`Please let us know if ${who(miss)} can make it.`;return render()}
+      const nomeal=going().find(g=>!g.meal);if(nomeal){S.err=`Please choose a dinner for ${who(nomeal)}.`;return render()}
+      const pn=going().find(g=>g.type==='Plus-one'&&!g.first.trim());if(pn){S.err='Please add your guest’s name.';return render()}
+      S.err='';S.step='details';render();panel.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'})});
+    const back=$('back');if(back)back.addEventListener('click',()=>{S.step='find';S.err='';render()});
+    const back2=$('back2');if(back2)back2.addEventListener('click',()=>{keepDetails();S.step='reply';S.err='';render()});
+    const send=$('send');if(send)send.addEventListener('click',async()=>{keepDetails();
+      if(going().length&&!S.friday){S.err='Please let us know about Friday.';return render()}
+      if(S.email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(S.email)){S.err='That email doesn’t look quite right.';return render()}
+      S.err='';S.busy=true;render();
+      try{const r=await API.submit({invite:S.inv.invite,verify:{first:S.first,last:S.last},guests:S.g,friday:going().length?S.friday:'',email:S.email,song:S.song,note:S.note});
+        S.busy=false;if(r&&r.ok){S.step='done';S.updated=true}else S.err=(r&&r.error)||'We couldn’t save your reply. Please try again.';
+      }catch(_){S.busy=false;S.err='We couldn’t reach our RSVP list. Please try again in a moment.'}
+      render();if(S.step==='done')panel.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'})});
+    const edit=$('edit');if(edit)edit.addEventListener('click',()=>{S.step='reply';render()});
+  };
 
   // Integrations: fill these in and the live site wires itself up
   const CONFIG={
@@ -693,7 +841,8 @@ footer .wrap{border-color:#2f4537}
     joyUrl:'https://withjoy.com',   // e.g. https://withjoy.com/dillon-and-amber
     venue:'The Lookout Lodge, Snohomish, WA',
     mapsKey:'AIzaSyCW1n3bcpANhnlktzGkzxOz1L5KQ_ObnMI',                     // Google Maps JavaScript API key (restrict it to your domain)
-    mapId:''                        // optional: a Map ID with cloud styling or 3D; leave blank to use the built-in style
+    mapId:'',
+    rsvpEndpoint:''                 // Google Apps Script web app URL for the RSVP Sheet                        // optional: a Map ID with cloud styling or 3D; leave blank to use the built-in style
   };
   const live=!/claude|anthropic/i.test(location.hostname);
   const q=encodeURIComponent(CONFIG.venue);
@@ -821,6 +970,7 @@ footer .wrap{border-color:#2f4537}
   const joySlug=CONFIG.joyUrl.split('withjoy.com/')[1];
   document.querySelectorAll('a.joy').forEach(a=>{a.href=CONFIG.joyUrl.replace(/\/$/,'')+(joySlug?a.dataset.path:'')});
   if(live&&CONFIG.rsvpifyUrl){const box=$('rsvpLive');box.innerHTML=`<iframe title="RSVP form" src="${CONFIG.rsvpifyUrl.replace(/\/$/,'')}?embed=1&oEmbed=1"></iframe>`;box.hidden=false;panel.hidden=true}
+  render();
 }
 </script>
 </body>
