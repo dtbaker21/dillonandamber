@@ -791,7 +791,7 @@ footer .wrap{border-color:#2f4537}
   ];
   const GoogleR=()=>{
     const g=google.maps;
-    const map=new g.Map(canvas,{center:{lat:47.9,lng:-122.1},zoom:10,disableDefaultUI:true,zoomControl:true,gestureHandling:'cooperative',clickableIcons:false,...(CONFIG.mapId?{mapId:CONFIG.mapId}:{styles:STYLE,mapTypeId:'terrain'})});
+    const map=new g.Map(canvas,{center:{lat:47.9,lng:-122.1},zoom:10,disableDefaultUI:true,zoomControl:true,gestureHandling:'cooperative',clickableIcons:false,isFractionalZoomEnabled:true,...(CONFIG.mapId?{mapId:CONFIG.mapId}:{styles:STYLE,mapTypeId:'terrain'})});
     class Pin extends g.OverlayView{constructor(id){super();this.id=id;this.el=pinEl(id)}onAdd(){this.el.classList.toggle('sel',selected===this.id);this.getPanes().overlayMouseTarget.appendChild(this.el);requestAnimationFrame(()=>this.el.classList.add('show'))}draw(){const pt=this.getProjection().fromLatLngToDivPixel(new g.LatLng(P[this.id].lat,P[this.id].lng));this.el.style.left=pt.x+'px';this.el.style.top=pt.y+'px'}onRemove(){this.el.remove()}}
     const cache={};let live=[],bounds=null;
     const animate=(line,path,halo)=>{if(reduce){line.setPath(path);halo&&halo.setPath(path);return}const t0=performance.now();const step=now=>{const k=clamp((now-t0)/1600);const e=1-(1-k)**3;const sub=path.slice(0,Math.max(2,Math.round(path.length*e)));line.setPath(sub);halo&&halo.setPath(sub);if(k<1)requestAnimationFrame(step);else glide(line)};requestAnimationFrame(step)};
