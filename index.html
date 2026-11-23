@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dillon &amp; Amber Wedding</title>
+<meta name="robots" content="noindex">
+<script src="config.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -494,12 +496,88 @@ footer .wrap{border-color:#2f4537}
 .mcard .go svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:700px){.mcard img{height:96px}.mcard .stat b{font-size:28px}}
 .replied{display:inline-block;margin:10px 0 2px;font-size:14px;color:#24382c;background:#e6ede3;padding:6px 12px;border-radius:999px}
+
+[hidden]{display:none!important}
+/* Announcement banner (text comes from the Site tab of the Sheet) */
+.ann{position:fixed;z-index:25;top:62px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:max-content;max-width:calc(100vw - 24px);padding:8px 8px 8px 18px;border-radius:999px;background:#24382c;color:#fbf8f3;font:500 14.5px/1.35 Inter,sans-serif;box-shadow:0 14px 34px -16px rgba(0,0,0,.55);animation:annIn .8s var(--ease) both}
+.ann a{color:#f0d3a6;font-weight:600}
+.ann button{flex:none;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:inherit;font-size:17px;line-height:1;cursor:pointer}
+@keyframes annIn{from{opacity:0;transform:translate(-50%,-12px)}}
+/* Optional password gate */
+.gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:#1b1512 url(img/hero.jpg) center/cover}
+.gate::before{content:"";position:absolute;inset:0;background:rgba(20,16,12,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.gate form{position:relative;width:min(380px,100%);background:#fbf8f3;border-radius:28px;padding:36px 30px;text-align:center;box-shadow:0 30px 80px -30px rgba(0,0,0,.6)}
+.gate h2{font-size:38px;margin-bottom:6px}
+.gate input{margin:20px 0 12px;text-align:center}
+.gate .pill{width:100%}
+html.locked body>:not(.gate){visibility:hidden}
+
+/* Schedule */
+.days{max-width:980px;margin:56px auto 0;display:grid;gap:52px}
+.day>h3{font:400 clamp(26px,2.6vw,34px)/1.1 Fraunces,Georgia,serif;letter-spacing:-.02em;margin-bottom:12px}
+.ev{display:grid;grid-template-columns:7.2em minmax(0,1fr) auto;gap:4px 24px;padding:20px 0;border-top:1px solid #ddd2c5;align-items:baseline}
+.ev time{font-weight:600;color:#24382c;white-space:nowrap}
+.ev b{display:block;font:600 19px "Inter Tight",Inter,sans-serif;letter-spacing:-.015em}
+.ev p{color:var(--soft);font-size:16px;margin-top:3px}
+.ev .evacts{display:flex;gap:18px}
+.ev .evacts a{font-size:15px;font-weight:500;color:#9a6a2e;text-decoration:none;white-space:nowrap}
+.ev.tba time{color:#9a8c7e;font-weight:500}
+.chip{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;background:#ece4d9;color:var(--soft);font:600 12px Inter,sans-serif;vertical-align:3px;letter-spacing:0}
+@media(max-width:700px){.ev{grid-template-columns:minmax(0,1fr)}.ev .evacts{margin-top:8px}}
+
+/* Stay, neighborhoods, things to do */
+.block{max-width:1180px;margin:56px auto 0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border-radius:28px;overflow:hidden;background:var(--paper)}
+.block .ph{position:relative;min-height:380px;overflow:hidden}
+.block .ph img{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;will-change:transform}
+.block .in{padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:center;gap:10px}
+.kick{font:600 13px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#5f7a5c}
+.block h3{font:400 clamp(30px,3.2vw,44px)/1.05 Fraunces,Georgia,serif;letter-spacing:-.02em}
+.who{display:inline-flex;align-items:center;gap:10px;font-size:15px;color:#24382c;font-weight:500;margin-top:4px}
+.who i{width:8px;height:8px;border-radius:50%;background:#5f7a5c;box-shadow:0 0 0 4px rgba(95,122,92,.18)}
+.pill[aria-disabled=true]{background:#cfc5b8;pointer-events:none}
+.subh{max-width:1180px;margin:72px auto 0;font:400 clamp(26px,2.6vw,34px)/1.1 Fraunces,Georgia,serif;letter-spacing:-.02em}
+.subp{max-width:1180px;margin:8px auto 0;color:var(--soft)}
+.cards{max-width:1180px;margin:22px auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{border:1px solid var(--line);border-radius:22px;padding:22px;background:#fffdf9;display:flex;flex-direction:column;gap:6px;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.card:hover{transform:translateY(-2px);box-shadow:0 18px 40px -26px rgba(70,45,20,.4)}
+.card .cimg{margin:-22px -22px 12px;aspect-ratio:16/10;overflow:hidden;border-radius:22px 22px 0 0}
+.card .cimg img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.card:hover .cimg img{transform:scale(1.04)}
+.card h4{margin:0;font:600 19px "Inter Tight",Inter,sans-serif;letter-spacing:-.015em}
+.card .m{font-size:14px;color:#5f7a5c;font-weight:500}
+.card p{font-size:15.5px;color:var(--soft)}
+.card .acts2{margin-top:auto;padding-top:12px;display:flex;gap:18px;flex-wrap:wrap}
+.card .acts2 a{font-size:15px;font-weight:500;color:#9a6a2e;text-decoration:none}
+.card .acts2 a:hover{text-decoration:underline}
+.filters{max-width:1180px;margin:28px auto 0}
+@media(max-width:860px){.block,.cards{grid-template-columns:minmax(0,1fr)}.block .ph{min-height:240px}}
+/* Registry buttons */
+.regs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:34px}
+.regs .pill.ghost{background:transparent;color:#24382c;box-shadow:inset 0 0 0 1.5px #24382c}
+.regs .pill.ghost:hover{background:#24382c;color:#fbf8f3}
+/* RSVP: choice chips */
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid #ddd2c5;background:#fffdf9;color:var(--ink);font:500 15px Inter,sans-serif;cursor:pointer;transition:border-color .3s,background-color .3s,color .3s}
+.opts button[aria-pressed=true]{background:#24382c;border-color:#24382c;color:#fbf8f3}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<div class="ann" id="ann" role="status" hidden></div>
+<script>
+// Optional password gate (turned on by setting passwordHash in config.js)
+(()=>{const h=(window.WEDDING||{}).passwordHash;if(!h)return;try{if(localStorage.getItem('wpass')===h)return}catch(_){}
+  document.documentElement.classList.add('locked');
+  const g=document.createElement('div');g.className='gate';
+  g.innerHTML='<form><h2>Dillon &amp; Amber</h2><p class="soft">June 5, 2027 · Enter the password from your invitation.</p><input type="password" aria-label="Password" autocomplete="current-password" required><button class="pill" type="submit">Enter</button><p class="err" hidden>That’s not quite it. Try again?</p></form>';
+  document.body.prepend(g);const f=g.querySelector('form'),i=g.querySelector('input');i.focus();
+  f.onsubmit=async e=>{e.preventDefault();const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(i.value.trim().toLowerCase()));
+    const x=[...new Uint8Array(b)].map(v=>v.toString(16).padStart(2,'0')).join('');
+    if(x===h){try{localStorage.setItem('wpass',h)}catch(_){}g.remove();document.documentElement.classList.remove('locked')}else{g.querySelector('.err').hidden=false;i.select()}};
+})();
+</script>
 
-<div class="toc" id="toc" role="navigation" aria-label="Page sections"><div class="toc-in" id="tocIn"><span class="toc-ind" id="tocInd" aria-hidden="true"></span><a href="#date">Date</a><a href="#venue">Venue</a><a href="#travel">Getting there</a><a href="#stay">Stay</a><a href="#rsvp" class="rs">RSVP</a><a href="#faq">FAQ</a><a href="#registry">Registry</a><a href="#story">Our story</a></div></div>
+<div class="toc" id="toc" role="navigation" aria-label="Page sections"><div class="toc-in" id="tocIn"><span class="toc-ind" id="tocInd" aria-hidden="true"></span><a href="#date">Date</a><a href="#schedule">Schedule</a><a href="#venue">Venue</a><a href="#travel">Getting there</a><a href="#stay">Stay</a><a href="#rsvp" class="rs">RSVP</a><a href="#faq">FAQ</a><a href="#registry">Registry</a><a href="#explore">Things to do</a><a href="#story">Our story</a></div></div>
 <nav aria-label="Main" id="nav">
   <a class="mark" href="#top">Dillon &amp; Amber</a>
   <a class="pill" href="#rsvp">RSVP</a>
@@ -529,6 +607,11 @@ footer .wrap{border-color:#2f4537}
   <div class="acts rv d3"><a class="pill light" href="#rsvp">RSVP</a><a class="link" id="gcal" href="#">Add to Google Calendar</a><a class="link" id="ics" href="#" download="dillon-amber-wedding.ics">Apple or Outlook</a></div>
 </section>
 
+<section class="sec" id="schedule">
+  <div class="wrap center"><h2 class="rv">Schedule</h2></div>
+  <div class="days" id="days"></div>
+</section>
+
 <section class="bleed" id="venue" aria-label="The venue">
   <img data-plx="0.12" src="img/venue.jpg" alt="The ceremony site at The Lookout Lodge: a log arbor and log benches under tall firs" loading="lazy">
   <div class="cap"><h2 class="rv">The Lookout Lodge</h2><p class="rv d1">Snohomish, Washington · About an hour north of Seattle</p></div>
@@ -548,25 +631,30 @@ footer .wrap{border-color:#2f4537}
   </div>
   <div class="mapacts"><a class="link" id="dirs" href="#">Directions to the lodge</a><a class="link" id="amaps" href="#">Open in Apple Maps</a></div>
   <div class="tiles">
-    <div class="tile rv"><h3>Sea-Tac (SEA)</h3><p class="meta">Seattle · about an hour to the lodge</p><p>The most flights from everywhere. Allow extra time Friday afternoon, when I-5 north gets busy.</p></div>
-    <div class="tile rv d1"><h3>Renting a car</h3><p class="meta">Recommended</p><p>The easiest way to get around for the weekend. The lodge is about 20 minutes from downtown Snohomish, with free parking on site.</p></div>
-    <div class="tile rv d2"><h3>Saturday shuttle</h3><p class="meta">From our hotel block</p><p>Runs to the lodge before the ceremony and back after the send-off, so nobody has to drive.</p></div>
+    <div class="tile rv"><h3>Sea-Tac (SEA)</h3><p class="meta">Seattle · about an hour to the lodge</p><p>The most flights from everywhere. June is peak season, so book early, and allow extra time Friday afternoon when I-5 north gets busy.</p><a class="link" href="https://www.google.com/travel/flights?q=Flights%20to%20SEA%20on%202027-06-04%20through%202027-06-06" target="_blank" rel="noopener">Search flights</a></div>
+    <div class="tile rv d1"><h3>Renting a car</h3><p class="meta">Recommended</p><p>The easiest way to get around for the weekend. The lodge is about 20 minutes from downtown Snohomish, with free parking on site.</p><a class="link" href="https://www.kayak.com/cars/SEA/2027-06-04/2027-06-06" target="_blank" rel="noopener">Compare rental cars</a></div>
+    <div class="tile rv d2"><h3>Saturday shuttle</h3><p class="meta">From our hotel block</p><p>Leaves the hotel at 3:15 pm and runs back after the send-off, so nobody has to drive. Let us know in your RSVP if you’ll ride.</p></div>
   </div>
 </section>
 
 
 <section class="sec" id="stay">
-  <div class="split">
-    <div>
-      <h2 class="rv">Where to stay</h2>
-      <div class="list">
-        <div class="rv"><h3>Our hotel block</h3><p class="soft">Group rate in Everett, held until early May, and it's the shuttle stop.</p><a class="link joy" data-path="/travel" href="https://withjoy.com">Book a room</a></div>
-        <div class="rv d1"><h3>Downtown Snohomish</h3><p class="soft">Inns and B&amp;Bs on a walkable historic main street, about 20 minutes away. Rooms are limited, so book early.</p></div>
-        <div class="rv d2"><h3>Getting home</h3><p class="soft">Rideshares are scarce in the hills late at night. Plan a ride ahead, or hop on the shuttle back.</p></div>
-      </div>
+  <div class="wrap"><h2 class="rv">Where to stay</h2><p class="lead rv d1" style="margin-left:0">Book early. June is peak season around Seattle, and rooms near Snohomish go fast.</p></div>
+  <div class="block rv">
+    <div class="ph"><img data-plx="0.06" src="img/town.jpg" alt="A historic brick main street with hanging flower baskets" loading="lazy"></div>
+    <div class="in">
+      <p class="kick">Our hotel block</p>
+      <h3 id="hbName">A group rate for our guests</h3>
+      <p class="soft" id="hbNote">Group rate held until early May. It's also the shuttle stop.</p>
+      <p class="who" id="hbWho" hidden><i></i><span></span></p>
+      <div class="acts" style="margin-top:18px"><a class="pill" id="hbBook" href="#" aria-disabled="true">Booking link coming soon</a></div>
     </div>
-    <div class="ph rv"><img data-plx="0.08" src="img/town.jpg" alt="A historic brick main street with hanging flower baskets" loading="lazy"></div>
   </div>
+  <h3 class="subh rv">More hotels nearby</h3>
+  <div class="cards" id="hotels"></div>
+  <h3 class="subh rv">Rent a place together</h3>
+  <p class="subp rv">Coming with friends or staying a few extra days? These areas are an easy drive to the lodge.</p>
+  <div class="cards" id="hoods"></div>
 </section>
 
 
@@ -589,13 +677,23 @@ footer .wrap{border-color:#2f4537}
   <div class="wrap center">
     <h2 class="rv">Registry</h2>
     <p class="lead rv d1">No gifts needed. If you'd like to give something anyway, here are a few things we're saving for.</p>
-    <div class="acts rv d3"><a class="pill joy" data-path="/registry" href="https://withjoy.com">View our registry</a><a class="link joy" data-path="/photos" href="https://withjoy.com">Share your photos with us</a></div>
+    <div class="regs rv d2" id="regs"></div>
   </div>
   <div class="bento">
     <div class="cell big ph rv"><img src="img/iceland.jpg" alt="Black sand beach with basalt sea stacks in Iceland" loading="lazy"><h3>Honeymoon in Iceland</h3><p>Hot springs, black-sand beaches and a very long drive around the ring road.</p></div>
     <div class="cell garden rv d1"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 9 11 5 20 4c0 9-4 15-14 15m0 0l7-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><h3>Our first garden</h3><p>Raised beds, a lemon tree, and one ambitious tomato.</p></div>
     <div class="cell ph rv d2"><img src="img/fog.jpg" alt="Fir forest in soft fog" loading="lazy"><h3>Cascades weekends</h3><p>Cabin nights and trail mornings.</p></div>
   </div>
+</section>
+
+<section class="sec paper" id="explore">
+  <div class="wrap"><h2 class="rv">While you're here</h2><p class="lead rv d1" style="margin-left:0">A few of our favorite trails and places nearby, if you're making a weekend of it.</p></div>
+  <div class="cards" id="todo"></div>
+  <div class="wrap center" style="margin-top:72px"><div class="cell garden rv" style="min-height:0;padding:clamp(30px,4vw,48px);text-align:left;border-radius:28px">
+    <h3 style="font:400 clamp(28px,3vw,38px)/1.1 Fraunces,Georgia,serif;color:#fbf8f3">Help us capture the day</h3>
+    <p style="margin-top:8px;max-width:34em">Took a photo we'd love? Upload it straight from your phone. It goes into a shared album for us, full quality, no app needed.</p>
+    <div class="acts" style="margin-top:22px;justify-content:flex-start"><a class="pill light" href="photos/">Share your photos</a></div>
+  </div></div>
 </section>
 
 
@@ -635,13 +733,7 @@ footer .wrap{border-color:#2f4537}
 </section>
 
 
-<section class="sec paper" id="weekend" style="padding-inline:0">
-  <div class="railhead">
-    <div><h2 class="rv">The weekend</h2></div>
-    <div class="arrows rv d2"><button class="arrow" id="prev" type="button" aria-label="Previous">‹</button><button class="arrow" id="next" type="button" aria-label="Next">›</button></div>
-  </div>
-  <div class="rail rv" id="rail" tabindex="0" aria-label="Weekend events"></div>
-</section>
+
 
 <section class="bleed final" aria-label="Closing">
   <img data-plx="0.12" src="img/dance.jpg" alt="A couple dancing under string lights" loading="lazy">
@@ -659,11 +751,52 @@ footer .wrap{border-color:#2f4537}
   const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 
   // Content
-  const slides=[["overlook","Friday, June 4","Welcome drop-in","Casual and optional. Stop by any time after 6 pm for snacks and drinks."],["venue","Saturday, June 5","The wedding","Ceremony at 4 pm on the lawn, with dinner and dancing after. Shuttles leave the hotel at 3:15."],["fog","Sunday, June 6","Farewell coffee","Coffee and pastries from 10 am before you head home."]];
-  $('rail').innerHTML=slides.map(s=>`<article class="slide"><img src="img/${s[0]}.jpg" alt="" loading="lazy"><div class="cap"><p class="when">${s[1]}</p><h3>${s[2]}</h3></div><p class="d">${s[3]}</p></article>`).join('');
+  let SITEINFO={hotel:{},registry:{},staying:{}};
+  const BOOK='checkin=2027-06-04&checkout=2027-06-06';
+  const gmap=q=>`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+  const calUrl=(t,a,b,d,loc)=>`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(t)}&dates=${a}/${b}&details=${encodeURIComponent(d)}&location=${encodeURIComponent(loc)}`;
+  // Schedule: [time, title, note, place for the map link, calendar start, end (UTC)]
+  const DAYS=[
+    ['Friday, June 4',[['6:00 pm','Welcome drop-in','Casual and optional. Come say hi, grab a drink, meet the other guests.','','20270605T010000Z','20270605T043000Z']]],
+    ['Saturday, June 5',[
+      ['3:15 pm','Shuttle to the lodge','Leaves from our hotel block. Back after the send-off.','hotel'],
+      ['4:00 pm','Ceremony','On the lawn, or inside the lodge if it rains.','The Lookout Lodge, 2410 Newberg Rd, Snohomish, WA','20270605T230000Z','20270606T053000Z'],
+      ['After','Dinner and dancing','Right there at the lodge, into the night.','The Lookout Lodge, 2410 Newberg Rd, Snohomish, WA']]],
+    ['Sunday, June 6',[['','Brunch','Details coming soon.','','',''],'tba']]
+  ];
+  const renderDays=brunch=>{
+    $('days').innerHTML=DAYS.map(([d,evs])=>`<div class="day rv"><h3>${d}</h3>${evs.filter(Array.isArray).map(e=>{
+      const tba=e[1]==='Brunch'&&!brunch;const note=e[1]==='Brunch'&&brunch?brunch:e[2];
+      const place=e[3]==='hotel'?(SITEINFO.hotel&&SITEINFO.hotel.name||''):e[3];
+      return `<div class="ev${tba?' tba':''}"><time>${tba?'To be announced':e[0]}</time><div><b>${e[1]}${tba?'<span class="chip">Soon</span>':''}</b><p>${esc(note)}</p></div><div class="evacts">${place?`<a href="${gmap(place)}" target="_blank" rel="noopener">Map</a>`:''}${e[4]?`<a href="${calUrl(`${e[1]} · Dillon & Amber`,e[4],e[5],note,place||'Snohomish, WA')}" target="_blank" rel="noopener">Add to calendar</a>`:''}</div></div>`}).join('')}</div>`).join('');
+    $('days').querySelectorAll('.rv').forEach(e=>e.classList.add('in'));
+  };
+  // Hotels and rentals: links open with the wedding dates filled in
+  const HOTELS=[
+    ['Delta Hotels by Marriott Seattle Everett','Everett · about 25 min to the lodge','Full-service hotel with a restaurant and pool, near the freeway.'],
+    ['Hotel Indigo Everett Waterfront','Everett waterfront · about 30 min','Boutique hotel on the marina, with restaurants a short walk away.'],
+    ['Inn at Port Gardner','Everett waterfront · about 30 min','Small, quiet inn right on the water.']
+  ];
+  $('hotels').innerHTML=HOTELS.map((h,i)=>`<div class="card rv d${i}"><h4>${h[0]}</h4><span class="m">${h[1]}</span><p>${h[2]}</p><div class="acts2"><a href="https://www.booking.com/searchresults.html?ss=${encodeURIComponent(h[0])}&${BOOK}&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Check rates</a><a href="${gmap(h[0])}" target="_blank" rel="noopener">Map</a></div></div>`).join('');
+  const HOODS=[
+    ['Lake Stevens','Lake Stevens, WA','About 10 min to the lodge','Lake houses and cabins. The closest place to stay.','overlook'],
+    ['Downtown Snohomish','Snohomish, WA','About 20 min','A walkable historic main street with cafés, antiques and the river.','town'],
+    ['Everett','Everett, WA','About 25 min','The most hotels and restaurants, plus the waterfront.','fog']
+  ];
+  $('hoods').innerHTML=HOODS.map((h,i)=>`<div class="card rv d${i}"><div class="cimg"><img src="img/${h[4]}.jpg" alt="" loading="lazy"></div><h4>${h[0]}</h4><span class="m">${h[2]}</span><p>${h[3]}</p><div class="acts2"><a href="https://www.vrbo.com/search?destination=${encodeURIComponent(h[1])}&startDate=2027-06-04&endDate=2027-06-06&adults=2" target="_blank" rel="noopener">Search Vrbo</a><a href="https://www.airbnb.com/s/${encodeURIComponent(h[1].replace(', ','--'))}/homes?${BOOK}&adults=2" target="_blank" rel="noopener">Search Airbnb</a></div></div>`).join('');
+  // Things to do
+  const TODO=[
+    ['Centennial Trail','Trail · Snohomish','Paved, flat and shady. Great for a walk or a bike ride starting right in town.','Snohomish Centennial Trail, Snohomish, WA','trail'],
+    ['Lord Hill Regional Park','Trail · about 15 min','Forest trails above the Snohomish River, with a lookout at the top.','Lord Hill Regional Park, Snohomish, WA','fog'],
+    ['Wallace Falls','Hike · about 40 min','A forest hike to a string of waterfalls. Our pick if you only do one.','Wallace Falls State Park, Gold Bar, WA','falls'],
+    ['Historic downtown Snohomish','In town · about 20 min','Antique shops, bakeries and riverside patios on First Street.','First Street, Snohomish, WA','town'],
+    ['Woodinville wine country','Wine · about 30 min','Dozens of tasting rooms close together. Pick a driver.','Woodinville Wine Country, Woodinville, WA','table'],
+    ['Snoqualmie Falls','Viewpoint · about 50 min','A huge waterfall a few steps from the parking lot. Worth the drive.','Snoqualmie Falls, WA','overlook']
+  ];
+  $('todo').innerHTML=TODO.map((t,i)=>`<div class="card rv d${i%3}"><div class="cimg"><img src="img/${t[4]}.jpg" alt="" loading="lazy"></div><h4>${t[0]}</h4><span class="m">${t[1]}</span><p>${t[2]}</p><div class="acts2"><a href="${gmap(t[3])}" target="_blank" rel="noopener">Map</a><a href="https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent('The Lookout Lodge, Snohomish, WA')}&destination=${encodeURIComponent(t[3])}" target="_blank" rel="noopener">Directions</a></div></div>`).join('');
 
   const party=[["Alex Rivera","Best man","#3a5a46"],["Priya Shah","Maid of honor","#9a6a3a"],["Sam Ortiz","Groomsman","#4f6b4a"],["Casey Nguyen","Bridesmaid","#7a5a46"],["Jamie Cole","Groomsman","#5a6b3e"],["Taylor Kim","Bridesmaid","#8a6a4a"],["Morgan Lee","Officiant","#2f4a3a"],["Riley Baker","Ring bearer","#6b5a3a"]];
-  $('people').innerHTML=party.map((p,i)=>`<div class="person rv d${i%4}"><div class="face" style="background:linear-gradient(150deg,${p[2]},#2a211c)">${p[0].split(' ').map(w=>w[0]).join('')}</div><b>${p[0]}</b><span>${p[1]}</span></div>`).join('');
+  $('people').innerHTML=party.map((p,i)=>`<div class="person rv d${i%4}"><div class="face" style="background:${p[3]?`center/cover url(${p[3]})`:`linear-gradient(150deg,${p[2]},#2a211c)`}">${p[3]?'':p[0].split(' ').map(w=>w[0]).join('')}</div><b>${p[0]}</b><span>${p[1]}</span></div>`).join('');
   const faq=[["What should I wear?","Garden attire: dresses, suits, or a nice shirt and slacks. The ceremony is on grass, so skip stilettos, and bring a layer for when the sun drops behind the hills."],["Is the ceremony outdoors?","Yes, on the lawn if the weather cooperates. If it rains, we'll move inside the lodge, which is just as lovely."],["Can I bring a date?","If your invitation includes a guest, they'll appear when you RSVP. We're keeping things intimate, so we can't add guests beyond that."],["Are kids invited?","Children named on your invitation are very welcome."],["What about dietary needs?","Tell us in your RSVP. Every dish can be made gluten-free, and there's a vegetarian option."],["Can I take photos?","We'd love an unplugged ceremony, so please keep phones away until after the kiss. Snap away at the reception and share them with us."],["Is there parking?","Yes, free at the lodge. Or skip driving with the shuttle from the hotel block."],["When's the RSVP deadline?","Thursday, April 15, 2027."]];
   $('faqList').innerHTML=faq.map((q,i)=>`<div class="rv d${i%2}"><h3>${q[0]}</h3><p>${q[1]}</p></div>`).join('');
 
@@ -738,13 +871,7 @@ footer .wrap{border-color:#2f4537}
   else requestAnimationFrame(frameTick);
 
 
-  // Rail arrows
-  const rail=$('rail'),prev=$('prev'),next=$('next');
-  const stepW=()=>rail.firstElementChild.getBoundingClientRect().width+20;
-  const upd=()=>{const over=rail.scrollWidth>rail.clientWidth+8;prev.parentElement.style.visibility=over?'visible':'hidden';prev.disabled=rail.scrollLeft<8;next.disabled=rail.scrollLeft>rail.scrollWidth-rail.clientWidth-8};addEventListener('resize',()=>upd());
-  prev.addEventListener('click',()=>rail.scrollBy({left:-stepW(),behavior:reduce?'auto':'smooth'}));
-  next.addEventListener('click',()=>rail.scrollBy({left:stepW(),behavior:reduce?'auto':'smooth'}));
-  rail.addEventListener('scroll',upd,{passive:true});upd();
+
 
   // ---------- RSVP: find your invitation, reply for everyone, confirm ----------
   const MEALS=[
@@ -753,7 +880,7 @@ footer .wrap{border-color:#2f4537}
   ];
   const RSVP_DEADLINE=new Date('2027-04-16T07:00:00Z'); // end of April 15, Pacific
   const DEMO=[
-    {invite:'SAMPLE-1',party:'The Baker family',guests:[{row:2,first:'Pat',last:'Baker',type:'Guest'},{row:3,first:'Chris',last:'Baker',type:'Guest'},{row:4,first:'Riley',last:'Baker',type:'Child'}]},
+    {invite:'SAMPLE-1',party:'The Baker family',rehearsal:true,guests:[{row:2,first:'Pat',last:'Baker',type:'Guest'},{row:3,first:'Chris',last:'Baker',type:'Guest'},{row:4,first:'Riley',last:'Baker',type:'Child'}]},
     {invite:'SAMPLE-2',party:'Casey Nguyen and guest',guests:[{row:5,first:'Casey',last:'Nguyen',type:'Guest'},{row:6,first:'',last:'',type:'Plus-one'}]},
     {invite:'SAMPLE-3',party:'Sam Ortiz',guests:[{row:7,first:'Sam',last:'Ortiz',type:'Guest'}]}
   ];
@@ -766,7 +893,7 @@ footer .wrap{border-color:#2f4537}
       if(useApi()){const r=await fetch(`${CONFIG.rsvpEndpoint}?action=lookup&first=${encodeURIComponent(first)}&last=${encodeURIComponent(last)}`);if(!r.ok)throw new Error('network');return r.json()}
       await wait(450);const f=norm(first),l=norm(last);
       const inv=DEMO.filter(i=>i.guests.some(g=>nameMatch(g,f,l)));
-      return inv.length?{found:true,invites:inv.map(i=>({invite:i.invite,party:i.party,responded:!!i.responded,respondedOn:i.respondedOn||'',guests:i.guests.map(g=>({row:g.row,first:g.type==='Plus-one'?'':g.first,last:g.type==='Plus-one'?'':g.last,type:g.type}))}))}:{found:false};
+      return inv.length?{found:true,invites:inv.map(i=>({invite:i.invite,party:i.party,rehearsal:!!i.rehearsal,brunch:!!SITEINFO.brunch,responded:!!i.responded,respondedOn:i.respondedOn||'',guests:i.guests.map(g=>({row:g.row,first:g.type==='Plus-one'?'':g.first,last:g.type==='Plus-one'?'':g.last,type:g.type}))}))}:{found:false};
     },
     async submit(p){
       if(useApi()){const r=await fetch(CONFIG.rsvpEndpoint,{method:'POST',body:JSON.stringify({action:'submit',...p})});if(!r.ok)throw new Error('network');return r.json()}
@@ -778,14 +905,17 @@ footer .wrap{border-color:#2f4537}
   };
   const panel=$('rsvpPanel');
   const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  let S={step:new Date()>RSVP_DEADLINE?'closed':'find',first:'',last:'',err:'',busy:false,invites:[],inv:null,g:[],friday:'',email:'',song:'',note:'',updated:false};
+  let S={step:new Date()>RSVP_DEADLINE?'closed':'find',first:'',last:'',err:'',busy:false,invites:[],inv:null,g:[],friday:'',staying:'',shuttle:'',rehearsal:'',brunch:'',email:'',song:'',note:'',updated:false};
+  const STAYS=['Our hotel block','Another hotel nearby','A rental or B&B','With friends or family','Heading home that night'];
   const STEPS=[['find','Find'],['reply','Reply'],['details','Details'],['done','Done']];
   const who=g=>g.type==='Plus-one'&&!(g.first||'').trim()?'Your guest':`${g.first||''} ${g.last||''}`.trim();
   const going=()=>S.g.filter(g=>g.attending==='Yes');
-  const pick=inv=>{S.inv=inv;S.g=inv.guests.map(g=>({row:g.row,first:g.first||'',last:g.last||'',type:g.type||'Guest',attending:g.attending||'',meal:g.meal||'',diet:g.diet||''}));S.friday=inv.friday||'';S.email=inv.email||'';S.song=inv.song||'';S.note=inv.note||'';S.updated=!!inv.responded;S.step='reply';S.err=''};
+  const pick=inv=>{S.inv=inv;S.g=inv.guests.map(g=>({row:g.row,first:g.first||'',last:g.last||'',type:g.type||'Guest',attending:g.attending||'',meal:g.meal||'',diet:g.diet||''}));S.friday=inv.friday||'';S.staying='';S.shuttle='';S.rehearsal='';S.brunch='';S.email=inv.email||'';S.song=inv.song||'';S.note=inv.note||'';S.updated=!!inv.responded;S.step='reply';S.err=''};
   const progress=()=>{const cur=STEPS.findIndex(s=>s[0]===(S.step==='choose'?'find':S.step));return `<ol class="rsteps" aria-label="RSVP progress">${STEPS.map(([k,l],i)=>`<li class="${i<cur?'past':i===cur?'now':''}"${i===cur?' aria-current="step"':''}><i></i><span>${l}</span></li>`).join('')}</ol>`};
   const errBox=()=>S.err?`<p class="err reveal" role="alert">${esc(S.err)}</p>`:'';
   const btn=(id,label,cls='pill')=>`<button class="${cls}${S.busy&&cls==='pill'?' busy':''}" id="${id}" type="${id==='go'?'submit':'button'}"${S.busy?' disabled':''}><span>${label}</span></button>`;
+  const seg=(k,val,opts)=>`<div class="seg" role="group">${opts.map(([v,l])=>`<button type="button" data-q="${k}" data-v2="${v}" aria-pressed="${val===v}">${l}</button>`).join('')}</div>`;
+  const QK={rh:'rehearsal',br:'brunch',sh:'shuttle'};
   const views={
     closed:()=>`<h3>RSVPs are closed</h3><p class="hint">The reply deadline was April 15. If your plans changed, text or email us and we'll sort it out.</p>`,
     find:()=>`${progress()}<h3>Find your invitation</h3><p class="hint">Enter your name as it appears on your invitation.</p>
@@ -800,6 +930,10 @@ footer .wrap{border-color:#2f4537}
       ${errBox()}<div class="rbtns">${btn('next','Continue')}${btn('back','Not you?','link')}</div>`,
     details:()=>{const any=going().length>0;return `${progress()}<h3>${any?'A few details':'Thanks for letting us know'}</h3><p class="hint">${any?'Almost done.':'We’ll miss you. Leave us a note if you like.'}</p>
       ${any?`<div class="qrow"><p class="mlabel">Friday welcome drop-in <span>June 4, from 6 pm · casual and optional</span></p><div class="seg" role="group" aria-label="Friday welcome drop-in"><button type="button" data-f="Yes" aria-pressed="${S.friday==='Yes'}">We'll stop by</button><button type="button" data-f="No" aria-pressed="${S.friday==='No'}">Can't make it</button></div></div>
+      ${S.inv.rehearsal?`<div class="qrow"><p class="mlabel">Rehearsal dinner <span>Friday, June 4 · for family and the wedding party</span></p>${seg('rh',S.rehearsal,[['Yes','We’ll be there'],['No','Can’t make it']])}</div>`:''}
+      ${S.inv.brunch||SITEINFO.brunch?`<div class="qrow"><p class="mlabel">Sunday brunch <span>${esc(SITEINFO.brunch||'Sunday, June 6')}</span></p>${seg('br',S.brunch,[['Yes','Count us in'],['No','We’ll be heading out']])}</div>`:''}
+      <div class="qrow"><p class="mlabel">Where are you staying? <span>Helps us plan the shuttle. Optional.</span></p><div class="opts" role="group" aria-label="Where are you staying">${STAYS.map(o=>`<button type="button" data-st="${esc(o)}" aria-pressed="${S.staying===o}">${esc(o)}</button>`).join('')}</div></div>
+      <div class="qrow"><p class="mlabel">Saturday shuttle <span>From the hotel block at 3:15 pm, and back after the send-off</span></p>${seg('sh',S.shuttle,[['Yes','We’ll ride'],['No','We’ll drive']])}</div>
       ${going().map(g=>{const i=S.g.indexOf(g);return `<div class="field"><label for="dt${i}">Allergies or dietary needs · ${esc(who(g))}</label><input id="dt${i}" data-d="${i}" value="${esc(g.diet)}" placeholder="None" autocomplete="off"></div>`}).join('')}
       <div class="field"><label for="song">A song that'll get you on the dance floor</label><input id="song" value="${esc(S.song)}" placeholder="Song and artist" autocomplete="off"></div>`:''}
       <div class="field"><label for="note">A note for Dillon &amp; Amber <span class="opt">optional</span></label><textarea id="note" placeholder="Say hi, share a memory, or ask us anything">${esc(S.note)}</textarea></div>
@@ -807,7 +941,7 @@ footer .wrap{border-color:#2f4537}
       ${errBox()}<div class="rbtns">${btn('send',S.busy?'Sending':'Send RSVP')}${btn('back2','Back','link')}</div>`},
     done:()=>{const y=going();return `${progress()}<div class="doneck" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></div>
       <h3 class="center">${y.length?'See you in Snohomish!':'We’ll miss you.'}</h3><p class="hint center">${y.length?`${y.length} of ${S.g.length} attending.`:'Thanks for letting us know.'}${S.email?` A confirmation is on its way to ${esc(S.email)}.`:''}</p>
-      <ul class="rsum">${S.g.map(g=>`<li><b>${esc(who(g))}</b><span>${g.attending==='Yes'?esc(g.meal):'Not attending'}</span></li>`).join('')}${y.length&&S.friday?`<li><b>Friday drop-in</b><span>${S.friday==='Yes'?'Stopping by':'Can’t make it'}</span></li>`:''}${S.song?`<li><b>Song request</b><span>${esc(S.song)}</span></li>`:''}</ul>
+      <ul class="rsum">${S.g.map(g=>`<li><b>${esc(who(g))}</b><span>${g.attending==='Yes'?esc(g.meal):'Not attending'}</span></li>`).join('')}${y.length&&S.friday?`<li><b>Friday drop-in</b><span>${S.friday==='Yes'?'Stopping by':'Can’t make it'}</span></li>`:''}${y.length&&S.rehearsal?`<li><b>Rehearsal dinner</b><span>${S.rehearsal==='Yes'?'Attending':'Can’t make it'}</span></li>`:''}${y.length&&S.brunch?`<li><b>Sunday brunch</b><span>${S.brunch==='Yes'?'Attending':'Heading out'}</span></li>`:''}${y.length&&S.staying?`<li><b>Staying</b><span>${esc(S.staying)}</span></li>`:''}${y.length&&S.shuttle?`<li><b>Shuttle</b><span>${S.shuttle==='Yes'?'Riding':'Driving'}</span></li>`:''}${S.song?`<li><b>Song request</b><span>${esc(S.song)}</span></li>`:''}</ul>
       ${y.length?`<div class="rbtns center"><a class="pill" href="${$('gcal').href}">Add to Google Calendar</a><a class="link" href="${$('ics').href}" download="dillon-amber-wedding.ics">Apple or Outlook</a></div>`:''}
       <div class="rbtns center"><button class="link" id="edit" type="button">Change your reply</button></div>`}
   };
@@ -834,6 +968,8 @@ footer .wrap{border-color:#2f4537}
     on('[data-pf]','input',e=>S.g[+e.target.dataset.pf].first=e.target.value);
     on('[data-pl]','input',e=>S.g[+e.target.dataset.pl].last=e.target.value);
     on('[data-f]','click',e=>{keepDetails();S.friday=e.currentTarget.dataset.f;render()});
+    on('[data-q]','click',e=>{keepDetails();S[QK[e.currentTarget.dataset.q]]=e.currentTarget.dataset.v2;render()});
+    on('[data-st]','click',e=>{keepDetails();const v=e.currentTarget.dataset.st;S.staying=S.staying===v?'':v;render()});
     const next=$('next');if(next)next.addEventListener('click',()=>{
       const miss=S.g.find(g=>!g.attending);if(miss){S.err=`Please let us know if ${who(miss)} can make it.`;return render()}
       const nomeal=going().find(g=>!g.meal);if(nomeal){S.err=`Please choose a dinner for ${who(nomeal)}.`;return render()}
@@ -845,7 +981,7 @@ footer .wrap{border-color:#2f4537}
       if(going().length&&!S.friday){S.err='Please let us know about Friday.';return render()}
       if(S.email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(S.email)){S.err='That email doesn’t look quite right.';return render()}
       S.err='';S.busy=true;render();
-      try{const r=await API.submit({invite:S.inv.invite,verify:{first:S.first,last:S.last},guests:S.g,friday:going().length?S.friday:'',email:S.email,song:S.song,note:S.note});
+      try{const r=await API.submit({invite:S.inv.invite,verify:{first:S.first,last:S.last},guests:S.g,friday:going().length?S.friday:'',staying:going().length?S.staying:'',shuttle:going().length?S.shuttle:'',rehearsal:going().length&&S.inv.rehearsal?S.rehearsal:'',brunch:going().length?S.brunch:'',email:S.email,song:S.song,note:S.note});
         S.busy=false;if(r&&r.ok){S.step='done';S.updated=true}else S.err=(r&&r.error)||'We couldn’t save your reply. Please try again.';
       }catch(_){S.busy=false;S.err='We couldn’t reach our RSVP list. Please try again in a moment.'}
       render();if(S.step==='done')panel.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'})});
@@ -853,17 +989,16 @@ footer .wrap{border-color:#2f4537}
   };
 
   // Integrations: fill these in and the live site wires itself up
+  const W=window.WEDDING||{};
   const CONFIG={
-    rsvpifyUrl:'',                  // e.g. https://dillonandamber.rsvpify.com
-    joyUrl:'https://withjoy.com',   // e.g. https://withjoy.com/dillon-and-amber
     venue:'The Lookout Lodge, Snohomish, WA',
-    mapsKey:'AIzaSyCW1n3bcpANhnlktzGkzxOz1L5KQ_ObnMI',                     // Google Maps JavaScript API key (restrict it to your domain)
-    mapId:'',
-    rsvpEndpoint:''                 // Google Apps Script web app URL for the RSVP Sheet                        // optional: a Map ID with cloud styling or 3D; leave blank to use the built-in style
+    mapsKey:'AIzaSyCW1n3bcpANhnlktzGkzxOz1L5KQ_ObnMI',   // Google Maps JavaScript API key (restricted to the site)
+    mapId:'',                                          // optional Map ID for cloud styling; blank uses the built-in style
+    rsvpEndpoint:W.endpoint||''                        // set in config.js: the Google Apps Script web app URL
   };
   const live=!/claude|anthropic/i.test(location.hostname);
   const q=encodeURIComponent(CONFIG.venue);
-  const evs=[["Welcome drop-in","20270605T010000Z","20270605T043000Z","Casual come-and-go. Location shared with your invite."],["Dillon & Amber's wedding","20270605T230000Z","20270606T053000Z","Ceremony at 4:00 pm. Shuttles leave the hotel at 3:15 pm."],["Farewell coffee","20270606T170000Z","20270606T190000Z","Drop by before you head home."]];
+  const evs=[["Welcome drop-in","20270605T010000Z","20270605T043000Z","Casual come-and-go. Location shared with your invite."],["Dillon & Amber's wedding","20270605T230000Z","20270606T053000Z","Ceremony at 4:00 pm. Shuttles leave the hotel at 3:15 pm."]];
   const w=evs[1];
   $('gcal').href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(w[0])}&dates=${w[1]}/${w[2]}&details=${encodeURIComponent(w[3])}&location=${q}`;
   const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Dillon and Amber//Wedding//EN',...evs.flatMap((e,i)=>['BEGIN:VEVENT',`UID:da-wedding-${i}@dillonandamber.com`,'DTSTAMP:20261122T000000Z',`DTSTART:${e[1]}`,`DTEND:${e[2]}`,`SUMMARY:${e[0]}`,`DESCRIPTION:${e[3]}`,`LOCATION:${i===1?CONFIG.venue.replace(/,/g,'\\,'):'Snohomish\\, WA'}`,'END:VEVENT']),'END:VCALENDAR'].join('\r\n');
@@ -875,11 +1010,14 @@ footer .wrap{border-color:#2f4537}
     sea:{name:'Sea-Tac',lat:47.448365,lng:-122.308593,kind:'air',label:'Airport',time:'About 1 hr',dist:'to the lodge'},
     town:{name:'Downtown Snohomish',lat:47.911598,lng:-122.095657,kind:'explore',label:'In town',img:'town',line:'Cafés, antiques and the river'},
     trail:{name:'Centennial Trail',lat:48.095606,lng:-122.125029,kind:'explore',label:'Outdoors',img:'fog',line:'Paved and flat, great by bike'},
+    lordhill:{name:'Lord Hill Park',lat:47.8617,lng:-122.0570,kind:'explore',label:'Trail',img:'fog',line:'Forest trails above the river'},
+    wallace:{name:'Wallace Falls',lat:47.8670,lng:-121.6781,kind:'explore',label:'Hike',img:'falls',line:'Our favorite waterfall hike'},
+    wine:{name:'Woodinville wine',lat:47.7319,lng:-122.1487,kind:'explore',label:'Wine',img:'table',line:'Dozens of tasting rooms'},
     falls:{name:'Snoqualmie Pass',lat:47.4245,lng:-121.4137,kind:'explore',label:'Where we met',img:'couplefalls',line:'Home of Franklin Falls'},
   };
   const LAYERS=[
     {id:'sea',label:'From Sea-Tac',pins:['sea','hotel','lodge'],routes:[['sea','lodge']],focus:'sea'},
-    {id:'explore',label:'Things to do',pins:['lodge','town','trail','falls'],routes:[],focus:'town'}
+    {id:'explore',label:'Things to do',pins:['lodge','town','trail','lordhill','wallace','wine','falls'],routes:[],focus:'town'}
   ];
   const mx=$('mapx'),canvas=$('mapCanvas'),chipsEl=$('chips'),card=$('mcard');
   const dirUrl=p=>`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`;
@@ -894,7 +1032,10 @@ footer .wrap{border-color:#2f4537}
     sea:'<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
     town:'<path d="M3.5 9 5 4h14l1.5 5"/><path d="M3.5 9a2.8 2.8 0 0 0 5.6 0 2.8 2.8 0 0 0 5.8 0 2.8 2.8 0 0 0 5.6 0"/><path d="M5 11.5V20h14v-8.5"/><path d="M10 20v-4.5h4V20"/>',
     trail:'<circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5 9 9.5h6l3.5 7"/><path d="M9 9.5 12 16.5h-1"/><path d="M13.5 6.5H16l-1 3"/>',
-    falls:'<path d="m8 4.5 4 7.5 3-3.5 6.5 11H2.5z"/>'
+    falls:'<path d="m8 4.5 4 7.5 3-3.5 6.5 11H2.5z"/>',
+    lordhill:'<path d="M12 3 6.5 10.5h3L5 17h14l-4.5-6.5h3z"/><path d="M12 17v4"/>',
+    wallace:'<path d="M12 3.5c3.2 4.2 5.2 6.9 5.2 9.8a5.2 5.2 0 0 1-10.4 0c0-2.9 2-5.6 5.2-9.8z"/>',
+    wine:'<path d="M8 3h8l-.4 5.2a3.6 3.6 0 0 1-7.2 0z"/><path d="M12 11.8V20"/><path d="M8.5 20.5h7"/>'
   };
   const pinEl=id=>{const b=document.createElement('button');b.type='button';b.className='pin '+P[id].kind;b.dataset.id=id;b.innerHTML=`<i><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[id]||''}</svg></i><span>${P[id].name}</span>`;b.setAttribute('aria-label',P[id].name);b.addEventListener('click',()=>showCard(id));return b};
   chipsEl.innerHTML=LAYERS.map((l,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-l="${l.id}">${l.label}</button>`).join('');
@@ -984,9 +1125,26 @@ footer .wrap{border-color:#2f4537}
     const s=document.createElement('script');s.src=`https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(CONFIG.mapsKey)}&callback=__gmReady&v=weekly&loading=async`;s.async=true;s.onerror=startMap;document.head.appendChild(s);
   } else startMap();
 
-  const joySlug=CONFIG.joyUrl.split('withjoy.com/')[1];
-  document.querySelectorAll('a.joy').forEach(a=>{a.href=CONFIG.joyUrl.replace(/\/$/,'')+(joySlug?a.dataset.path:'')});
-  if(live&&CONFIG.rsvpifyUrl){const box=$('rsvpLive');box.innerHTML=`<iframe title="RSVP form" src="${CONFIG.rsvpifyUrl.replace(/\/$/,'')}?embed=1&oEmbed=1"></iframe>`;box.hidden=false;panel.hidden=true}
+  // Live settings from the Site tab of the Sheet: banner, hotel block, registry, brunch, who's staying where
+  const applySite=info=>{
+    SITEINFO=Object.assign(SITEINFO,info||{});
+    const h=SITEINFO.hotel||{};
+    if(h.name)$('hbName').textContent=h.name;
+    if(h.note)$('hbNote').textContent=h.note;
+    const book=$('hbBook');if(h.link){book.href=h.link;book.target='_blank';book.rel='noopener';book.textContent='Book a room';book.removeAttribute('aria-disabled')}
+    const n=(SITEINFO.staying||{})['Our hotel block']||0;
+    if(n>=2){$('hbWho').hidden=false;$('hbWho').querySelector('span').textContent=`${n} guests are staying here so far`}
+    const r=SITEINFO.registry||{};
+    const regs=[[r.amazon,'Amazon registry'],[r.crate,'Crate & Barrel registry'],[r.other,'Our other registry'],[r.venmo&&`https://venmo.com/u/${encodeURIComponent(r.venmo)}`,'Honeymoon fund (Venmo)']].filter(x=>x[0]);
+    $('regs').innerHTML=(regs.length?regs.map((x,i)=>`<a class="pill${i?' ghost':''}" href="${esc(x[0])}" target="_blank" rel="noopener">${x[1]}</a>`).join(''):'<p class="soft">Registry links are coming soon.</p>')+`<a class="link" href="photos/" style="flex-basis:100%;justify-content:center">Share your photos with us</a>`;
+    const ann=$('ann');
+    if(SITEINFO.announcement){let seen='';try{seen=sessionStorage.getItem('ann')||''}catch(_){}
+      if(seen!==SITEINFO.announcement){ann.innerHTML=`<span>${esc(SITEINFO.announcement)}${SITEINFO.announcementLink?` <a href="${esc(SITEINFO.announcementLink)}" target="_blank" rel="noopener">Details</a>`:''}</span><button type="button" aria-label="Dismiss">×</button>`;ann.hidden=false;
+        ann.querySelector('button').onclick=()=>{ann.hidden=true;try{sessionStorage.setItem('ann',SITEINFO.announcement)}catch(_){}}}}
+    renderDays(SITEINFO.brunch);
+  };
+  applySite({});
+  if(useApi())fetch(`${CONFIG.rsvpEndpoint}?action=site`).then(r=>r.json()).then(applySite).catch(()=>{});
   render();
 }
 </script>

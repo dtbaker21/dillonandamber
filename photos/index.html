@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Share your photos · Dillon &amp; Amber</title>
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Share your photos with Dillon &amp; Amber">
+<meta property="og:description" content="Upload your photos from the wedding, straight from your phone.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../sub.css">
+<script src="../config.js"></script>
+<style>
+.drop{display:grid;place-items:center;gap:6px;margin-top:22px;padding:38px 20px;border:1.5px dashed #cdbfae;border-radius:22px;background:#fbf8f3;text-align:center;cursor:pointer;transition:border-color .3s,background-color .3s}
+.drop:hover,.drop.over{border-color:var(--green);background:#f4f6f1}
+.drop svg{width:40px;height:40px;fill:none;stroke:var(--green);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.drop b{font-size:18px}
+.drop span{font-size:14.5px;color:var(--soft)}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;margin-top:20px}
+.th{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;background:#ece4d9;animation:rise .5s var(--ease) both}
+.th img{width:100%;height:100%;object-fit:cover}
+.th::after{content:"";position:absolute;inset:0;background:rgba(251,248,243,.55);transition:opacity .4s}
+.th.ok::after{opacity:0}
+.th i{position:absolute;left:8px;right:8px;bottom:8px;height:4px;border-radius:4px;background:rgba(255,255,255,.7);overflow:hidden;z-index:2;transition:opacity .4s}
+.th i b{display:block;height:100%;width:0;background:var(--green);transition:width .5s var(--ease)}
+.th.ok i{opacity:0}
+.th.ok s{position:absolute;z-index:2;right:7px;top:7px;width:22px;height:22px;border-radius:50%;background:var(--green);display:grid;place-items:center;animation:rise .4s var(--ease) both}
+.th.ok s::before{content:"";width:9px;height:5px;border:2px solid #fff;border-top:0;border-right:0;transform:translateY(-1px) rotate(-45deg)}
+.th.bad::after{background:rgba(196,41,28,.35)}
+.status{margin-top:16px;font-weight:500;color:var(--green);min-height:1.5em}
+</style>
+</head>
+<body>
+<header class="top">
+  <img src="../img/dance.jpg" alt="A couple dancing under string lights">
+  <a class="home" href="../">‹ Our website</a>
+  <div class="cap"><h1>Help us capture the day</h1><p>Dillon &amp; Amber · June 5, 2027</p></div>
+</header>
+<main class="box">
+  <h2>Share your photos</h2>
+  <p class="hint">Upload as many as you like. They go straight to a private album for us. No app or account needed.</p>
+  <div class="grid">
+    <div class="c6"><label for="from">Your name <span class="opt">so we know who to thank</span></label><input id="from" autocomplete="name" placeholder="Optional"></div>
+  </div>
+  <label class="drop" id="drop">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="3"/><circle cx="9" cy="11" r="2"/><path d="m21 16-4.5-4.5L8 20"/><path d="M12 2v5M9.5 4.5 12 2l2.5 2.5"/></svg>
+    <b>Choose photos</b><span>or drag them here</span>
+    <input type="file" id="file" accept="image/*" multiple>
+  </label>
+  <p class="status" id="status" aria-live="polite"></p>
+  <div class="thumbs" id="thumbs"></div>
+  <p class="hint" id="album" hidden></p>
+  <p class="demo" id="demo" hidden>Preview mode: photos aren't uploaded until the Sheet is connected.</p>
+</main>
+<script>
+(()=>{
+  const $=id=>document.getElementById(id);
+  const ep=(window.WEDDING||{}).endpoint;
+  if(!ep)$('demo').hidden=false;
+  else fetch(`${ep}?action=site`).then(r=>r.json()).then(s=>{if(s.album){$('album').innerHTML=`<a href="${s.album.replace(/"/g,'')}" target="_blank" rel="noopener">See everyone’s photos</a>`;$('album').hidden=false}}).catch(()=>{});
+  try{$('from').value=localStorage.getItem('photoName')||''}catch(_){}
+  $('from').addEventListener('change',e=>{try{localStorage.setItem('photoName',e.target.value.trim())}catch(_){}});
+  let total=0,done=0,failed=0;
+  const queue=[];let active=0;
+  const say=()=>{$('status').textContent=done+failed<total?`Uploading ${done+failed+1} of ${total}…`:`${done} photo${done===1?'':'s'} shared. Thank you!${failed?` ${failed} didn’t upload; try those again.`:''}`};
+  // Shrink big phone photos to a sharp 2400px JPEG so uploads are fast on venue Wi-Fi
+  const prep=async f=>{
+    try{const bmp=await createImageBitmap(f,{imageOrientation:'from-image'});const k=Math.min(1,2400/Math.max(bmp.width,bmp.height));
+      const c=document.createElement('canvas');c.width=Math.round(bmp.width*k);c.height=Math.round(bmp.height*k);c.getContext('2d').drawImage(bmp,0,0,c.width,c.height);
+      const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',.88));return {blob,type:'image/jpeg',url:URL.createObjectURL(blob)};
+    }catch(_){return {blob:f,type:f.type||'image/jpeg',url:''}}
+  };
+  const b64=blob=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(',')[1]);r.onerror=rej;r.readAsDataURL(blob)});
+  const pump=()=>{while(active<2&&queue.length){active++;const job=queue.shift();job().finally(()=>{active--;say();pump()})}};
+  const add=files=>{
+    [...files].filter(f=>/^image\//.test(f.type)||/\.(heic|heif)$/i.test(f.name)).forEach(f=>{
+      total++;const th=document.createElement('div');th.className='th';th.innerHTML='<i><b></b></i><s></s>';$('thumbs').prepend(th);
+      queue.push(async()=>{
+        const bar=th.querySelector('i b');
+        try{const p=await prep(f);if(p.url||/^image\/(jpeg|png|gif|webp)$/.test(f.type)){const img=new Image();img.src=p.url||URL.createObjectURL(f);img.alt='';th.prepend(img)}
+          bar.style.width='35%';
+          if(p.blob.size>15*1024*1024)throw new Error('too big');
+          const data=await b64(p.blob);bar.style.width='60%';
+          if(ep){const r=await fetch(ep,{method:'POST',body:JSON.stringify({action:'photo',from:$('from').value.trim(),type:p.type==='image/heif'?'image/heic':p.type,data})}).then(x=>x.json());if(!r.ok)throw new Error(r.error)}
+          else await new Promise(r=>setTimeout(r,500+Math.random()*500));
+          bar.style.width='100%';th.classList.add('ok');done++;
+        }catch(_){th.classList.add('bad');failed++}
+      });
+    });
+    say();pump();
+  };
+  $('file').addEventListener('change',e=>{add(e.target.files);e.target.value=''});
+  const d=$('drop');
+  ['dragenter','dragover'].forEach(t=>d.addEventListener(t,e=>{e.preventDefault();d.classList.add('over')}));
+  ['dragleave','drop'].forEach(t=>d.addEventListener(t,e=>{e.preventDefault();d.classList.remove('over')}));
+  d.addEventListener('drop',e=>add(e.dataTransfer.files));
+})();
+</script>
+</body>
+</html>
